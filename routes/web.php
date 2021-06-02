@@ -133,4 +133,7 @@ Route::prefix('admin')->group(function () {
 //Front-end
 Route::get('/', 'Homecontroller@index')->name('homef');
 
-
+Route::get('/category/slug/{id}', [
+    'as' =>'category.product',
+    'uses' => 'ViewCategoryController@index'
+]);

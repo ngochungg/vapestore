@@ -2,6 +2,7 @@
 <div class="col-sm-3">
     <div class="left-sidebar">
         <h2>Category</h2>
+
         <div class="panel-group category-products" id="accordian"><!--category-productsr-->
             @foreach($categories as $category)
             <div class="panel panel-default">
@@ -23,7 +24,12 @@
                     <div class="panel-body">
                         <ul>
                             @foreach($category->categoryChildrent as $categoryChildrent)
-                            <li><a href="#">{{$categoryChildrent->name}} </a></li>
+                                <li>
+                                    <a href="{{ route('category.product',
+                                    ['slug' => $categoryChildrent->slug, 'id' => $categoryChildrent->id]) }}">
+                                        {{ $categoryChildrent->name }}
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
