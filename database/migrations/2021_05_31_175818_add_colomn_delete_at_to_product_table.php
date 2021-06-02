@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnFeatureImageName extends Migration
+class AddColomnDeleteAtToProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,7 @@ class AddColumnFeatureImageName extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('feature_image_name')->nullable();
-        });
-        Schema::table('news', function (Blueprint $table) {
-            $table->string('feature_image_name')->nullable();
+            $table->softDeletes();
         });
     }
 
@@ -29,10 +26,7 @@ class AddColumnFeatureImageName extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('feature_image_name');
-        });
-        Schema::table('news', function (Blueprint $table) {
-            $table->dropColumn('feature_image_name');
+            //
         });
     }
 }

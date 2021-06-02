@@ -3,14 +3,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Add Product</title>
+    <title>Add News</title>
 @endsection
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-    @include('partials.content_header',['name'=>'Product','key'=>'Add'])
+    @include('partials.content_header',['name'=>'News','key'=>'Add'])
 
 
         <div class="content">
@@ -21,30 +21,20 @@
                         <div class="card">
                         <div class="card-body">
 
-                        <form class="" action="{{route('product.store')}}" method='post' enctype="multipart/form-data" >
+                        <form class="" action="{{route('news.store')}}" method='post' enctype="multipart/form-data" >
                             @csrf
                             <div class="form-group">
-                                <label>Product name</label>
+                                <label>Titles</label>
                                 <input type="text"
-                                       class="form-control @error('name') is-invalid @enderror"
-                                       placeholder="Enter Name Product"
-                                       name="name" value="{{old('name')}}"/>
-                                    @error('name')
+                                       class="form-control @error('titles') is-invalid @enderror"
+                                       placeholder="Enter Titles"
+                                       name="titles" value="{{old('titles')}}"/>
+                                    @error('titles')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                             </div>
                             <div class="form-group">
-                                <label>Product price</label>
-                                <input type="text"
-                                       class="form-control @error('price') is-invalid @enderror"
-                                       placeholder="Enter Price Product"
-                                       name="price" value="{{old('price')}}"/>
-                                @error('price')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>Product image</label>
+                                <label>News image</label>
                                 <input type="file"
                                        class="form-control-file @error('feature_image_path') is-invalid @enderror"
                                        name="feature_image_path"/>
@@ -63,26 +53,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Choose category</label>
-                                <select class="form-control select2-init @error('category_id') is-invalid @enderror" name="category_id">
-                                    <option value="">Category</option>
-                                {!! $htmlOption !!}
-                                </select>
-                                @error('category_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>Product tags</label>
-                                <select name="tags[]" class="form-control tags_select_choose
-                                @error('category_id') is-invalid @enderror" multiple="multiple" >
-                                </select>
-                                @error('tags')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label >Product content</label>
+                                <label >News content</label>
                                 <textarea
                                     class="form-control @error('contents') is-invalid @enderror"
                                     rows="3" name="contents" id="contents">{{old('contents')}}</textarea>

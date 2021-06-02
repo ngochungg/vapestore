@@ -8,3 +8,7 @@
 .select2-selection__rendered{
     line-height: normal !important;
 }
+.alert-danger {
+    padding: 4px 6px;
+    margin-top: 10px;
+}

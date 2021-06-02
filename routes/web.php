@@ -88,14 +88,40 @@ Route::prefix('admin')->group(function () {
             'as' => 'product.edit',
             'uses' => 'AdminProductController@edit'
         ]);
-//        Route::post('/update/{id}', [
-//            'as' => 'menus.update',
-//            'uses' => 'MenuController@update'
-//        ]);
-//        Route::get('/delete/{id}', [
-//            'as' => 'menus.delete',
-//            'uses' => 'MenuController@delete'
-//        ]);
+        Route::post('/update/{id}', [
+            'as' => 'product.update',
+            'uses' => 'AdminProductController@update'
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'product.delete',
+            'uses' => 'AdminProductController@delete'
+        ]);
+    });
+    Route::prefix('news')->group(function () {
+        Route::get('/', [
+            'as' => 'news.index',
+            'uses' => 'NewsController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'news.create',
+            'uses' => 'NewsController@create'
+        ]);
+        Route::post('/store', [
+            'as' => 'news.store',
+            'uses' => 'NewsController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'news.edit',
+            'uses' => 'NewsController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'news.update',
+            'uses' => 'NewsController@update'
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'news.delete',
+            'uses' => 'NewsController@delete'
+        ]);
     });
 });
 

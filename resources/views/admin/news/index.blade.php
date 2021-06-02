@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Add Product</title>
+    <title>News</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{asset('admins/product/index/index.css')}}"/>
@@ -13,43 +13,41 @@
 @section('content')
 
     <div class="content-wrapper">
-        @include('partials.content_header',['name'=>'Product','key'=>'List'])
+        @include('partials.content_header',['name'=>'News','key'=>'List'])
 
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="{{route('product.create')}}" class="btn btn-success float-right m-2">Add</a>
+                        <a href="{{route('news.create')}}" class="btn btn-success float-right m-2">Add</a>
                     </div>
                     <div class="col-md-12">
                         <table class="table">
                             <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Name Product</th>
-                                <th scope="col">Price</th>
+                                <th scope="col">Titles</th>
                                 <th scope="col">Image</th>
-                                <th scope="col">Category</th>
+                                <th scope="col">Content</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            @foreach($products as $productItem)
+                            @foreach($news as $newsItem)
 
                                 <tr>
-                                    <th scope="row">{{$productItem->id}}</th>
-                                    <td>{{$productItem->name}}</td>
-                                    <td>{{number_format($productItem->price)}}</td>
+                                    <th scope="row">{{$newsItem->id}}</th>
+                                    <td>{{$newsItem->titles}}</td>
                                     <td>
-                                        <img class="product_image" src="{{$productItem->feature_image_path}}" alt="">
+                                        <img class="product_image" src="{{$newsItem->feature_image_path}}" alt="">
                                     </td>
-                                    <td>{{optional($productItem->category)->name}}</td>
+                                    <td>{{ $newsItem->content }}</td>
                                     <td>
-                                        <a href="{{route('product.edit',['id'=>$productItem->id])}}"
+                                        <a href="{{route('news.edit',['id'=>$newsItem->id])}}"
                                            class="btn btn-default"><i class="fas fa-edit"></i></a>
                                         <a href=""
-                                           data-url="{{route('product.delete',['id'=>$productItem->id])}}"
+                                           data-url="{{route('news.delete',['id'=>$newsItem->id])}}"
                                            class="btn btn-danger action_delete"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
@@ -59,7 +57,7 @@
                         </table>
                     </div>
                     <div class="col-md12 mx-auto">
-                        {{ $products->links('pagination::bootstrap-4') }}
+                        {{ $news->links('pagination::bootstrap-4') }}
                     </div>
 
                 </div>
