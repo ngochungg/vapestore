@@ -1,14 +1,18 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 
 @section('title')
     <title>Trang chu</title>
 @endsection
 
+@section('js')
+    <script src="{{asset('vendors\sweetAlert2\sweetalert2@11.js')}}"></script>
+    <script src="{{asset('admins/product/index/index.js')}}"></script>
+@endsection
 
 @section('content')
 
     <div class="content-wrapper">
-        @include('partials.content_header',['name'=>'Menus','key'=>'List'])
+        @include('admin.layouts.partials.content_header',['name'=>'Menus','key'=>'List'])
 
         <div class="content">
             <div class="container-fluid">
@@ -37,8 +41,9 @@
                                     <td>
                                         <a href="{{ route('menus.edit', ['id' => $menu->id]) }}"
                                            class="btn btn-default"><i class="fas fa-edit"></i></a>
-                                        <a href=" {{ route('menus.delete', ['id' => $menu->id]) }}"
-                                           class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                        <a href=""
+                                           data-url="{{route('menus.delete',['id'=>$menu->id])}}"
+                                           class="btn btn-danger action_delete"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

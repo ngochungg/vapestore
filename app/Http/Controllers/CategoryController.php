@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Components\Recusive;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
@@ -64,8 +65,20 @@ class CategoryController extends Controller
 
     public function delete($id)
     {
-        $this->category->find($id)->delete();
-        return redirect()->route('categories.index');
-    }
+        try {
+            $this->category->find($id)->delete();
+            return response()->json([
+                'code' => 200,
+                'message' => 'success'
+            ], 200);
 
+        } catch (\Exception $exception) {
+            Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
+            return response()->json([
+                'code' => 500,
+                'message' => 'fail'
+            ], 500);
+        }
+
+    }
 }

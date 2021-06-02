@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Back-end
 Route::get('/admin', 'AdminController@loginAdmin');
 Route::post('/admin', 'AdminController@postLoginAdmin');
 Route::get('/home', function () {
-    return view('home');
+    return view('admin.home');
 });
 Route::prefix('admin')->group(function () {
     Route::prefix('categories')->group(function () {
@@ -96,33 +96,41 @@ Route::prefix('admin')->group(function () {
             'as' => 'product.delete',
             'uses' => 'AdminProductController@delete'
         ]);
+        Route::get('/details/{id}', [
+            'as' => 'product.details',
+            'uses' => 'AdminProductController@details'
+        ]);
     });
-    Route::prefix('news')->group(function () {
+    Route::prefix('slider')->group(function () {
         Route::get('/', [
-            'as' => 'news.index',
-            'uses' => 'NewsController@index'
+            'as' => 'slider.index',
+            'uses' => 'SliderController@index'
         ]);
         Route::get('/create', [
-            'as' => 'news.create',
-            'uses' => 'NewsController@create'
+            'as' => 'slider.create',
+            'uses' => 'SliderController@create'
         ]);
         Route::post('/store', [
-            'as' => 'news.store',
-            'uses' => 'NewsController@store'
+            'as' => 'slider.store',
+            'uses' => 'SliderController@store'
         ]);
         Route::get('/edit/{id}', [
-            'as' => 'news.edit',
-            'uses' => 'NewsController@edit'
+            'as' => 'slider.edit',
+            'uses' => 'SliderController@edit'
         ]);
         Route::post('/update/{id}', [
-            'as' => 'news.update',
-            'uses' => 'NewsController@update'
+            'as' => 'slider.update',
+            'uses' => 'SliderController@update'
         ]);
         Route::get('/delete/{id}', [
-            'as' => 'news.delete',
-            'uses' => 'NewsController@delete'
+            'as' => 'slider.delete',
+            'uses' => 'SliderController@delete'
         ]);
     });
 });
+
+
+//Front-end
+Route::get('/', 'Homecontroller@index')->name('homef');
 
 

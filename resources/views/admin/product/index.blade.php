@@ -1,9 +1,9 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 
 @section('title')
     <title>Add Product</title>
 @endsection
-@section('css')
+@section('a_css')
     <link rel="stylesheet" href="{{asset('admins/product/index/index.css')}}"/>
 @endsection
 @section('js')
@@ -13,7 +13,7 @@
 @section('content')
 
     <div class="content-wrapper">
-        @include('partials.content_header',['name'=>'Product','key'=>'List'])
+        @include('admin.layouts.partials.content_header',['name'=>'Product','key'=>'List'])
 
         <div class="content">
             <div class="container-fluid">
@@ -46,8 +46,12 @@
                                     </td>
                                     <td>{{optional($productItem->category)->name}}</td>
                                     <td>
+                                        <a href="{{route('product.details',['id'=>$productItem->id])}}"
+                                           class="btn btn-default"><i class="fas fa-eye"></i></a>
+
                                         <a href="{{route('product.edit',['id'=>$productItem->id])}}"
                                            class="btn btn-default"><i class="fas fa-edit"></i></a>
+
                                         <a href=""
                                            data-url="{{route('product.delete',['id'=>$productItem->id])}}"
                                            class="btn btn-danger action_delete"><i class="fas fa-trash-alt"></i></a>

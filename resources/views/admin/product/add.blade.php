@@ -1,16 +1,19 @@
 <!-- Stored in resources/views/child.blade.php -->
 
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 
 @section('title')
     <title>Add Product</title>
 @endsection
-
+@section('a_css')
+    <link rel="stylesheet" href="{{asset('admins/product/add/add.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+@endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-    @include('partials.content_header',['name'=>'Product','key'=>'Add'])
+    @include('admin.layouts.partials.content_header',['name'=>'Product','key'=>'Add'])
 
 
         <div class="content">
@@ -104,9 +107,7 @@
 @endsection
 @section('js')
     <script src="{{asset('vendors/selete2/select2.min.js')}}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-
     <script src="{{asset('admins/product/add/add.js')}}"></script>
 @endsection
 

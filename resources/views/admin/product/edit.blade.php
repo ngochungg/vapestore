@@ -1,18 +1,18 @@
 <!-- Stored in resources/views/child.blade.php -->
 
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 
 @section('title')
     <title>Add Product</title>
 @endsection
-@section('css')
+@section('a_css')
     <link rel="stylesheet" href="{{asset('admins/product/edit/edit.css')}}"/>
 @endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-    @include('partials.content_header',['name'=>'Product','key'=>'Edit'])
+    @include('admin.layouts.partials.content_header',['name'=>'Product','key'=>'Edit'])
         <div class="content">
             <div class="container-fluid">
                 <div class="row">

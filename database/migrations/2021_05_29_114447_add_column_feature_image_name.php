@@ -16,9 +16,6 @@ class AddColumnFeatureImageName extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->string('feature_image_name')->nullable();
         });
-        Schema::table('news', function (Blueprint $table) {
-            $table->string('feature_image_name')->nullable();
-        });
     }
 
     /**
@@ -29,9 +26,6 @@ class AddColumnFeatureImageName extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('feature_image_name');
-        });
-        Schema::table('news', function (Blueprint $table) {
             $table->dropColumn('feature_image_name');
         });
     }

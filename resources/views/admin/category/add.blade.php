@@ -1,6 +1,6 @@
 <!-- Stored in resources/views/child.blade.php -->
 
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 
 @section('title')
     <title>Home Admin</title>
@@ -10,7 +10,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-    @include('partials.content_header',['name'=>'Category','key'=>'Add'])
+    @include('admin.layouts.partials.content_header',['name'=>'Category','key'=>'Add'])
     <!-- /.content-header -->
 
         <!-- Main content -->

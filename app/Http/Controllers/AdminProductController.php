@@ -86,7 +86,6 @@ class AdminProductController extends Controller
             DB::commit();
             return redirect()->route('product.index');
 
-
         }catch (\Exception $exception){
             DB::rollBack();
             Log::error('Message: '.$exception->getMessage().'Line: '.$exception->getLine());
@@ -158,6 +157,11 @@ class AdminProductController extends Controller
                 'message' => 'fail'
             ], 500);
         }
+    }
+    public function details($id){
+        $product = $this->product->find($id);
+        $htmlOption = $this->getCategory($product->category_id);
+        return view('admin.product.details',compact('htmlOption','product'));
     }
 
 }
