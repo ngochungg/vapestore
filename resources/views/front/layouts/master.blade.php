@@ -17,7 +17,7 @@
     <link href="{{asset('/front/css/main.css')}}" rel="stylesheet">
     @yield('f_css')
 </head>
-<body
+<body>
     @include('front.components.header')
     @yield('content')
     @include('front.components.footer')

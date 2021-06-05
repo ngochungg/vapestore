@@ -15,9 +15,15 @@ use Illuminate\Support\Facades\Route;
 //Back-end
 Route::get('/admin', 'AdminController@loginAdmin');
 Route::post('/admin', 'AdminController@postLoginAdmin');
+
+//cart
+Route::post('add_to_cart', 'ProductController@addToCart');
+Route::get('cart', 'ProductController@cartsList');
+
 Route::get('/home', function () {
     return view('admin.home');
 });
+
 Route::prefix('admin')->group(function () {
     Route::prefix('categories')->group(function () {
         Route::get('/',[
@@ -137,3 +143,4 @@ Route::get('/category/slug/{id}', [
     'as' =>'category.product',
     'uses' => 'ViewCategoryController@index'
 ]);
+
