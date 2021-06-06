@@ -21,7 +21,7 @@ class CreateCustomerTable extends Migration
             $table->string('address');
             $table->integer('phone');
             $table->string('email');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->date('birthday');
             $table->boolean('gender');
             $table->boolean('active');

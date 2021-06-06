@@ -20,7 +20,7 @@ class AdminController extends Controller
             'email'=>$request->email,
             'password'=>$request->password
         ],$remember)){
-            return redirect()->to('admin.home');
+            return redirect()->to('home');
         };
     }
 
