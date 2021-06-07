@@ -13,6 +13,7 @@ use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,6 +26,14 @@ class AdminProductController extends Controller
     private $tag;
     private $productTag;
 
+    public function authenLogin()
+    {
+        if (auth()->check()){
+            return Redirect::to('home');
+        }else{
+            return Redirect::to('admin')->send();
+        }
+    }
     public function __construct(Category $category, Product $product,ProductImage $productImage,Tag $tag,ProductTag $productTag)
     {
         $this->category = $category;
@@ -34,10 +43,12 @@ class AdminProductController extends Controller
         $this->productTag = $productTag;
     }
     public function index(){
+        $this->authenLogin();
         $products = $this->product->paginate(5);
         return view('admin.product.index', compact('products'));
     }
     public function create(){
+        $this->authenLogin();
         $htmlOption = $this->getCategory($parentId = '');
         return view('admin.product.add',compact('htmlOption'));
     }
@@ -92,6 +103,7 @@ class AdminProductController extends Controller
         }
     }
     public function edit($id){
+        $this->authenLogin();
         $product = $this->product->find($id);
         $htmlOption = $this->getCategory($product->category_id);
         return view('admin.product.edit',compact('htmlOption','product'));
@@ -159,6 +171,7 @@ class AdminProductController extends Controller
         }
     }
     public function details($id){
+        $this->authenLogin();
         $product = $this->product->find($id);
         $htmlOption = $this->getCategory($product->category_id);
         return view('admin.product.details',compact('htmlOption','product'));

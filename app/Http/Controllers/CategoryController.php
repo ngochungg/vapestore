@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Components\Recusive;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
@@ -15,9 +16,17 @@ class CategoryController extends Controller
     {
         $this->category = $category;
     }
-
+    public function authenLogin()
+    {
+        if (auth()->check()){
+            return Redirect::to('home');
+        }else{
+            return Redirect::to('admin')->send();
+        }
+    }
     public function create()
     {
+        $this->authenLogin();
         $htmlOption = $this->getCategory($parentId = '');
         return view('admin.category.add', compact('htmlOption'));
     }
@@ -34,7 +43,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-
+        $this->authenLogin();
         $categories = $this->category->paginate(5);
         return view('admin.category.index', compact('categories'));
 
@@ -47,9 +56,9 @@ class CategoryController extends Controller
     }
     public function edit($id)
     {
+        $this->authenLogin();
         $category = $this->category->find($id);
         $htmlOption=$this->getCategory($category->parent_id);
-
         return view('admin.category.edit',compact('category','htmlOption'));
     }
     public function update($id, Request $request)

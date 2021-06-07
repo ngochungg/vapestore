@@ -24,6 +24,9 @@
         <div class="card-body">
             <form action="" method="post">
                 @csrf
+{{--                @if($message)--}}
+{{--                     <span style="color: red">{{$message}}</span>--}}
+{{--                @endif--}}
                 <div class="input-group mb-3">
                     <input type="email" class="form-control" placeholder="Email" name="email">
                     <div class="input-group-append">

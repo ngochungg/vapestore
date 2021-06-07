@@ -6,6 +6,7 @@ use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Components\MenuRecusive;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
 class MenuController extends Controller
@@ -17,15 +18,25 @@ class MenuController extends Controller
         $this->menuRecusive = $menuRecusive;
         $this->menu = $menu;
     }
+    public function authenLogin()
+    {
+        if (auth()->check()){
+            return Redirect::to('home');
+        }else{
+            return Redirect::to('admin')->send();
+        }
+    }
 
     public function index()
     {
+        $this->authenLogin();
         $menus = $this->menu->paginate(5);
         return view('admin.menus.index',compact('menus'));
     }
 
     public function create()
     {
+        $this->authenLogin();
         $optionSelect = $this->menuRecusive->menuRecusiveAdd();
         return view('admin.menus.add', compact('optionSelect'));
     }
@@ -40,6 +51,7 @@ class MenuController extends Controller
     }
     public function edit($id, Request $request)
     {
+        $this->authenLogin();
         $menuFollowIdEdit=$this->menu->find($id);
         $optionSelect = $this->menuRecusive->menuRecusiveEdit($menuFollowIdEdit->parent_id);
         return view ('admin.menus.edit',compact('optionSelect','menuFollowIdEdit'));

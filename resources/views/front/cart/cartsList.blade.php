@@ -56,12 +56,19 @@
                             </div>
                         </td>
                         <td class="cart_total">
+<<<<<<< HEAD
+                            <p class="cart_total_price">$59</p>
+                        </td>
+                        <td class="cart_delete">
+                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+=======
                             <p class="cart_total_price"></p>
                         </td>
                         <td class="cart_delete">
                             <a class="cart_quantity_delete" href="/removecart/{{ $product->cart_id }}">
                                 <i class="fa fa-times"></i>
                             </a>
+>>>>>>> c250a015b02ff5f61a68848069fa636ccc5154b1
                         </td>
                     </tr>
                     @endforeach

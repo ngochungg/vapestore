@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <img src="{{asset('AdminLTE/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">VapeStore</span>
     </a>
 
     <!-- Sidebar -->
@@ -11,10 +11,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{asset('AdminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{Auth::user()->image_path}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="{{route('users.details',['id'=>Auth::user()->id])}}" class="d-block">{{Auth::user()->name}}</a>
             </div>
         </div>
 
@@ -42,7 +42,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('product.index')}}" class="nav-link">
-                        <i class="nav-icon fab fa-product-hunt"></i></i>
+                        <i class="nav-icon fab fa-product-hunt"></i>
                         <p>
                             Products
                         </p>
@@ -50,9 +50,33 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('slider.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-images"></i></i>
+                        <i class="nav-icon fas fa-images"></i>
                         <p>
                             Slider
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('settings.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>
+                            Settings
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('users.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Admin User
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('logout')}}" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Logout
                         </p>
                     </a>
                 </li>

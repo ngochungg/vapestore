@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 //Back-end
 Route::get('/admin', 'AdminController@loginAdmin');
 Route::post('/admin', 'AdminController@postLoginAdmin');
-
+Route::get('/logout', 'AdminController@logout')->name('logout');
+//Route::get('/home', function () {
+//    return view('admin.home');
+//});
+Route::get('/home','AdminController@showHome');
 Route::get('/home', function () {
     return view('admin.home');
 });
@@ -129,6 +133,72 @@ Route::prefix('admin')->group(function () {
             'uses' => 'SliderController@delete'
         ]);
     });
+
+    Route::prefix('settings')->group(function () {
+        Route::get('/', [
+            'as' => 'settings.index',
+            'uses' => 'SettingsController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'settings.create',
+            'uses' => 'SettingsController@create'
+        ]);
+        Route::post('/store', [
+            'as' => 'settings.store',
+            'uses' => 'SettingsController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'settings.edit',
+            'uses' => 'SettingsController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'settings.update',
+            'uses' => 'SettingsController@update'
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'settings.delete',
+            'uses' => 'SettingsController@delete'
+        ]);
+    });
+
+    Route::prefix('users')->group(function () {
+        Route::get('/', [
+            'as' => 'users.index',
+            'uses' => 'UsersController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'users.create',
+            'uses' => 'UsersController@create'
+        ]);
+        Route::post('/store', [
+            'as' => 'users.store',
+            'uses' => 'UsersController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'users.edit',
+            'uses' => 'UsersController@editInformation'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'users.update',
+            'uses' => 'UsersController@updateInformation'
+        ]);
+        Route::get('/editPass/{id}', [
+            'as' => 'users.editPass',
+            'uses' => 'UsersController@editPass'
+        ]);
+        Route::post('/updatePass/{id}', [
+            'as' => 'users.updatePass',
+            'uses' => 'UsersController@updatePass'
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'users.delete',
+            'uses' => 'UsersController@delete'
+        ]);
+        Route::get('/details/{id}', [
+            'as' => 'users.details',
+            'uses' => 'UsersController@details'
+        ]);
+    });
 });
 
 
@@ -139,6 +209,7 @@ Route::get('/category/slug/{id}', [
     'as' =>'category.product',
     'uses' => 'ViewCategoryController@index'
 ]);
+
 
 //cart
 Route::post('add_to_cart', 'ProductController@addToCart');

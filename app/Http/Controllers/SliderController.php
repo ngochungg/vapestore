@@ -7,6 +7,7 @@ use App\Models\Slider;
 use Illuminate\Http\Request;
 use App\Traits\StorageImageTrait;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 
 class SliderController extends Controller
 {
@@ -16,12 +17,21 @@ class SliderController extends Controller
     {
         $this->slider = $slider;
     }
-
+    public function authenLogin()
+    {
+        if (auth()->check()){
+            return Redirect::to('home');
+        }else{
+            return Redirect::to('admin')->send();
+        }
+    }
     public function index(){
+        $this->authenLogin();
         $sliders = $this->slider->paginate(5);
         return view('admin.slider.index',compact('sliders'));
     }
     public function create(){
+        $this->authenLogin();
         return view('admin.slider.add');
     }
     public function store(SliderAddRequest $request)
@@ -44,6 +54,7 @@ class SliderController extends Controller
     }
     public function edit($id)
     {
+        $this->authenLogin();
         $slider = $this->slider->find($id);
         return view('admin.slider.edit', compact('slider'));
     }
