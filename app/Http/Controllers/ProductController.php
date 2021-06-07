@@ -29,7 +29,7 @@ class ProductController extends Controller
 
     function cartsList() {
         $cart = Cart::all();
-        $categoriesLimit = Category::where('parent_id',0)->take(3)->get();
+        $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
         $products= DB::table('cart')
 //            ->join('products', 'cart.product_id','=', 'products.id')
 //            ->where('cart.user_id')
