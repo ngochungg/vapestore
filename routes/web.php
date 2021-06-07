@@ -20,9 +20,6 @@ Route::get('/logout', 'AdminController@logout')->name('logout');
 //    return view('admin.home');
 //});
 Route::get('/home','AdminController@showHome');
-Route::get('/home', function () {
-    return view('admin.home');
-});
 
 Route::prefix('admin')->group(function () {
     Route::prefix('categories')->group(function () {
