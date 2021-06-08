@@ -37,7 +37,11 @@
                                     <div class="overlay-content">
                                         <h2>$ {{ $product->price }}</h2>
                                         <p>{{ $product->name }}</p>
-                                    @include('front.cart.addToCart')
+                                        <a href="#"
+                                           data-url="{{ route('addToCart', ['id'=> $product->id]) }}"
+                                            class="btn btn-primary add_to_cart">
+                                            Add to cart
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -59,5 +63,32 @@
         </div>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelir.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script>
+    function addToCart(event) {
+        event.preventDefault();
+        let urlCart = $(this).data('url');
+        $.ajax({
+            type: "GET",
+            url: urlCart,
+            dataType: 'json',
+            success: function(data) {
+                if(data.code === 200) {
+                    alert('Add to cart success')
+                }
+            },
+            error: function() {
+
+            },
+        });
+    }
+    $(function() {
+
+        $('.add_to_cart').on('click', addToCart);
+
+    })
+</script>
 
     @endsection

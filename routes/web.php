@@ -209,7 +209,12 @@ Route::get('/category/slug/{id}', [
 
 
 //cart
-Route::post('add_to_cart', 'ProductController@addToCart');
-Route::get('cart', 'ProductController@cartsList');
-Route::get('removecart/{id}', 'ProductController@removeCart');
+//show cart
+Route::get('product/show-cart', 'ProductController@showCart')->name('showCart');
+//add to cart
+Route::get('/products/add-to-cart/{id}', 'ProductController@addToCart')->name('addToCart');
+//update cart
+Route::get('/products/update-cart', 'ProductController@updateCart')->name('updateCart');
+//remove cart
+Route::get('products/delete-cart', 'ProductController@deleteCart')->name('deleteCart');
 
