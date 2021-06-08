@@ -11,7 +11,6 @@
                 <table class="table table-condensed update_cart_url" data-url="{{ route('updateCart') }}">
                     <thead>
                     <tr class="cart_menu">
-                        <td class="image">#</td>
                         <td class="image">Item</td>
                         <td class="description"></td>
                         <td class="price">Price</td>
@@ -29,7 +28,6 @@
                             @php
                                 $total += $cartItem['price'] * $cartItem['quantity'];
                             @endphp
-                            <td scope="row">{{ $id }}</td>
                             <td class="cart_product">
                                 <a href="">
                                     <img src="{{ $cartItem['image'] }} " alt=""
