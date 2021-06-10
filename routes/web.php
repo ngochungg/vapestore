@@ -218,3 +218,8 @@ Route::get('/products/update-cart', 'ProductController@updateCart')->name('updat
 //remove cart
 Route::get('products/delete-cart', 'ProductController@deleteCart')->name('deleteCart');
 
+//contac-us
+Route::get('/Contact','ContactController@contact');
+
+//online-help
+Route::get('/Online-help', 'OnlineHelpController@online');

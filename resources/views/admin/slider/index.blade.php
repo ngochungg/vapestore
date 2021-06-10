@@ -26,7 +26,7 @@
                             <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Name Slider</th>
+                                <th scope="col">Name </th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Action</th>
@@ -44,7 +44,7 @@
                                     <td>
 
                                         <a href="{{route('slider.edit',['id'=>$slider->id])}}"
-                                           class="btn btn-default"><i class="fas fa-edit"></i></a>
+                                           class="btn btn-info" style="width: 42.38px"><i class="fas fa-edit" ></i></a>
 
                                         <a href=""
                                            data-url="{{route('slider.delete',['id'=>$slider->id])}}"

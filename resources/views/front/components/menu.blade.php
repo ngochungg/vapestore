@@ -18,7 +18,8 @@
             </li>
             @endforeach
 
-            <li><a href="contact-us.html">Contact</a></li>
+            <li><a href="/Contact">Contact</a></li>
+            <li><a href="/Online-help">Online-Help</a></li>
         </ul>
     </div>
 </div>

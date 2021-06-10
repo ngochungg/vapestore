@@ -5,8 +5,7 @@
                 <div class="col-sm-2">
                     <div class="companyinfo">
                         <h2><span>VAPE</span>-STORE</h2>
-                        <p>VapeStore chuyên cung cấp các sản phẩm iQOS Pod System Tinh dầu Salt Nic, Thân máy, đầu đốt, Phụ kiện Pod System chính hãng với sự phục vụ chuyên nghiệp và uy tín.</p>
-                    </div>
+                        <p>VapeStore specializes in providing genuine iQOS Pod System products with Salt Nic Essential Oil, Body, Burner, Genuine Pod System Accessories with professional and reputable service.</p>                    </div>
                 </div>
                 <div class="col-sm-7">
                     <div class="col-sm-3">
@@ -84,7 +83,7 @@
 
                 <div class="col-sm-4">
                     <div class="single-widget1"><br>
-                        <div class="glyphicon glyphicon-map-marker"> <n style="font-family: Arial"> 590 CMT8, Quận 3, Tp.HCM</n></div><br><br>
+                        <div class="glyphicon glyphicon-map-marker"> <n style="font-family: Arial"> 590 CMT8, District 3, HCM City</n></div><br><br>
                         <div class="glyphicon glyphicon-phone"> PhoneNumber: <a href="tel:0909678999" style="color: white">0909678999</a></div><br><br>
                         <div class="glyphicon glyphicon-envelope"> Mails: <a href="mailto:VapeStore@gmail.com"style="color: white">VapeStore@gmail.com</a></div><br><br>
                         <div class="glyphicon glyphicon-phone"> Open: 8h-20h</div>
@@ -95,8 +94,8 @@
                     <div class="single-widget">
                         <h2>Service</h2>
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="{{asset('front/onlinehelp.html')}}" target="_blank">Online Help</a></li>
-                            <li><a href="{{asset('front/contact-us.html')}}" target="_blank">Contact Us</a></li>
+                            <li><a href="/Online-help" target="_blank">Online Help</a></li>
+                            <li><a href="/Contact" target="_blank">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
