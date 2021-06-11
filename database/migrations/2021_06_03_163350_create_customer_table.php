@@ -24,7 +24,6 @@ class CreateCustomerTable extends Migration
             $table->string('image')->nullable();
             $table->date('birthday');
             $table->boolean('gender');
-            $table->boolean('active');
             $table->timestamps();
         });
     }
