@@ -4096,7 +4096,8 @@ readers do not read off random characters that represent icons */
   content: "\f091"; }
 
 .fa-truck:before {
-  content: "\f0d1"; }
+  content: "\f0d1";
+}
 
 .fa-truck-loading:before {
   content: "\f4de"; }

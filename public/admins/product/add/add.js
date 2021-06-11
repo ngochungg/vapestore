@@ -9,4 +9,8 @@ $(function (){
     $('#contents').summernote({
         height: 200
     });
+
+    $('#description').summernote({
+        height: 200
+    });
 })

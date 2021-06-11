@@ -28,6 +28,7 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Name Product</th>
                                 <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Action</th>
@@ -41,6 +42,7 @@
                                     <th scope="row">{{$productItem->id}}</th>
                                     <td>{{$productItem->name}}</td>
                                     <td>{{number_format($productItem->price)}}</td>
+                                    <td>{{($productItem->quantity)}}</td>
                                     <td>
                                         <img class="product_image" src="{{$productItem->feature_image_path}}" alt="">
                                     </td>

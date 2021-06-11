@@ -130,7 +130,6 @@ Route::prefix('admin')->group(function () {
             'uses' => 'SliderController@delete'
         ]);
     });
-
     Route::prefix('settings')->group(function () {
         Route::get('/', [
             'as' => 'settings.index',
@@ -157,7 +156,6 @@ Route::prefix('admin')->group(function () {
             'uses' => 'SettingsController@delete'
         ]);
     });
-
     Route::prefix('users')->group(function () {
         Route::get('/', [
             'as' => 'users.index',
@@ -196,6 +194,9 @@ Route::prefix('admin')->group(function () {
             'uses' => 'UsersController@details'
         ]);
     });
+    Route::get('comment', 'Homecontroller@ReComment')->name('ReComment');
+    Route::get('comment/reply/{id}', 'Homecontroller@reply')->name('reply');
+    Route::post('comment/reply/{id}', 'Homecontroller@replyComment')->name('replyComment');
 });
 
 
@@ -218,8 +219,13 @@ Route::get('/products/update-cart', 'ProductController@updateCart')->name('updat
 //remove cart
 Route::get('products/delete-cart', 'ProductController@deleteCart')->name('deleteCart');
 
+
 //contac-us
 Route::get('/Contact','ContactController@contact');
 
 //online-help
 Route::get('/Online-help', 'OnlineHelpController@online');
+
+//seeDetail
+Route::get('products/details/{id}', 'Homecontroller@showDetail')->name('seeDetails');
+Route::post('products/details/{id}', 'Homecontroller@comment')->name('Comment');

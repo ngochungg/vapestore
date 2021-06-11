@@ -26,17 +26,33 @@
                                 <label>Product name</label>
                                 <input type="text"
                                        class="form-control"
-                                       placeholder="Enter Name Product"
+                                       placeholder="Enter Name Product @error('name') is-invalid @enderror"
                                        name="name"
                                        value="{{$product->name}}"/>
+                                @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Product price</label>
                                 <input type="text"
-                                       class="form-control"
+                                       class="form-control @error('price') is-invalid @enderror"
                                        placeholder="Enter Price Product"
                                        name="price"
                                        value="{{$product->price}}"/>
+                                @error('price')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Product Quantity</label>
+                                <input type="text"
+                                       class="form-control @error('quantity') is-invalid @enderror"
+                                       placeholder="Enter Quantity Product"
+                                       name="quantity" value="{{$product->quantity}}"/>
+                                @error('quantity')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Product image</label>
@@ -84,6 +100,12 @@
                             <div class="form-group">
                                 <label >Product content</label>
                                 <textarea class="form-control" rows="3" name="contents" id="contents">{{$product->content}}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label >Product Description</label>
+                                <textarea
+                                    class="form-control"
+                                    rows="3" name="description" id="description">{{$product->description}}</textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>

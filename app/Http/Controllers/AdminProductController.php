@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Components\Recusive;
+use App\Http\Requests\EditProductRequest;
 use App\Http\Requests\ProductAddRequest;
 use App\Models\Category;
 use App\Models\Product;
@@ -64,7 +65,9 @@ class AdminProductController extends Controller
             $dataProductCreate =[
                 'name' => $request->name,
                 'price' => $request->price,
+                'quantity' => $request->quantity,
                 'content' => $request->contents,
+                'description' => $request->description,
                 'user_id' => auth()->id(),
                 'category_id' => $request->category_id
             ];
@@ -108,13 +111,15 @@ class AdminProductController extends Controller
         $htmlOption = $this->getCategory($product->category_id);
         return view('admin.product.edit',compact('htmlOption','product'));
     }
-    public function update(Request $request,$id){
+    public function update(EditProductRequest $request,$id){
         try {
             DB::beginTransaction();
             $dataProductUpdate =[
                 'name' => $request->name,
                 'price' => $request->price,
+                'quantity' => $request->quantity,
                 'content' => $request->contents,
+                'description' => $request->description,
                 'user_id' => auth()->id(),
                 'category_id' => $request->category_id
             ];

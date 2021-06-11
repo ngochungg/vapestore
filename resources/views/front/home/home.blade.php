@@ -36,7 +36,8 @@
                                     <div class="product-overlay">
                                         <div class="overlay-content">
                                             <h2>$ {{ $product->price }}</h2>
-                                            <p>{{ $product->name }}</p>
+                                            <a href="{{route('seeDetails',['id'=> $product->id])}}"><p>{{ $product->name }}</p></a>
+
                                             <a href="#"
                                                data-url="{{ route('addToCart', ['id'=> $product->id]) }}"
                                                class="btn btn-primary add_to_cart">
@@ -45,15 +46,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i>See details</a></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                         @endforeach
-
                     </div><!--features_items-->
 
                     <div class="category-tab"><!--category-tab-->
