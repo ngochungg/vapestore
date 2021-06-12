@@ -73,12 +73,41 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('users.index')}}" class="nav-link">
+                    <a href="" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             User
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('users.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('users.administrator')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Administrator User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('users.customer')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Customers User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('users.create')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add User</p>
+                            </a>
+                        </li>
+                    </ul>
+
+
                 </li>
                 <li class="nav-item">
                     <a href="{{route('logout')}}" class="nav-link">

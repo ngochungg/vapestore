@@ -17,7 +17,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        @include('admin.layouts.partials.content_header',['name'=>'User','key'=>'Profile'])
+{{--        @include('admin.layouts.partials.content_header',['name'=>'User','key'=>'Profile'])--}}
 
 
         <div class="content">
@@ -28,26 +28,31 @@
                         <div class="card card-primary card-outline">
                             <div class="card-body box-profile">
                                 <div class="text-center">
-                                    <img style="width: 300px;" class="profile-user-img img-fluid img-circle" src="{{Auth::user()->image_path}}" alt="User profile picture">
+                                    <img style="width: 300px;" class="profile-user-img img-fluid img-circle" src="{{$user->image_path}}" alt="User profile picture">
                                 </div>
+                                <h3 class="profile-username text-center">{{$user->name}}</h3>
 
-                                <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
-
-                                <p class="text-muted text-center">Administrater</p>
+                                <p class="text-muted text-center">
+                                    @if($user->role == 1)
+                                        Customer
+                                    @else
+                                        Administrator
+                                    @endif
+                                </p>
 
                                 <ul class="list-group list-group-unbordered mb-3">
                                     <li class="list-group-item">
-                                        <b>Email</b> <a class="float-right">{{Auth::user()->email}}</a>
+                                        <b>Email</b> <a class="float-right">{{$user->email}}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Phone</b> <a class="float-right">{{Auth::user()->phone}}</a>
+                                        <b>Phone</b> <a class="float-right">{{$user->phone}}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Birthday</b> <a class="float-right">{{Auth::user()->birthday}}</a>
+                                        <b>Birthday</b> <a class="float-right">{{$user->birthday}}</a>
                                     </li>
                                     <li class="list-group-item">
                                         <b>Gender</b> <a class="float-right">
-                                            @if( Auth::user()->gender == 0)
+                                            @if( $user->gender == 0)
                                                 Male
                                             @else
                                                 Female
@@ -55,17 +60,15 @@
                                         </a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Address</b> <a class="float-right">{{Auth::user()->address}}</a>
+                                        <b>Address</b> <a class="float-right">{{$user->address}}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Created At</b> <a class="float-right">{{Auth::user()->created_at}}</a>
+                                        <b>Created At</b> <a class="float-right">{{$user->created_at}}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Update At</b> <a class="float-right">{{Auth::user()->updated_at}}</a>
+                                        <b>Update At</b> <a class="float-right">{{$user->updated_at}}</a>
                                     </li>
                                 </ul>
-                                <a href="{{route('users.editPass',['id'=>$user->id])}}" class="btn btn-primary btn-block"><b>Change the password</b></a>
-                                <a href="{{route('users.edit',['id'=>$user->id])}}" class="btn btn-primary btn-block"><b>Change the information</b></a>
                             </div>
                             <!-- /.card-body -->
                         </div>

@@ -19,18 +19,18 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-{{--                        <a href="{{route('users.create')}}" class="btn btn-success float-right m-2">Add</a>--}}
-                            <div class="btn-group float-left" style="padding-bottom: 10px;padding-right: 50px;">
-{{--                                <button--}}
-{{--                                    type="button" class="btn btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-{{--                                    All--}}
-{{--                                </button>--}}
-{{--                                <div class="dropdown-menu">--}}
-{{--                                    <a class="dropdown-item" href="">Text</a>--}}
-{{--                                    <a class="dropdown-item" href="">Textarea</a>--}}
-{{--                                    <div class="dropdown-divider"></div>--}}
-{{--                                </div>--}}
-                            </div>
+                        {{--                        <a href="{{route('users.create')}}" class="btn btn-success float-right m-2">Add</a>--}}
+                        <div class="btn-group float-left" style="padding-bottom: 10px;padding-right: 50px;">
+                            {{--                                <button--}}
+                            {{--                                    type="button" class="btn btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+                            {{--                                    All--}}
+                            {{--                                </button>--}}
+                            {{--                                <div class="dropdown-menu">--}}
+                            {{--                                    <a class="dropdown-item" href="">Text</a>--}}
+                            {{--                                    <a class="dropdown-item" href="">Textarea</a>--}}
+                            {{--                                    <div class="dropdown-divider"></div>--}}
+                            {{--                                </div>--}}
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <table class="table">
@@ -59,13 +59,14 @@
                                         @else Administrator
                                         @endif
                                     </td>
-                                    <td>{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y')}}</td></td>
+                                    <td>
+                                        {{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y')}}</td>
                                     <td>
                                         <a href="{{route('users.detailsUser',['id'=>$user->id])}}"
                                            class="btn btn-default"><i class="fas fa-eye"></i></a>
 
-{{--                                        <a href="{{route('users.edit',['id'=>$user->id])}}"--}}
-{{--                                           class="btn btn-default"><i class="fas fa-edit"></i></a>--}}
+                                        {{--                                        <a href="{{route('users.edit',['id'=>$user->id])}}"--}}
+                                        {{--                                           class="btn btn-default"><i class="fas fa-edit"></i></a>--}}
 
                                         <a href=""
                                            data-url="{{route('users.delete',['id'=>$user->id])}}"

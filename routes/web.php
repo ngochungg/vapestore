@@ -193,6 +193,18 @@ Route::prefix('admin')->group(function () {
             'as' => 'users.details',
             'uses' => 'UsersController@details'
         ]);
+        Route::get('/detailsUser/{id}', [
+            'as' => 'users.detailsUser',
+            'uses' => 'UsersController@detailsUser'
+        ]);
+        Route::get('/customer', [
+            'as' => 'users.customer',
+            'uses' => 'UsersController@customer'
+        ]);
+        Route::get('/administrator', [
+            'as' => 'users.administrator',
+            'uses' => 'UsersController@administrator'
+        ]);
     });
     Route::get('comment', 'Homecontroller@ReComment')->name('ReComment');
     Route::get('comment/reply/{id}', 'Homecontroller@reply')->name('reply');

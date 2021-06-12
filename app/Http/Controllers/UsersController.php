@@ -187,5 +187,21 @@ class UsersController extends Controller
             Log::error('Lỗi : ' . $exception->getMessage() . '---Line: ' . $exception->getLine());
         }
     }
+    public function detailsUser($id)
+    {
+        $this->authenLogin();
+        $user = $this->user->find($id);
+        return view('admin.user.detailUser',compact('user'));
+    }
 
+    public function customer(){
+        $this->authenLogin();
+        $users = User::whererole(1)->paginate(5);
+        return view('admin.user.customer',compact('users'));
+    }
+    public function administrator(){
+        $this->authenLogin();
+        $users = User::whererole(2)->paginate(5);
+        return view('admin.user.administrator',compact('users'));
+    }
 }
