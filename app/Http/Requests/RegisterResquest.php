@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserAddRequest extends FormRequest
+class RegisterResquest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -34,7 +34,6 @@ class UserAddRequest extends FormRequest
                 'regex:/[a-z]/',      // must contain at least one lowercase letter
                 'regex:/[A-Z]/',      //Must contain at least one uppercase letter
                 'regex:/[0-9]/',      // must contain at least one digit
-                'regex:/[@$!%*#?&]/', // must contain a special character
             ],
             'confirm_password'=>'same:password',
             'phone' => 'required|min:10|numeric',
@@ -48,7 +47,7 @@ class UserAddRequest extends FormRequest
         return [
             'email.unique'=>'Email already used',
             'password.min'=>'Must be at least 8 characters in length',
-            'password.regex'=>'Must contain at least one lowercase, uppercase, digit and special character letter',
+            'password.regex'=>'Must contain at least one lowercase, uppercase, digit letter',
         ];
     }
 }

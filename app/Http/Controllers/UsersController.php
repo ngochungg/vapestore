@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Components\MatchOldPassword;
+use App\Http\Requests\RegisterResquest;
 use App\Http\Requests\UserAddRequest;
 use App\Models\User;
 use App\Traits\DeleteModelTrait;
@@ -163,8 +164,8 @@ class UsersController extends Controller
     public function Register () {
         return view('front.customer.registration');
     }
-    public function Registration (Request $request) {
-//        try {
+    public function Registration (RegisterResquest $request) {
+        try {
             $dataInsert = [
                 'name' => $request->name,
                 'email' => $request->email,
@@ -182,9 +183,9 @@ class UsersController extends Controller
             }
             $this->user->create($dataInsert);
             return redirect()->route('homef');
-//        } catch (\Exception $exception) {
-//            Log::error('Lỗi : ' . $exception->getMessage() . '---Line: ' . $exception->getLine());
-//        }
+        } catch (\Exception $exception) {
+            Log::error('Lỗi : ' . $exception->getMessage() . '---Line: ' . $exception->getLine());
+        }
     }
 
 }
