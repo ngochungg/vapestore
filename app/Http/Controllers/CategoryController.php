@@ -18,9 +18,13 @@ class CategoryController extends Controller
     }
     public function authenLogin()
     {
-        if (auth()->check()){
+        if (auth()->check() && auth()->user()->role == 1){
+            return Redirect::to('/')->send();
+        }
+        elseif (auth()->check() && auth()->user()->role == 2){
             return Redirect::to('home');
-        }else{
+        }
+        else{
             return Redirect::to('admin')->send();
         }
     }

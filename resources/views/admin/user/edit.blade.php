@@ -17,7 +17,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-    @include('admin.layouts.partials.content_header',['name'=>'User','key'=>'Edit'])
+    @include('admin.layouts.partials.content_header',['name'=>'Change','key'=>' the information'])
 
 
         <div class="content">
@@ -33,7 +33,7 @@
                         <form class="" action="{{route('users.update',['id'=>$user->id])}}" method='post' enctype="multipart/form-data" >
                             @csrf
                             <div class="form-group">
-                                <label>User name</label>
+                                <label>Name</label>
                                 <input type="text"
                                        class="form-control"
                                        placeholder="Enter Name User"
@@ -47,7 +47,44 @@
                                        name="email" value="{{$user->email}}"/>
                             </div>
                             <div class="form-group">
-                                <label>Password</label>
+                                <label>Address</label>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Enter Name User"
+                                       name="address" value="{{$user->address}}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Enter Name User"
+                                       name="phone" value="{{$user->phone}}"/>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Birthday</label>
+                                        <input type="date"
+                                               class="form-control"
+                                               name="birthday" value="{{$user->birthday}}"
+                                        />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Gender</label>
+                                        <select id="inputState" class="form-control" name="gender">
+                                            @if($user->gender == 0)
+                                            <option value="0">Male</option>
+                                            <option value="1">Female</option>
+                                            @else
+                                            <option value="1">Female</option>
+                                            <option value="0">Male</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Current Password</label>
                                 <input type="password"
                                        class="form-control"
                                        placeholder="Enter Price Product"

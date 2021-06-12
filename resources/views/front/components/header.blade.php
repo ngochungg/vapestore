@@ -42,11 +42,22 @@
                 <div class="col-md-8 clearfix">
                     <div class="shop-menu clearfix pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href=""><i class="fa fa-user"></i> Account</a></li>
-                            <li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="{{ route('showCart') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="{{route('customer.index')}}"><i class="fa fa-lock"></i>Login</a></li>
+
+                            @if(auth()->check() && auth()->user()->role == 1)
+                                <li><a href=""><i class="fa fa-user"></i>{{Auth::user()->name}}</a></li>
+                                <li><a href="{{route('logout')}}"><i class="fa fa-lock"></i>LogOut</a></li>
+
+                            @elseif(auth()->check() && auth()->user()->role == 2)
+                                <li><a href="{{url('/home')}}"><i class="fa fa-star"></i>Admin Page</a></li>
+                                <li><a href=""><i class="fa fa-user"></i>{{Auth::user()->name}}</a></li>
+                                <li><a href="{{route('logout')}}"><i class="fa fa-lock"></i>LogOut</a></li>
+
+                            @else
+                                <li><a href="{{url('/admin')}}"><i class="fa fa-lock"></i>Login</a></li>
+                            @endif
+
                         </ul>
                     </div>
                 </div>
@@ -66,4 +77,5 @@
             </div>
         </div>
     </div><!--/header-bottom-->
+    </div>
 </header><!--/header-->

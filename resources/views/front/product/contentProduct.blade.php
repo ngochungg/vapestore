@@ -64,7 +64,7 @@
                         </div>
                         <div class="tab-contents">
                             <div class="tab-content-item active" id="Description">
-                                {!! $products->description !!}
+                                {!!$products->description!!}
                             </div>
                             <div class="tab-content-item " id="Comment">
                                 <div class="wrap-review-form">

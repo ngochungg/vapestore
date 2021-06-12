@@ -39,11 +39,18 @@
                         <form class="" action="{{route('users.store')}}" method='post' enctype="multipart/form-data" >
                             @csrf
                             <div class="form-group">
-                                <label>User name</label>
+                                <label>Name</label>
                                 <input type="text"
                                        class="form-control"
-                                       placeholder="Enter Name User"
+                                       placeholder="Enter Name"
                                        name="name" value="{{old('name')}}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Enter Username"
+                                       name="username" value="{{old('name')}}"/>
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
@@ -56,7 +63,7 @@
                                 <label>Password</label>
                                 <input type="password"
                                        class="form-control"
-                                       placeholder="Enter Price Product"
+                                       placeholder="Enter Password"
                                        id="password"
                                        name="password"/>
                             </div>
@@ -64,9 +71,52 @@
                                 <label>Confirm Password</label>
                                 <input type="password"
                                        class="form-control"
-                                       placeholder="Enter Price Product"
+                                       placeholder="Enter Confirm Password"
                                        name="confirm_password"
                                 />
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Enter Address"
+                                       name="address"
+                                       value="{{old('address')}}"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Enter Phone"
+                                       name="phone"
+                                       value="{{old('phone')}}"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                <div class="col-md-4">
+                                    <label>Birthday</label>
+                                    <input type="date"
+                                           class="form-control"
+                                           name="birthday"
+                                    />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Gender</label>
+                                    <select id="inputState" class="form-control" name="gender">
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Role</label>
+                                    <select id="inputState" class="form-control" name="role">
+                                        <option value="1">User</option>
+                                        <option value="2">Admin</option>
+                                    </select>
+                                </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Avatar</label>

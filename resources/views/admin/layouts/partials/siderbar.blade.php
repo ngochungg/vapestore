@@ -76,7 +76,7 @@
                     <a href="{{route('users.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
-                            Admin User
+                            User
                         </p>
                     </a>
                 </li>

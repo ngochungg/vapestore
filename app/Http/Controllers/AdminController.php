@@ -12,9 +12,13 @@ class AdminController extends Controller
 {
     public function authenLogin()
     {
-        if (auth()->check()){
-           return Redirect::to('home');
-        }else{
+        if (auth()->check() && auth()->user()->role == 1){
+           return Redirect::to('/')->send();
+        }
+        elseif (auth()->check() && auth()->user()->role == 2){
+            return Redirect::to('home');
+        }
+        else{
            return Redirect::to('admin')->send();
         }
     }
@@ -27,24 +31,29 @@ class AdminController extends Controller
     public function postLoginAdmin(Request $request){
         $remember=$request->has('remember') ?true:false;
         if (auth()->attempt([
-            'email'=>$request->email,
-            'password'=>$request->password
+            'username'=>$request->username,
+            'password'=>$request->password,
+            'role' => 1
+        ],$remember)){
+            return redirect()->to('/');
+        }
+        elseif(auth()->attempt([
+            'username'=>$request->username,
+            'password'=>$request->password,
+            'role' => 2
         ],$remember)){
             return redirect()->to('home');
-        }else{
-            $message = ['Account password is wrong Please re-enter!'];
-            return view('login');
+        }
+        else{
+            return redirect()->to('admin')->with('message', 'Incorrect username or password');
         };
     }
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
-        return redirect('admin');
+        return redirect('/');
     }
     public function showHome () {
        $this->authenLogin();

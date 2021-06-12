@@ -19,19 +19,24 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <b class="h1">Login</b>
+            <a href="{{route('homef')}}" class="h1"><b>Vape</b>Store</a>
         </div>
         <div class="card-body">
+            @if (session('message'))
+                <div class="alert alert-danger">
+                    {{ session('message') }}
+                </div>
+            @endif
             <form action="" method="post">
                 @csrf
 {{--                @if($message)--}}
 {{--                     <span style="color: red">{{$message}}</span>--}}
 {{--                @endif--}}
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email" name="email">
+                    <input type="text" class="form-control" placeholder="Username" name="username">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                            <span class="fas fa-user"></span>
                         </div>
                     </div>
                 </div>
@@ -73,9 +78,9 @@
 {{--            <p class="mb-1">--}}
 {{--                <a href="#">I forgot my password</a>--}}
 {{--            </p>--}}
-{{--            <p class="mb-0">--}}
-{{--                <a href="#" class="text-center">Register a new membership</a>--}}
-{{--            </p>--}}
+            <p class="mb-0">
+                <a href="{{route('Register')}}" class="text-center">Register a new membership</a>
+            </p>
         </div>
         <!-- /.card-body -->
     </div>

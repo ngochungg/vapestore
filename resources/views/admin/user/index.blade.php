@@ -26,22 +26,28 @@
                             <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Name User</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Username</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Role</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             @foreach($users as $user)
-
                                 <tr>
                                     <th scope="row">{{$user->id}}</th>
-                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->username}}</td>
                                     <td>{{$user->email}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td>@if($user->role == 1)
+                                            User
+                                        @else Admin
+                                        @endif</td>
                                     <td>
-{{--                                        <a href=""--}}
-{{--                                           class="btn btn-default"><i class="fas fa-eye"></i></a>--}}
+                                        <a href=""
+                                           class="btn btn-default"><i class="fas fa-eye"></i></a>
 
 {{--                                        <a href="{{route('users.edit',['id'=>$user->id])}}"--}}
 {{--                                           class="btn btn-default"><i class="fas fa-edit"></i></a>--}}
@@ -49,8 +55,10 @@
                                         <a href=""
                                            data-url="{{route('users.delete',['id'=>$user->id])}}"
                                            class="btn btn-danger action_delete"><i class="fas fa-trash-alt"></i></a>
+
                                     </td>
                                 </tr>
+
                             @endforeach
 
                             </tbody>

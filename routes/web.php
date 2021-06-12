@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin', 'AdminController@loginAdmin');
 Route::post('/admin', 'AdminController@postLoginAdmin');
 Route::get('/logout', 'AdminController@logout')->name('logout');
-//Route::get('/home', function () {
-//    return view('admin.home');
-//});
+//Route::get('/login', function () {
+//    return view('login');
+//})->name('loginShow');
 Route::get('/home','AdminController@showHome');
 
 Route::prefix('admin')->group(function () {
@@ -229,41 +229,6 @@ Route::get('/Online-help', 'OnlineHelpController@online');
 //seeDetail
 Route::get('products/details/{id}', 'Homecontroller@showDetail')->name('seeDetails');
 Route::post('products/details/{id}', 'Homecontroller@comment')->name('Comment');
-Route::prefix('customer')->group(function () {
-    Route::get('/', [
-        'as' => 'customer.index',
-        'uses' => 'customerController@index'
-    ]);
-    Route::get('/create', [
-        'as' => 'customer.create',
-        'uses' => 'CustomerController@create'
-    ]);
-//    Route::post('/store', [
-//        'as' => 'users.store',
-//        'uses' => 'UsersController@store'
-//    ]);
-//    Route::get('/edit/{id}', [
-//        'as' => 'users.edit',
-//        'uses' => 'UsersController@editInformation'
-//    ]);
-//    Route::post('/update/{id}', [
-//        'as' => 'users.update',
-//        'uses' => 'UsersController@updateInformation'
-//    ]);
-//    Route::get('/editPass/{id}', [
-//        'as' => 'users.editPass',
-//        'uses' => 'UsersController@editPass'
-//    ]);
-//    Route::post('/updatePass/{id}', [
-//        'as' => 'users.updatePass',
-//        'uses' => 'UsersController@updatePass'
-//    ]);
-//    Route::get('/delete/{id}', [
-//        'as' => 'users.delete',
-//        'uses' => 'UsersController@delete'
-//    ]);
-//    Route::get('/details/{id}', [
-//        'as' => 'users.details',
-//        'uses' => 'UsersController@details'
-//    ]);
-});
+
+Route::get('/Register', 'UsersController@Register')->name('Register');
+Route::post('/Registration', 'UsersController@Registration')->name('Registration');

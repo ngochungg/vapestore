@@ -25,7 +25,8 @@ class UserAddRequest extends FormRequest
     {
         return [
             'name' => 'bail|required|max:255',
-            'email'=>'bail|required|email|unique:users',
+            'email'=>'bail|required|email',
+            'username' => 'bail|required|unique:users|max:255|min:8',
             'password' => [
                 'required',
                 'string',
@@ -36,6 +37,10 @@ class UserAddRequest extends FormRequest
                 'regex:/[@$!%*#?&]/', // must contain a special character
             ],
             'confirm_password'=>'same:password',
+            'phone' => 'required|min:10|numeric',
+            'image_path' => 'required',
+            'address' => 'required',
+            'birthday' => 'required',
         ];
     }
     public function messages()

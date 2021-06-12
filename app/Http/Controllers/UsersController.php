@@ -26,9 +26,13 @@ class UsersController extends Controller
     }
     public function authenLogin()
     {
-        if (auth()->check()){
+        if (auth()->check() && auth()->user()->role == 1){
+            return Redirect::to('/')->send();
+        }
+        elseif (auth()->check() && auth()->user()->role == 2){
             return Redirect::to('home');
-        }else{
+        }
+        else{
             return Redirect::to('admin')->send();
         }
     }
@@ -47,9 +51,15 @@ class UsersController extends Controller
             $dataInsert = [
                 'name' => $request->name,
                 'email' => $request->email,
+                'username' => $request->username,
                 'password' =>Hash::make($request->password),
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'birthday' => $request->birthday,
+                'gender' => $request->gender,
+                'role' => $request->role,
             ];
-            $dataImage = $this->storageTraitUpload($request, 'image_path', 'User');
+            $dataImage = $this->storageTraitUploadFront($request, 'image_path', 'User');
             if (!empty($dataImage)) {
                 $dataInsert['image_name'] = $dataImage['file_name'];
                 $dataInsert['image_path'] = $dataImage['file_path'];
@@ -125,11 +135,17 @@ class UsersController extends Controller
             'current_password' => ['required', new MatchOldPassword()],
             'email' => ['required'],
             'name' => ['required'],
+            'phone' => ['required'],
+            'address' => ['required'],
         ]);
 //        try {
             $dataInsert = [
                 'name' => $request->name,
                 'email' => $request->email,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'birthday' => $request->birthday,
+                'gender' => $request->gender,
             ];
             $dataImage = $this->storageTraitUpload($request, 'image_path', 'User');
             if (!empty($dataImage)) {
@@ -143,4 +159,32 @@ class UsersController extends Controller
 //            Log::error('Lỗi : ' . $exception->getMessage() . '---Line: ' . $exception->getLine());
 //        }
     }
+
+    public function Register () {
+        return view('front.customer.registration');
+    }
+    public function Registration (Request $request) {
+//        try {
+            $dataInsert = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'username' => $request->username,
+                'password' =>Hash::make($request->password),
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'birthday' => $request->birthday,
+                'gender' => $request->gender,
+            ];
+            $dataImage = $this->storageTraitUploadFront($request, 'image_path', 'User');
+            if (!empty($dataImage)) {
+                $dataInsert['image_name'] = $dataImage['file_name'];
+                $dataInsert['image_path'] = $dataImage['file_path'];
+            }
+            $this->user->create($dataInsert);
+            return redirect()->route('homef');
+//        } catch (\Exception $exception) {
+//            Log::error('Lỗi : ' . $exception->getMessage() . '---Line: ' . $exception->getLine());
+//        }
+    }
+
 }

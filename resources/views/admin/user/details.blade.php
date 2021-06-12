@@ -40,6 +40,24 @@
                                         <b>Email</b> <a class="float-right">{{Auth::user()->email}}</a>
                                     </li>
                                     <li class="list-group-item">
+                                        <b>Phone</b> <a class="float-right">{{Auth::user()->phone}}</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Birthday</b> <a class="float-right">{{Auth::user()->birthday}}</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Gender</b> <a class="float-right">
+                                            @if( Auth::user()->birthday == 0)
+                                                Male
+                                            @else
+                                                Female
+                                            @endif
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Address</b> <a class="float-right">{{Auth::user()->address}}</a>
+                                    </li>
+                                    <li class="list-group-item">
                                         <b>Created At</b> <a class="float-right">{{Auth::user()->created_at}}</a>
                                     </li>
                                     <li class="list-group-item">
@@ -47,7 +65,7 @@
                                     </li>
                                 </ul>
                                 <a href="{{route('users.editPass',['id'=>$user->id])}}" class="btn btn-primary btn-block"><b>Change the password</b></a>
-                                <a href="{{route('users.edit',['id'=>$user->id])}}" class="btn btn-primary btn-block"><b>Change the email</b></a>
+                                <a href="{{route('users.edit',['id'=>$user->id])}}" class="btn btn-primary btn-block"><b>Change the information</b></a>
                             </div>
                             <!-- /.card-body -->
                         </div>
