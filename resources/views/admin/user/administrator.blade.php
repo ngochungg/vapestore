@@ -13,7 +13,7 @@
 @section('content')
 
     <div class="content-wrapper">
-        @include('admin.layouts.partials.content_header',['name'=>'User','key'=>'List'])
+        @include('admin.layouts.partials.content_header',['name'=>'Administrator','key'=>'List'])
 
         <div class="content">
             <div class="container-fluid">
