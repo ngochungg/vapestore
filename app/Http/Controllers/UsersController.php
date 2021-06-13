@@ -204,4 +204,15 @@ class UsersController extends Controller
         $users = User::whererole(2)->paginate(5);
         return view('admin.user.administrator',compact('users'));
     }
+    public function role(){
+        $this->authenLogin();
+        $users = User::whererole(1)->get();
+        $Admins = User::whererole(2)->get();
+        return view('admin.user.role',compact('users','Admins'));
+    }
+    public function roleUpdate(Request $request,$id){
+        $this->authenLogin();
+        $this->user->find($id)->update(['role'=> $request->role]);
+        return redirect()->route('users.role');
+    }
 }
