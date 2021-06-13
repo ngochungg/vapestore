@@ -91,13 +91,23 @@
                                        name="current_password"/>
                             </div>
                             <div class="form-group">
-
-                                <label>Avatar</label>
-                                <div><img style="width: 300px;" class="profile-user-img img-fluid " src="{{Auth::user()->image_path}}"></div>
-                                <br>
+                                <label>Avatar</label><br>
+                                <img  src="{{Auth::user()->image_path}}"
+                                      class="avatar img-circle img-thumbnail" alt="avatar" id="output"
+                                      style="width:300px; display: block; margin-left: auto; margin-right: auto;"><br>
                                 <input type="file"
                                        class="form-control-file"
-                                       name="image_path"/>
+                                       style="margin-left: 350px;"
+                                       name="image_path" onchange="loadFile(event)"/>
+                                <script>
+                                    var loadFile = function(event) {
+                                        var output = document.getElementById('output');
+                                        output.src = URL.createObjectURL(event.target.files[0]);
+                                        output.onload = function() {
+                                            URL.revokeObjectURL(output.src) // free memory
+                                        }
+                                    };
+                                </script>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>

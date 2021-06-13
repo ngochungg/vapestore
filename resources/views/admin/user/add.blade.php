@@ -119,12 +119,28 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Avatar</label>
+
+                                <label>Avatar</label><br>
+                                    <img  src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                                         class="avatar img-circle img-thumbnail" alt="avatar" id="output"
+                                    style="width:300px; display: block; margin-left: auto; margin-right: auto;"><br>
                                 <input type="file"
                                        class="form-control-file"
-                                       name="image_path"/>
+                                       style="margin-left: 350px;"
+                                       name="image_path" onchange="loadFile(event)"/>
+                                <script>
+                                    var loadFile = function(event) {
+                                        var output = document.getElementById('output');
+                                        output.src = URL.createObjectURL(event.target.files[0]);
+                                        output.onload = function() {
+                                            URL.revokeObjectURL(output.src) // free memory
+                                        }
+                                    };
+                                </script>
+
+
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary col-md-12">Submit</button>
                         </form>
                         </div>
                         </div>
