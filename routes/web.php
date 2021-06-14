@@ -252,3 +252,5 @@ Route::post('products/details/{id}', 'Homecontroller@comment')->name('Comment');
 
 Route::get('/Register', 'UsersController@Register')->name('Register');
 Route::post('/Registration', 'UsersController@Registration')->name('Registration');
+
+Route::get('/profile', 'Homecontroller@profile')->name('profile');

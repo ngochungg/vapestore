@@ -71,5 +71,9 @@ class Homecontroller extends Controller
         return view('admin.comment.index', compact('comments'));
     }
 
-
+    public function profile(){
+        $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
+        $Popular_Products= Product::all()->random(4);
+        return view('front.customer.profile', compact( 'categoriesLimit','Popular_Products'));
+    }
 }

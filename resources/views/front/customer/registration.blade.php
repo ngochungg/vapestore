@@ -106,8 +106,24 @@
                 <br>
                 <div>
                     <div class="form-group">
-                        <label for="exampleFormControlFile1">Avatar</label>
-                        <input name="image_path" type="file" class="form-control-file" id="exampleFormControlFile1">
+                        <label>Avatar</label><br>
+                        <img  src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                              class="avatar img-circle img-thumbnail" alt="avatar" id="output"
+                              style="width:200px; display: block; margin-left: auto; margin-right: auto;"><br>
+                        <input type="file"
+                               class="form-control-file"
+                               style="margin-left: 200px;"
+                               name="image_path" onchange="loadFile(event)"/>
+                        <script>
+                            var loadFile = function(event) {
+                                var output = document.getElementById('output');
+                                output.src = URL.createObjectURL(event.target.files[0]);
+                                output.onload = function() {
+                                    URL.revokeObjectURL(output.src) // free memory
+                                }
+                            };
+                        </script>
+
                     </div>
                 </div>
                 <div class="row">

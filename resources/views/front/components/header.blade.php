@@ -46,12 +46,12 @@
                             <li><a href="{{ route('showCart') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 
                             @if(auth()->check() && auth()->user()->role == 1)
-                                <li><a href=""><i class="fa fa-user"></i>{{Auth::user()->name}}</a></li>
+                                <li><a href="{{route('profile')}}"><i class="fa fa-user"></i>{{Auth::user()->name}}</a></li>
                                 <li><a href="{{route('logout')}}"><i class="fa fa-lock"></i>LogOut</a></li>
 
                             @elseif(auth()->check() && auth()->user()->role == 2)
                                 <li><a href="{{url('/home')}}"><i class="fa fa-star"></i>Admin Page</a></li>
-                                <li><a href=""><i class="fa fa-user"></i>{{Auth::user()->name}}</a></li>
+                                <li><a href="{{route('profile')}}"><i class="fa fa-user"></i>{{Auth::user()->name}}</a></li>
                                 <li><a href="{{route('logout')}}"><i class="fa fa-lock"></i>LogOut</a></li>
 
                             @else
