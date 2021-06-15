@@ -36,7 +36,7 @@
                                 <div class="product-overlay">
                                     <div class="overlay-content">
                                         <h2>$ {{ $product->price }}</h2>
-                                        <p>{{ $product->name }}</p>
+                                        <p><a style="color: white;" href="{{ route('seeDetails', ['id'=> $product->id]) }}">{{ $product->name }}</a></p>
                                         <a href="#"
                                            data-url="{{ route('addToCart', ['id'=> $product->id]) }}"
                                             class="btn btn-primary add_to_cart">

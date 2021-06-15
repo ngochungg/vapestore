@@ -215,4 +215,5 @@ class UsersController extends Controller
         $this->user->find($id)->update(['role'=> $request->role]);
         return redirect()->route('users.role');
     }
+
 }

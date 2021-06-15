@@ -249,8 +249,15 @@ Route::get('/Online-help', 'OnlineHelpController@online');
 //seeDetail
 Route::get('products/details/{id}', 'Homecontroller@showDetail')->name('seeDetails');
 Route::post('products/details/{id}', 'Homecontroller@comment')->name('Comment');
-
+//Register
 Route::get('/Register', 'UsersController@Register')->name('Register');
 Route::post('/Registration', 'UsersController@Registration')->name('Registration');
-
+//profile
 Route::get('/profile', 'Homecontroller@profile')->name('profile');
+//forgot_password
+//Route::get('/forgot_password', 'UsersController@forgot_password')->name('forgot_password');
+//Route::post('/forgot_password', 'UsersController@Rpassword')->name('Rpassword');
+Route::get('forget-password','ForgotPasswordController@showForgetPasswordForm')->name('forget.password.get');
+Route::post('forget-password', 'ForgotPasswordController@submitForgetPasswordForm')->name('forget.password.post');
+Route::get('reset-password/{token}','ForgotPasswordController@showResetPasswordForm')->name('reset.password.get');
+Route::post('reset-password', 'ForgotPasswordController@submitResetPasswordForm')->name('reset.password.post');

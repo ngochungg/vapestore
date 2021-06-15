@@ -27,6 +27,11 @@
                     {{ session('message') }}
                 </div>
             @endif
+                @if (session('messages'))
+                    <div class="alert alert-success">
+                        {{ session('messages') }}
+                    </div>
+                @endif
             <form action="" method="post">
                 @csrf
 {{--                @if($message)--}}
@@ -75,9 +80,9 @@
 {{--            </div>--}}
             <!-- /.social-auth-links -->
 
-{{--            <p class="mb-1">--}}
-{{--                <a href="#">I forgot my password</a>--}}
-{{--            </p>--}}
+            <p class="mb-1">
+                <a href="{{ route('forget.password.get') }}">I forgot my password</a>
+            </p>
             <p class="mb-0">
                 <a href="{{route('Register')}}" class="text-center">Register a new membership</a>
             </p>
