@@ -232,17 +232,11 @@ class UsersController extends Controller
     public function handleCallback()
     {
         try {
-
             $user = Socialite::driver('google')->user();
-
             $finduser =  User::where('email', $user->getEmail())->first();
-
             if($finduser){
-
                 Auth::login($finduser);
-
                 return redirect('/');
-
             }else{
                 $newUser = User::create([
                     'name' => $user->name,
@@ -252,14 +246,43 @@ class UsersController extends Controller
                     'social_type'=> 'google',
                     'password' => Hash::make('my-google')
                 ]);
-
                 Auth::login($newUser);
+                return redirect('/');
+            }
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+    public function redirectToFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+    public function handleCallbackFace()
+    {
+        try {
 
+            $user = Socialite::driver('facebook')->user();
+            $isUser = User::where('email',$user->getEmail())->first();
+
+            if($isUser){
+                Auth::login($isUser);
+                return redirect('/');
+            }else{
+                $createUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'social_id'=> $user->id,
+                    'social_type'=> 'faceook',
+                    'image_path' => $user->getAvatar(),
+                    'password' => Hash::make('my-facebook')
+                ]);
+
+                Auth::login($createUser);
                 return redirect('/');
             }
 
-        } catch (Exception $e) {
-            dd($e->getMessage());
+        } catch (Exception $exception) {
+            dd($exception->getMessage());
         }
     }
 }

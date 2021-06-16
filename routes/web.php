@@ -266,3 +266,7 @@ Route::post('reset-password', 'ForgotPasswordController@submitResetPasswordForm'
 Route::get('/google', 'UsersController@redirectToGoogle');
 Route::get('callback/google', 'UsersController@handleCallback');
 
+//login facebook
+Route::get('/facebook', 'UsersController@redirectToFacebook');
+Route::get('callback/facebook', 'UsersController@handleCallbackFace');
+
