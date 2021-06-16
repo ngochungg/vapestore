@@ -5,7 +5,7 @@
                 <div class="col-sm-5">
                     <div class="contactinfo" >
                         <ul class="nav nav-pills">
-                            <li style="top: 7px">CHÀO MỪNG BẠN ĐẾN VỚI WEBSITE CỦA CHÚNG TÔI!</li>
+                            <li style="top: 7px">WELCOME TO OUR STORE<WEBSITE></WEBSITE></li>
                         </ul>
                     </div>
                 </div>

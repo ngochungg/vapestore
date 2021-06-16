@@ -49,7 +49,7 @@ class AdminProductController extends Controller
     }
     public function index(){
         $this->authenLogin();
-        $products = $this->product->paginate(5);
+        $products = $this->product->latest()->paginate(5);
         return view('admin.product.index', compact('products'));
     }
     public function create(){

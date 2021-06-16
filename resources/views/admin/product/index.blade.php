@@ -40,11 +40,11 @@
 
                                 <tr>
                                     <th scope="row">{{$productItem->id}}</th>
-                                    <td>{{$productItem->name}}</td>
+                                    <td style="max-width: 200px;word-wrap: break-word">{{$productItem->name}}</td>
                                     <td>{{number_format($productItem->price)}}</td>
                                     <td>{{($productItem->quantity)}}</td>
                                     <td>
-                                        <img class="product_image" src="{{$productItem->feature_image_path}}" alt="">
+                                        <img class="product_image" src="{{$productItem->feature_image_path}}" alt="" style="height: 100px">
                                     </td>
                                     <td>{{optional($productItem->category)->name}}</td>
                                     <td>
@@ -52,7 +52,7 @@
                                            class="btn btn-default"><i class="fas fa-eye"></i></a>
 
                                         <a href="{{route('product.edit',['id'=>$productItem->id])}}"
-                                           class="btn btn-default"><i class="fas fa-edit"></i></a>
+                                           class="btn btn-info" style="width: 42.38px"><i class="fas fa-edit"></i></a>
 
                                         <a href=""
                                            data-url="{{route('product.delete',['id'=>$productItem->id])}}"

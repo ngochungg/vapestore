@@ -28,15 +28,17 @@
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
-                                    <img src="{{ config('app.base_url') . $product->feature_image_path }}" alt="" />
-                                    <h2>$ {{ $product->price }}</h2>
-                                    <p>{{ $product->name }}</p>
+                                    <img src="{{ config('app.base_url') . $product->feature_image_path }}" alt="" style="min-height: 250px;" />
+
+                                    <h4 style="font-weight: 300">{{ $product->name }}</h4>
+                                    <h3 style="color: orange">$ {{ $product->price }}</h3>
                                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </div>
                                 <div class="product-overlay">
                                     <div class="overlay-content">
-                                        <h2>$ {{ $product->price }}</h2>
-                                        <p><a style="color: white;" href="{{ route('seeDetails', ['id'=> $product->id]) }}">{{ $product->name }}</a></p>
+                                        <h3><a style="color: white;" href="{{ route('seeDetails', ['id'=> $product->id]) }}">{{ $product->name }}</a></h3>
+                                        <h3 style="color: #FFFFFF">$ {{ $product->price }}</h3>
+
                                         <a href="#"
                                            data-url="{{ route('addToCart', ['id'=> $product->id]) }}"
                                             class="btn btn-primary add_to_cart">
@@ -47,7 +49,7 @@
                             </div>
                             <div class="choose">
                                 <ul class="nav nav-pills nav-justified">
-                                    <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i>See details</a></li>
+                                    <li><a href="{{ route('seeDetails', ['id'=> $product->id]) }}"><i class="fa fa-info-circle" aria-hidden="true"></i>See details</a></li>
                                 </ul>
                             </div>
                         </div>

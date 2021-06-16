@@ -39,7 +39,7 @@
                                     <td>{{ $category->name }}</td>
                                     <td>
                                         <a href="{{ route('categories.edit', ['id' => $category->id]) }}"
-                                           class="btn btn-default"><i class="fas fa-edit"></i></a>
+                                           class="btn btn-info " style="width: 42.38px"><i class="fas fa-edit"></i></a>
                                         <a href=""
                                            data-url="{{route('categories.delete',['id'=>$category->id])}}"
                                            class="btn btn-danger action_delete"><i class="fas fa-trash-alt"></i></a>

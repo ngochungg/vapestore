@@ -1,8 +1,29 @@
 .product_image{
     width: 250px;
-    height: 200px;
+    height: 150px;
     object-fit: cover;
 }
 .container_image{
-    margin-top: 20px;
+    margin-top: 40px;
+}
+.image-product{
+    width: 100px;
+    height: 100px;
+}
+name{
+    font-size: 28px;
+    font-weight: bold;
+
+}
+price{
+    font-size: 20px;
+    color: red;
+}
+c{
+    text-transform: uppercase;
+    font-weight: lighter;
+}
+tags{
+    background-color: lightgrey;
+    border-radius: 3px 6px;
 }

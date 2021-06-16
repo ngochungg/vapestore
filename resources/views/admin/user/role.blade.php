@@ -18,12 +18,8 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        {{--                        <a href="{{route('users.create')}}" class="btn btn-success float-right m-2">Add</a>--}}
-                    </div>
-                    <table class="table">
-                        <thead><th colspan="5">Administrator</th></thead>
-                        <thead class="thead-dark">
+                    <h1 style="margin-left: 500px; font-weight: 400">Administrator</h1>
+                    <table class="table" style="margin-left: 20px">
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Username</th>
@@ -35,9 +31,9 @@
                         <tbody>
                         @foreach($Admins as $admin)
                             <tr>
-                                <td>{{$admin->name}}</td>
-                                <td>{{$admin->username}}</td>
-                                <td>{{$admin->email}}</td>
+                                <td style="width: 150px; word-wrap: break-word">{{$admin->name}}</td>
+                                <td style="width: 200px; word-wrap: break-word">{{$admin->username}}</td>
+                                <td style="width: 400px; word-wrap: break-word">{{$admin->email}}</td>
                                     <td>
                                         <form action="{{route('users.roleUpdate',['id'=>$admin->id])}}" method='post'>
                                             @csrf
@@ -46,31 +42,33 @@
 
                                         <input style="margin-left: 20px" type="radio" id="option2" name="role" value="1"
                                             {{ ($admin->role == 1)? "checked" : "" }} >Customer</label>
-                                            <input style="margin-left: 20px" type="submit" value="Save" class="btn btn-secondary">
+                                            <input style="margin-left: 50px" type="submit" value="Save" class="btn btn-success">
                                         </form>
                                     </td>
 
                             </tr>
                         @endforeach
                         </tbody>
+                        <hr>
+                        <hr>
                     </table>
 
-                    <table class="table">
-                        <thead><th colspan="5">Customer</th></thead>
-                        <thead class="thead-light">
+
+                    <h1 style="margin-left: 520px;font-weight: 400">Customer</h1>
+                    <table class="table" style="margin-left: 20px">
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Username</th>
                             <th scope="col">Email</th>
                             <th scope="col">Role</th>
                         </tr>
-                        </thead>
+
                         <tbody>
                         @foreach($users as $user)
                             <tr>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->username}}</td>
-                                <td>{{$user->email}}</td>
+                                <td style="width: 150px; word-wrap: break-word">{{$user->name}}</td>
+                                <td style="width: 200px; word-wrap: break-word">{{$user->username}}</td>
+                                <td style="width: 400px; word-wrap: break-word">{{$user->email}}</td>
                                 <td>
                                     <form action="{{route('users.roleUpdate',['id'=>$user->id])}}" method='post'>
                                         @csrf
@@ -79,7 +77,7 @@
 
                                         <input style="margin-left: 20px" type="radio" id="option2" name="role" value="1"
                                             {{ ($user->role == 1)? "checked" : "" }} >Customer</label>
-                                        <input style="margin-left: 20px" type="submit" value="Save" class="btn btn-secondary">
+                                        <input style="margin-left: 50px" type="submit" value="Save" class="btn btn-success">
                                     </form>
                                 </td>
 
