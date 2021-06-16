@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Socialite;
+use Exception;
 
 
 class UsersController extends Controller
@@ -216,4 +218,48 @@ class UsersController extends Controller
         return redirect()->route('users.role');
     }
 
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function handleCallback()
+    {
+        try {
+
+            $user = Socialite::driver('google')->user();
+
+            $finduser =  User::where('email', $user->getEmail())->first();
+
+            if($finduser){
+
+                Auth::login($finduser);
+
+                return redirect('/');
+
+            }else{
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'image_path' => $user->getAvatar(),
+                    'social_id'=> $user->id,
+                    'social_type'=> 'google',
+                    'password' => Hash::make('my-google')
+                ]);
+
+                Auth::login($newUser);
+
+                return redirect('/');
+            }
+
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
 }

@@ -30,7 +30,8 @@ class User extends Authenticatable
         'address',
         'gender',
         'birthday',
-
+        'social_id',
+        'social_type',
 
     ];
 

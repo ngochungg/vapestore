@@ -261,3 +261,8 @@ Route::get('forget-password','ForgotPasswordController@showForgetPasswordForm')-
 Route::post('forget-password', 'ForgotPasswordController@submitForgetPasswordForm')->name('forget.password.post');
 Route::get('reset-password/{token}','ForgotPasswordController@showResetPasswordForm')->name('reset.password.get');
 Route::post('reset-password', 'ForgotPasswordController@submitResetPasswordForm')->name('reset.password.post');
+
+//login google
+Route::get('/google', 'UsersController@redirectToGoogle');
+Route::get('callback/google', 'UsersController@handleCallback');
+
