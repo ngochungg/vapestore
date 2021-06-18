@@ -49,6 +49,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('order.index')}}" class="nav-link">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <p>
+                            Order
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{route('slider.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-images"></i>
                         <p>

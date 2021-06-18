@@ -9,25 +9,11 @@ use App\Traits\DeleteModelTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function Sodium\compare;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
     use DeleteModelTrait;
-//    public function addToCart(Request $req) {
-////        if($req->session()->has('user')) {
-////            $cart = new Cart;
-////            $cart-> user_id = $req->session()->has('user')['id'];
-////            $cart-> product_id = $req->product_id;
-////            $cart->save();
-////            return redirect('/home');
-////        } else {
-////            return redirect('/login');
-////        }
-//        $cart= new Cart;
-//        $cart-> product_id = $req->product_id;
-//        $cart->save();
-//        return redirect('cart');
-//    }
     public function addToCart($id) {
         $product = Product::find($id);
         $cart = session()->get('cart');

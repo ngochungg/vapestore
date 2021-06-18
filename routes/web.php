@@ -104,6 +104,36 @@ Route::prefix('admin')->group(function () {
             'uses' => 'AdminProductController@details'
         ]);
     });
+    Route::prefix('order')->group(function () {
+        Route::get('/', [
+            'as' => 'order.index',
+            'uses' => 'CheckoutController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'order.create',
+            'uses' => 'AdminOrderController@create'
+        ]);
+        Route::post('/store', [
+            'as' => 'order.store',
+            'uses' => 'AdminOrderController@store'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'order.edit',
+            'uses' => 'AdminOrderController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'order.update',
+            'uses' => 'AdminOrderController@update'
+        ]);
+        Route::get('/delete/{id}', [
+            'as' => 'order.delete',
+            'uses' => 'AdminOrderController@delete'
+        ]);
+        Route::get('/details/{id}', [
+            'as' => 'order.details',
+            'uses' => 'AdminOrderController@details'
+        ]);
+    });
     Route::prefix('slider')->group(function () {
         Route::get('/', [
             'as' => 'slider.index',
@@ -238,6 +268,13 @@ Route::get('/products/add-to-cart/{id}', 'ProductController@addToCart')->name('a
 Route::get('/products/update-cart', 'ProductController@updateCart')->name('updateCart');
 //remove cart
 Route::get('products/delete-cart', 'ProductController@deleteCart')->name('deleteCart');
+
+//checkout
+Route::get('/login-checkout', 'CheckoutController@loginAdmin');
+Route::post('/login-checkout', 'CheckoutController@postLoginAdmin');
+Route::get('/logout', 'CheckoutController@logout')->name('logout');
+Route::get('/payment', 'CheckoutController@payment');
+Route::post('/order-place', 'CheckoutController@order_place');
 
 
 //contac-us
