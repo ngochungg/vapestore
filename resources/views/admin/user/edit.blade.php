@@ -43,21 +43,21 @@
                                 <label>Email</label>
                                 <input type="email"
                                        class="form-control"
-                                       placeholder="Enter Email"
+                                       placeholder="Your Mail"
                                        name="email" value="{{$user->email}}"/>
                             </div>
                             <div class="form-group">
                                 <label>Address</label>
                                 <input type="text"
                                        class="form-control"
-                                       placeholder="Enter Name User"
+                                       placeholder="Your Address"
                                        name="address" value="{{$user->address}}"/>
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
                                 <input type="text"
                                        class="form-control"
-                                       placeholder="Enter Name User"
+                                       placeholder="Enter Your PhoneNumber"
                                        name="phone" value="{{$user->phone}}"/>
                             </div>
                             <div class="form-group">
@@ -83,13 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Current Password</label>
-                                <input type="password"
-                                       class="form-control"
-                                       placeholder="Enter Price Product"
-                                       name="current_password"/>
-                            </div>
+
                             <div class="form-group">
                                 <label>Avatar</label><br>
                                 <img  src="{{Auth::user()->image_path}}"

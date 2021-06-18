@@ -73,7 +73,7 @@
                     <address>
                         <d>VAPESTORE</d>
                         <br><br>
-                        <c>Address:  </c><a href="https://goo.gl/maps/MNKFzXZUVaFEaHb37">590 Cách Mạng Tháng 8, Ward 11, District 3, HCM City</a><br><br>
+                        <c>Address:  </c><a href="https://goo.gl/maps/MNKFzXZUVaFEaHb37">590 CMT8, Ward 11, District 3, HCM City</a><br><br>
                         <c>Phone Number: </c><a href="tel:0909678999 ">0909 678999</a><br>
                         <c>Email: </c><a href="mailto:VapeStore@gmail.com">VapeStore@gmail.com</a><br>
                     </address>
