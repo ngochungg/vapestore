@@ -62,7 +62,7 @@
                                     <td>{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y')}}</td></td>
                                     <td>
                                         <a href="{{route('users.detailsUser',['id'=>$user->id])}}"
-                                           class="btn btn-default"><i class="fas fa-eye"></i></a>
+                                               class="btn btn-default"><i class="fas fa-eye"></i></a>
 
 {{--                                        <a href="{{route('users.edit',['id'=>$user->id])}}"--}}
 {{--                                           class="btn btn-default"><i class="fas fa-edit"></i></a>--}}

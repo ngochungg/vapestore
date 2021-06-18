@@ -25,7 +25,7 @@
                                 <input type="text"
                                        class="form-control"
                                        placeholder="Enter Name Category"
-                                       name="name">
+                                       name="name" required>
                             </div>
                             <div class="form-group">
                                 <label>Choose a parent category</label>

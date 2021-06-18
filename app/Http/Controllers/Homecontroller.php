@@ -76,4 +76,5 @@ class Homecontroller extends Controller
         $Popular_Products= Product::all()->random(4);
         return view('front.customer.profile', compact( 'categoriesLimit','Popular_Products'));
     }
+
 }

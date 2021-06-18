@@ -46,7 +46,6 @@
                                         @endif
                                     </td>
                                     <td>{{$comment->product->name}}
-
                                     </td>
                                     <td>
                                         <a href="{{route('reply',['id'=>$comment->id])}}"

@@ -22,49 +22,48 @@
                         <div class="card-body">
                         <form class="" enctype="multipart/form-data" >
                             @csrf
-                            <div class="form-group">
-                                <label>Product name</label>
-                                <div>{{$product->name}}</div>
-                            </div>
-                            <div class="form-group">
-                                <label>Product price</label>
-                                <div>{{number_format($product->price)}}</div>
-                            </div>
-                            <div class="form-group">
-                                <label>Product image</label>
-                                <div class="col-md-12">
-                                    <div class=" row">
-                                        <img class="product_image container_image" src="{{$product->feature_image_path}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Product detail images</label>
-                                <div class="col-md-12 ">
-                                    <div class=" row">
-                                        @foreach($product->productImages as $productImageItem)
-                                        <div class="col-md-4 container_image">
-                                            <img class="product_image" src="{{$productImageItem->image_path}}">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6" >
+                                        <div style="height: 450px">
+                                            <img src="{{$product->feature_image_path}}" height="450px">
                                         </div>
-                                        @endforeach
+                                        <div style="margin-top:10px;height: 200px;" >
+                                            @foreach($product->productImages as $productImageItem)
+                                                  <div>
+                                                       <img class="image-product" src="{{$productImageItem->image_path}}">
+                                                  </div>
+                                             @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-5">
+                                        <div>
+                                            <name> {{$product->name}} </name>
+                                        </div>
+                                        <div>
+                                            ---- <price> ${{number_format($product->price)}}</price>----
+                                        </div>
+
+                                        <hr>
+
+                                            <c>On category : </c> {{optional($product->category)->name}}<br>
+                                            <c>Exist : </c> {{$product->quantity}} <br><br>
+                                        <div>
+
+                                            <c>Product tags : </c>
+                                            @foreach($product->tags as $tagItem)
+                                                <tags value="{{$tagItem->name}}" >{{$tagItem->name}}</tags>
+                                            @endforeach
+                                        </div>
+
+                                        <hr style="width: 50%">
+
+                                        <c >Content : </c> {!!$product->content !!}
+
+                                        <c >Desciption : </c>{!!$product->description !!}
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Choose category</label>
-                                <div>{{optional($product->category)->name}}</div>
-                            </div>
-                            <div class="form-group">
-                                <label>Product tags</label>
-                                <select name="tags[]" class="form-control" multiple="multiple">
-                                    @foreach($product->tags as $tagItem)
-                                    <option value="{{$tagItem->name}}" selected>{{$tagItem->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label >Product content</label>
-                                <div>{{$product->content}}</div>
                             </div>
                         </form>
                         </div>

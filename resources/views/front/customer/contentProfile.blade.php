@@ -1,62 +1,92 @@
-<div class="container bootstrap snippet">
+
+<link rel="stylesheet" href="{{ asset('admins/product/add/add.css')}}">
+<div class="container bootstrap snippet wrap-info-cus">
     <div class="row">
-        <div class="col-sm-10"><h1>Profile</h1></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3"><!--left col-->
+{{--        <div class="col-sm-3"><!--left col-->--}}
+{{--            <div class="text-center">--}}
+{{--                <img style="width:300px" src="{{Auth::user()->image_path}}" class="avatar img-circle img-thumbnail" alt="avatar">--}}
+{{--            </div></hr><br>--}}
 
-
-            <div class="text-center">
-                <img style="width:300px" src="{{Auth::user()->image_path}}" class="avatar img-circle img-thumbnail" alt="avatar">
-            </div></hr><br>
-
-        </div><!--/col-3-->
-        <div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#Information">Information</a></li>
-                <li><a data-toggle="tab" href="#edit">Change Information</a></li>
-                <li><a data-toggle="tab" href="#history">Order history</a></li>
+{{--        </div><!--/col-3-->--}}
+        <div class="col-sm-12">
+            <ul class="nav nav-tabs" >
+                <li class="active nav-info"><a data-toggle="tab" href="#Information">Information</a></li>
+                <li class="nav-info"><a data-toggle="tab" href="#edit">Change Information</a></li>
+                <li class="nav-info"><a data-toggle="tab" href="#history">Order history</a></li>
             </ul>
 
 
             <div class="tab-content">
                 <div class="tab-pane active" id="Information">
-                    <h2>Information</h2>
-                    <hr>
-                        <ul class="list-group list-group-unbordered mb-3">
-                            <li class="list-group-item">
-                                <b>Name</b> <a style="float: right!important;">{{Auth::user()->name}}</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Email</b> <a style="float: right!important;">{{Auth::user()->email}}</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Phone</b><a style="float: right!important;">{{Auth::user()->phone}}</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Birthday</b> <a style="float: right!important;">{{Auth::user()->birthday}}</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Gender</b> <a style="float: right!important;">
-                                    @if( Auth::user()->gender == 0)
-                                        Male
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <div class="avatarBox-cus"><img class='img-fluid' src="{{Auth::user()->image_path}}" alt="User profile picture" ></div>
+                        </div>
+                        <div class="col-md-5">
+                            <br><br><br>
+                            <p class="sayHi">Hello</p>
+                            <h1>I'm {{Auth::user()->name}}</h1>
+                            <div  class="fa fa-user-md" aria-hidden="true">
+                                <i style="font-family: Arial; font-weight: 300"> @if( Auth::user()->role == 2)
+                                        Admin VapeStore
                                     @else
-                                        Female
-                                    @endif
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Address</b><a style="float: right!important;">{{Auth::user()->address}}</a>
-                            </li>
-                        </ul>
+                                        Customer
+                                    @endif</i>
+                            </div>
+                            <hr>
+
+                            <div class='detailInfo'>
+                                <div class='row my-2'>
+                                    <div class='col-lg-4 col-12 boldd'>Name:</div>
+                                    <div class='col-lg-8 col-12 b'>{{Auth::user()->name}}</div>
+                                </div>
+                                <div class='row my-2'>
+                                    <div class='col-lg-4 col-12 boldd'>Gender:</div>
+                                    <div class='col-lg-8 col-12 b'>
+                                        @if( Auth::user()->gender == 0)
+                                            Male
+                                        @else
+                                            Female
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class='row my-2'>
+                                    <div class='col-lg-4 col-12 boldd'>Address:</div>
+                                    <div class='col-lg-8 col-12 b'>{{Auth::user()->address}}</div>
+                                </div>
+                                <div class='row my-2'>
+                                    <div class='col-lg-4 col-12 boldd'>BirthDay:</div>
+                                    <div class='col-lg-8 col-12 b'>{{Auth::user()->birthday}}</div>
+                                </div>
+                                <div class='row my-2'>
+                                    <div class='col-lg-4 col-12 boldd'>Phone:</div>
+                                    <div class='col-lg-8 col-12 b'><a href='https://azteam.host/'>{{Auth::user()->phone}}</a></div>
+                                </div>
+                                <div class='row my-2'>
+                                    <div class='col-lg-4 col-12 boldd'>Email:</div>
+                                    <div class='col-lg-8 col-12 b'><a href='mailto:{{Auth::user()->name}}'>{{Auth::user()->email}}</a></div>
+                                </div>
+                                <div class='row my-2'>
+                                    <div class='col-lg-4 col-12 boldd'>Create At:</div>
+                                    <div class='col-lg-8 col-12 b'>{{Auth::user()->created_at}}</div>
+                                </div>
+                                <div class='row my-2'>
+                                    <div class='col-lg-4 col-12 boldd'>Update At:</div>
+                                    <div class='col-lg-8 col-12 b'>{{Auth::user()->updated_at}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
                 </div><!--/tab-pane-->
+
                 <div class="tab-pane " id="edit">
-                    <hr>
+
                     <form class="form" action="##" method="post" id="registrationForm">
                         <div class="form-group">
 
-                            <div class="col-xs-6">
-                                <label for="first_name"><h4>First name</h4></label>
+                            <div class="col-xs-12">
+                                <label for="first_name"><h4>Name</h4></label>
                                 <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
                             </div>
                         </div>
@@ -121,7 +151,7 @@
 
                     <hr>
 
-                </div><!--/tab-pane-->
+                </div><br>
                 <div class="tab-pane" id="history">
                     <h2></h2>
                     <hr>
@@ -132,5 +162,5 @@
 
     </div><!--/col-9-->
 </div><!--/row-->
-<br><br>
-<br><br><br><br><br><br>
+<hr>
+

@@ -22,15 +22,15 @@
                     @include('front.components.sidebar')
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
-                        <h2 class="title text-center">Features Items</h2>
+                        <h2 class="title text-center">New Products</h2>
                         @foreach($products as $product)
                             <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="{{ config('app.base_url') . $product->feature_image_path }}" alt="" />
-                                        <h2>$ {{ $product->price }}</h2>
-                                        <p>{{ $product->name }}</p>
+                                        <img src="{{ config('app.base_url') . $product->feature_image_path }}" alt="" style="height: 250px">
+                                            <p style="font-size: 18px; font-weight:300;line-height: 20px; margin-top: 10px;margin-bottom: 0px">{{ $product->name }}</p>
+                                        <p style="color: orange">$ {{ $product->price }}</p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
                                     <div class="product-overlay">
@@ -51,30 +51,7 @@
                         @endforeach
                     </div><!--features_items-->
 
-                    <div class="category-tab"><!--category-tab-->
-                        <div class="col-sm-12">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
-                            </ul>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade active in" id="tshirt" >
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/front/images/home/gallery1.jpg" alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--/category-tab-->
 
                     <div class="recommended_items"><!--recommended_items-->
                         <h2 class="title text-center">recommended items</h2>

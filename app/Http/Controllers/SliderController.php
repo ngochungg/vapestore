@@ -31,7 +31,7 @@ class SliderController extends Controller
     }
     public function index(){
         $this->authenLogin();
-        $sliders = $this->slider->paginate(5);
+        $sliders = $this->slider->latest()->paginate(5);
         return view('admin.slider.index',compact('sliders'));
     }
     public function create(){

@@ -48,7 +48,7 @@ class CategoryController extends Controller
     public function index()
     {
         $this->authenLogin();
-        $categories = $this->category->paginate(5);
+        $categories = $this->category->latest()->paginate(5);
         return view('admin.category.index', compact('categories'));
 
     }

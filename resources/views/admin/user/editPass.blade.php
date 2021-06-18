@@ -33,17 +33,17 @@
                         <form class="" action="{{route('users.updatePass',['id'=>$user->id])}}" method='post' enctype="multipart/form-data" >
                             @csrf
                             <div class="form-group">
-                                <label>Old password</label>
+                                <label>Password</label>
                                 <input type="password"
                                        class="form-control"
-                                       placeholder="Enter Price Product"
+                                       placeholder="Enter your current password"
                                        name="current_password"/>
                             </div>
                             <div class="form-group">
                                 <label>New Password</label>
                                 <input type="password"
                                        class="form-control"
-                                       placeholder="Enter Price Product"
+                                       placeholder="Enter New Password"
 
                                        name="new_password"/>
                             </div>
@@ -51,7 +51,7 @@
                                 <label>Confirm Password</label>
                                 <input type="password"
                                        class="form-control"
-                                       placeholder="Enter Price Product"
+                                       placeholder="Confirm password"
                                         name="new_confirm_password"
                                 />
                             </div>

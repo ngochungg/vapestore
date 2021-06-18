@@ -40,7 +40,7 @@
                                     <td>{{ $menu->name }}</td>
                                     <td>
                                         <a href="{{ route('menus.edit', ['id' => $menu->id]) }}"
-                                           class="btn btn-default"><i class="fas fa-edit"></i></a>
+                                           class="btn btn-info" style="width: 42.38px;"><i class="fas fa-edit"></i></a>
                                         <a href=""
                                            data-url="{{route('menus.delete',['id'=>$menu->id])}}"
                                            class="btn btn-danger action_delete"><i class="fas fa-trash-alt"></i></a>

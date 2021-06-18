@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Socialite;
+use Exception;
 
 
 class UsersController extends Controller
@@ -214,5 +216,73 @@ class UsersController extends Controller
         $this->authenLogin();
         $this->user->find($id)->update(['role'=> $request->role]);
         return redirect()->route('users.role');
+    }
+
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function handleCallback()
+    {
+        try {
+            $user = Socialite::driver('google')->user();
+            $finduser =  User::where('email', $user->getEmail())->first();
+            if($finduser){
+                Auth::login($finduser);
+                return redirect('/');
+            }else{
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'image_path' => $user->getAvatar(),
+                    'social_id'=> $user->id,
+                    'social_type'=> 'google',
+                    'password' => Hash::make('my-google')
+                ]);
+                Auth::login($newUser);
+                return redirect('/');
+            }
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+    public function redirectToFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+    public function handleCallbackFace()
+    {
+        try {
+
+            $user = Socialite::driver('facebook')->user();
+            $isUser = User::where('email',$user->getEmail())->first();
+
+            if($isUser){
+                Auth::login($isUser);
+                return redirect('/');
+            }else{
+                $createUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'social_id'=> $user->id,
+                    'social_type'=> 'faceook',
+                    'image_path' => $user->getAvatar(),
+                    'password' => Hash::make('my-facebook')
+                ]);
+
+                Auth::login($createUser);
+                return redirect('/');
+            }
+
+        } catch (Exception $exception) {
+            dd($exception->getMessage());
+        }
     }
 }

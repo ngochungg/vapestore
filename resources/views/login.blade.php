@@ -27,6 +27,11 @@
                     {{ session('message') }}
                 </div>
             @endif
+                @if (session('messages'))
+                    <div class="alert alert-success">
+                        {{ session('messages') }}
+                    </div>
+                @endif
             <form action="" method="post">
                 @csrf
 {{--                @if($message)--}}
@@ -65,19 +70,19 @@
                 </div>
             </form>
 
-{{--            <div class="social-auth-links text-center mt-2 mb-3">--}}
-{{--                <a href="#" class="btn btn-block btn-primary">--}}
-{{--                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook--}}
-{{--                </a>--}}
-{{--                <a href="#" class="btn btn-block btn-danger">--}}
-{{--                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+--}}
-{{--                </a>--}}
-{{--            </div>--}}
+            <div class="social-auth-links text-center mt-2 mb-3">
+                <a href="{{ url('/facebook') }}" class="btn btn-block btn-primary">
+                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                </a>
+                <a href="{{ url('/google') }}" class="btn btn-block btn-danger">
+                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                </a>
+            </div>
             <!-- /.social-auth-links -->
 
-{{--            <p class="mb-1">--}}
-{{--                <a href="#">I forgot my password</a>--}}
-{{--            </p>--}}
+            <p class="mb-1">
+                <a href="{{ route('forget.password.get') }}">I forgot my password</a>
+            </p>
             <p class="mb-0">
                 <a href="{{route('Register')}}" class="text-center">Register a new membership</a>
             </p>
