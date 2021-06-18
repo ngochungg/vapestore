@@ -103,11 +103,10 @@ class CheckoutController extends Controller
     //back-end
     public function index() {
         $this->authenLogin();
-        $all_order = DB::table('order')
+        $all_order = DB::table('order','')
             ->join('users','order.customer_id','=','users.id')
             ->select('order.*','users.name')
-            ->orderby('order.order_id')
-            ->get();
+            ->orderby('order.order_id')->get();
         return view('admin.order.index',compact('all_order'));
     }
 

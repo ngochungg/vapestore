@@ -97,10 +97,10 @@
                         <div class="payment-options">
                             <h2>Select payment</h2>
                             <span>
-						        <label><input name="payment_option" value="ATM" type="checkbox"> Direct Bank Transfer</label>
+						        <label><input name="payment_option" value="ATM" type="radio"> Direct Bank Transfer</label>
 					        </span>
                             <span>
-						        <label><input name="payment_option" value="Cash" type="checkbox"> Cash</label>
+						        <label><input name="payment_option" value="Cash" type="radio"> Cash</label>
 					        </span>
                         </div>
                         <div style="margin-top: -100px">

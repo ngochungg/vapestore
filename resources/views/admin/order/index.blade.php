@@ -25,9 +25,7 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">Order ID</th>
-                                <th scope="col">Customer ID</th>
-                                <th scope="col">Payment ID</th>
+                                <th scope="col">Customer Name</th>
                                 <th scope="col">Order Total</th>
                                 <th scope="col">Order Status</th>
                                 <th scope="col">Action</th>
@@ -35,25 +33,26 @@
                             </thead>
                             <tbody>
 
-                            @foreach($all_order as $order)
+                            @foreach($all_order as $key => $order)
+<!--                                --><?php
+//                                    dd($order);
+//                                ?>
 
                                 <tr>
-                                    <th scope="row">{{ $order->order_id }}</th>
-                                    <td>{{ $order->customer_id }}</td>
-                                    <td>{{ $order->payment_id }}</td>
+                                    <td>{{ $order-> name }}</td>
                                     <td>$ {{ $order->order_total }}</td>
                                     <td>{{ $order->order_status }}</td>
-{{--                                    <td>--}}
-{{--                                        <a href="{{route('product.details',['id'=>$order->id])}}"--}}
-{{--                                           class="btn btn-default"><i class="fas fa-eye"></i></a>--}}
+                                    <td>
+                                        <a href=""
+                                           class="btn btn-default"><i class="fas fa-eye"></i></a>
 
-{{--                                        <a href="{{route('product.edit',['id'=>$order->id])}}"--}}
-{{--                                           class="btn btn-default"><i class="fas fa-edit"></i></a>--}}
+                                        <a href=""
+                                           class="btn btn-default"><i class="fas fa-edit"></i></a>
 
-{{--                                        <a href=""--}}
-{{--                                           data-url="{{route('product.delete',['id'=>$order->id])}}"--}}
-{{--                                           class="btn btn-danger action_delete"><i class="fas fa-trash-alt"></i></a>--}}
-{{--                                    </td>--}}
+                                        <a href=""
+                                           data-url=""
+                                           class="btn btn-danger action_delete"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
 
