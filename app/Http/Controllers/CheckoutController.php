@@ -21,6 +21,12 @@ class CheckoutController extends Controller
         }
         return view('login');
     }
+    public function loginAdmin(){
+        if (auth()->check()){
+            return redirect()->to('home');
+        }
+        return view('login');
+    }
     public function postLoginAdmin(Request $request){
         $remember=$request->has('remember') ?true:false;
         if (auth()->attempt([
