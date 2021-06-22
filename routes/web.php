@@ -243,6 +243,10 @@ Route::prefix('admin')->group(function () {
             'as' => 'users.roleUpdate',
             'uses' => 'UsersController@roleUpdate'
         ]);
+        Route::post('/updateCustomer/{id}', [
+            'as' => 'users.updateCustomer',
+            'uses' => 'UsersController@updateCustomer'
+        ]);
     });
     Route::get('comment', 'Homecontroller@ReComment')->name('ReComment');
     Route::get('comment/reply/{id}', 'Homecontroller@reply')->name('reply');

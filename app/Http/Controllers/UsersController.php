@@ -285,4 +285,34 @@ class UsersController extends Controller
             dd($exception->getMessage());
         }
     }
+    public function updateCustomer(Request $request, $id)
+    {
+        $request->validate([
+            'current_password' => ['required', new MatchOldPassword()],
+            'email' => ['required'],
+            'name' => ['required'],
+            'phone' => ['required'],
+            'address' => ['required'],
+        ]);
+//        try {
+        $dataInsert = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'birthday' => $request->birthday,
+            'gender' => $request->gender,
+        ];
+        $dataImage = $this->storageTraitUpload($request, 'image_path', 'User');
+        if (!empty($dataImage)) {
+            $dataInsert['image_name'] = $dataImage['file_name'];
+            $dataInsert['image_path'] = $dataImage['file_path'];
+        }
+        $this->user->find($id)->update($dataInsert);
+        $user = $this->user->find($id);
+        return redirect()->route('profile');
+//        } catch (\Exception $exception) {
+//            Log::error('Lỗi : ' . $exception->getMessage() . '---Line: ' . $exception->getLine());
+//        }
+    }
 }

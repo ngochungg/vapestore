@@ -70,10 +70,6 @@
                                     <div class='col-lg-4 col-12 boldd'>Create At:</div>
                                     <div class='col-lg-8 col-12 b'>{{Auth::user()->created_at}}</div>
                                 </div>
-                                <div class='row my-2'>
-                                    <div class='col-lg-4 col-12 boldd'>Update At:</div>
-                                    <div class='col-lg-8 col-12 b'>{{Auth::user()->updated_at}}</div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,65 +77,104 @@
                 </div><!--/tab-pane-->
 
                 <div class="tab-pane " id="edit">
-                    <form class="form" action="" method="post" id="registrationForm">
+                    <form class="form" action="{{route('users.updateCustomer',['id'=>Auth::user()->id])}}" method="post" id="registrationForm" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group">
+
                             <div class="col-xs-6">
-                                <label for="first_name">Name</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" title="Enter your name here." value="{{Auth::user()->name}}">
+                                <label for="name"><h4>Name</h4></label>
+                                <input type="text" class="form-control" name="name"
+                                       placeholder="name" value="{{Auth::user()->name}}">
                             </div>
+                        </div>
+                        <div class="form-group">
+
                             <div class="col-xs-6">
-                                <label for="first_name">Gender</label>
-                                <input type="text" class="form-control" name="gender" id="gender" placeholder="Gender" title="enter your gender here."
-                                       value="@if( Auth::user()->gender == 0)
-Male
-                                               @else
-Female
-                                               @endif">
+                                <label for="email"><h4>Email</h4></label>
+                                <input type="text" class="form-control" name="email" value="{{Auth::user()->email}}"
+                                       placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="phone"><h4>Mobile</h4></label>
+                                <input type="text" class="form-control" name="phone" value="{{Auth::user()->phone}}"
+                                       placeholder="Phone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="address"><h4>Address</h4></label>
+                                <input type="text" class="form-control" name="address" value="{{Auth::user()->address}}"
+                                       placeholder="Email">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <br>
-                                <label for="phone">Address</label>
-                                <input type="text" class="form-control" name="address" id="address" placeholder="Enter Your Address" title="Enter your address here." value="{{Auth::user()->address}}">
-                            </div>
-                            <div class="col-xs-6">
-                                <br>
-                                <label for="phone">Birthday</label>
-                                <input type="text" class="form-control" name="birthday" id="birthday" placeholder="Enter Your Birthday" title="Enter your birthday here." value="{{Auth::user()->birthday}}">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <br>
-                                <label for="phone">Phone</label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter Your PhoneNumber" title="enter your phone number if any." value="{{Auth::user()->phone}}">
-                            </div>
-                            <div class="col-xs-6">
-                                <br>
-                                <label for="phone">Email</label>
-                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter Your Email" title="enter your email." value="{{Auth::user()->email}}">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <br>
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password." value="{{Auth::user()->password}}">
+                                <label><h4>Gender</h4></label>
+                                <select id="inputState" class="form-control" name="gender">
+                                    @if(Auth::user()->gender == 0)
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
+                                    @else
+                                        <option value="1">Female</option>
+                                        <option value="0">Male</option>
+                                    @endif
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-12" style="text-align: center;margin-bottom: 20px">
-                                <br>
-                                <button class="btn btn-lg" type="reset" ><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                                <button class="btn btn-lg btn-success" type="submit" ><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                            <div class="col-md-6">
+                                <label><h4>Birthday</h4></label>
+                                <input type="date"
+                                       class="form-control"
+                                       name="birthday" value="{{Auth::user()->birthday}}"
+                                />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label><h4>Current Password</h4></label>
+                                <input type="password"
+                                       class="form-control"
+                                       placeholder="Enter Price Product"
+                                       name="current_password"/>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <div>
+                                    <label><h4>Avatar</h4></label><br>
+                                    <img  src="{{Auth::user()->image_path}}"
+                                          class="avatar img-circle img-thumbnail" alt="avatar" id="output"
+                                          style="width:300px; display: block; margin-left: auto; margin-right: auto;"><br>
+                                    <input type="file"
+                                           class="form-control-file"
+                                           style="margin-left: 350px;"
+                                           name="image_path" onchange="loadFile(event)"/>
+                                    <script>
+                                        var loadFile = function(event) {
+                                            var output = document.getElementById('output');
+                                            output.src = URL.createObjectURL(event.target.files[0]);
+                                            output.onload = function() {
+                                                URL.revokeObjectURL(output.src) // free memory
+                                            }
+                                        };
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+
                         <br><br>
+                        <div class="col-xs-2"></div>
+                        <button class="btn btn-success col-xs-8" type="submit">
+                            <i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                        <div class="col-xs-2"></div>
+
                     </form>
 
                     <hr>
