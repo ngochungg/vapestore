@@ -123,17 +123,20 @@ Route::prefix('admin')->group(function () {
         ]);
         Route::post('/update/{id}', [
             'as' => 'order.update',
-            'uses' => 'AdminOrderController@update'
+            'uses' => 'CheckoutController@update'
         ]);
         Route::get('/delete/{id}', [
             'as' => 'order.delete',
-            'uses' => 'AdminOrderController@delete'
+            'uses' => 'CheckoutController@delete'
         ]);
         Route::get('/details/{id}', [
-            'as' => 'order.details',
-            'uses' => 'AdminOrderController@details'
+            'as' => 'order.details/{orderId}',
+            'uses' => 'CheckoutController@details'
         ]);
     });
+
+    Route::post('/status-update1/{order_id}', 'CheckoutController@processing')->name('update');
+
     Route::prefix('slider')->group(function () {
         Route::get('/', [
             'as' => 'slider.index',

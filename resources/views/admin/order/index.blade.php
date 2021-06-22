@@ -34,24 +34,14 @@
                             <tbody>
 
                             @foreach($all_order as $key => $order)
-<!--                                --><?php
-//                                    dd($order);
-//                                ?>
-
                                 <tr>
                                     <td>{{ $order-> name }}</td>
                                     <td>$ {{ $order->order_total }}</td>
                                     <td>{{ $order->order_status }}</td>
                                     <td>
-                                        <a href=""
-                                           class="btn btn-default"><i class="fas fa-eye"></i></a>
-
-                                        <a href=""
-                                           class="btn btn-default"><i class="fas fa-edit"></i></a>
-
-                                        <a href=""
-                                           data-url=""
-                                           class="btn btn-danger action_delete"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="{{route('order.details/{orderId}',['id'=>$order->order_id])}}"
+                                           class="btn btn-default"><i class="fas fa-eye"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -69,4 +59,9 @@
 
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelir.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <script>
 @endsection
