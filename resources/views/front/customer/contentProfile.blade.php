@@ -70,10 +70,6 @@
                                     <div class='col-lg-4 col-12 boldd'>Create At:</div>
                                     <div class='col-lg-8 col-12 b'>{{Auth::user()->created_at}}</div>
                                 </div>
-                                <div class='row my-2'>
-                                    <div class='col-lg-4 col-12 boldd'>Update At:</div>
-                                    <div class='col-lg-8 col-12 b'>{{Auth::user()->updated_at}}</div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,72 +77,104 @@
                 </div><!--/tab-pane-->
 
                 <div class="tab-pane " id="edit">
-
-                    <form class="form" action="##" method="post" id="registrationForm">
-                        <div class="form-group">
-
-                            <div class="col-xs-12">
-                                <label for="first_name"><h4>Name</h4></label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                            </div>
-                        </div>
+                    <form class="form" action="{{route('users.updateCustomer',['id'=>Auth::user()->id])}}" method="post" id="registrationForm" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="last_name"><h4>Last name</h4></label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="phone"><h4>Phone</h4></label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="mobile"><h4>Mobile</h4></label>
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
+                                <label for="name"><h4>Name</h4></label>
+                                <input type="text" class="form-control" name="name"
+                                       placeholder="name" value="{{Auth::user()->name}}">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
                                 <label for="email"><h4>Email</h4></label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                                <input type="text" class="form-control" name="email" value="{{Auth::user()->email}}"
+                                       placeholder="Email">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="email"><h4>Location</h4></label>
-                                <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
+                                <label for="phone"><h4>Mobile</h4></label>
+                                <input type="text" class="form-control" name="phone" value="{{Auth::user()->phone}}"
+                                       placeholder="Phone">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="password"><h4>Password</h4></label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
+                                <label for="address"><h4>Address</h4></label>
+                                <input type="text" class="form-control" name="address" value="{{Auth::user()->address}}"
+                                       placeholder="Email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label><h4>Gender</h4></label>
+                                <select id="inputState" class="form-control" name="gender">
+                                    @if(Auth::user()->gender == 0)
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
+                                    @else
+                                        <option value="1">Female</option>
+                                        <option value="0">Male</option>
+                                    @endif
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
+                            <div class="col-md-6">
+                                <label><h4>Birthday</h4></label>
+                                <input type="date"
+                                       class="form-control"
+                                       name="birthday" value="{{Auth::user()->birthday}}"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label><h4>Current Password</h4></label>
+                                <input type="password"
+                                       class="form-control"
+                                       placeholder="Enter Price Product"
+                                       name="current_password"/>
 
-                            <div class="col-xs-6">
-                                <label for="password2"><h4>Verify</h4></label>
-                                <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                <div>
+                                    <label><h4>Avatar</h4></label><br>
+                                    <img  src="{{Auth::user()->image_path}}"
+                                          class="avatar img-circle img-thumbnail" alt="avatar" id="output"
+                                          style="width:300px; display: block; margin-left: auto; margin-right: auto;"><br>
+                                    <input type="file"
+                                           class="form-control-file"
+                                           style="margin-left: 350px;"
+                                           name="image_path" onchange="loadFile(event)"/>
+                                    <script>
+                                        var loadFile = function(event) {
+                                            var output = document.getElementById('output');
+                                            output.src = URL.createObjectURL(event.target.files[0]);
+                                            output.onload = function() {
+                                                URL.revokeObjectURL(output.src) // free memory
+                                            }
+                                        };
+                                    </script>
+                                </div>
                             </div>
                         </div>
+
+                        <br><br>
+                        <div class="col-xs-2"></div>
+                        <button class="btn btn-success col-xs-8" type="submit">
+                            <i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                        <div class="col-xs-2"></div>
+
                     </form>
 
                     <hr>

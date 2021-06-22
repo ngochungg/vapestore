@@ -27,7 +27,7 @@
                         <hr style="max-width: 70%">
 
                         <div class="pro-content">{!! $products->content !!}</div>
-                        <div class="pro-des">{!! $products->description !!}</div>
+
                         <hr style="max-width: 70%">
                         @if($products->quantity>0)
                             <h4>Quantity:</h4>
@@ -50,12 +50,16 @@
                     </div>
                     <div class="advance-info">
                         <div class="tab-control normal">
+                            <a href="#description" class="tab-control-item">Description</a>
                             <a href="#benefit" class="tab-control-item">Benefit</a>
                             <a href="#Comment" class="tab-control-item">Question</a>
                             <a href="#Answer" class="tab-control-item">Answer</a>
                         </div>
                         <div class="tab-contents">
 
+                            <div class="tab-content-item " id="description">
+                                <div class="pro-content">{!! $products->description !!}</div>
+                            </div>
                             <div class="tab-content-item " id="Comment">
                                 <div class="wrap-review-form">
                                     <div id="comments">
@@ -203,7 +207,7 @@
                             <div class="product product-style-2 equal-elem ">
                                 <div class="product-thumnail" >
                                     <a href="{{route('seeDetails',['id'=> $product_new->id])}}" title="Click to go to {!! $product_new->name !!}" >
-                                        <figure><img src="{{$product_new->feature_image_path}}" style="width: 400px" alt=""></figure>
+                                        <figure ><img src="{{$product_new->feature_image_path}}" style="height: 250px" alt=""></figure>
                                     </a>
                                     <div class="group-flash">
                                         <span class="flash-item new-label">new</span>
