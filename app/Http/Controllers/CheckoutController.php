@@ -100,6 +100,7 @@ class CheckoutController extends Controller
         $order_data['order_status'] = 'New order';
         $order_data['created_at'] = Carbon\Carbon::now();
         $order_data['order_code'] = substr(md5(microtime()),rand(0,26),5);
+        $order_data['delivery_address'] = $req->delivery_address;
         $order_id = DB::table('orders')->insertGetId($order_data);
 
 
@@ -114,14 +115,14 @@ class CheckoutController extends Controller
             $order_d_data['product_sales_quantity'] = $cartItem['quantity'];
             DB::table('order_details')->insert($order_d_data);
         }
-        $req->session()->forget('cart');
         $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
         if($data['payment_method'] != 'Paypal') {
             return view('front.cart.thankyou', compact('categoriesLimit'));
+            $req->session()->forget('cart');
         } else {
             return view('front.cart.paypal');
+            $req->session()->forget('cart');
         }
-
     }
 
     //back-end

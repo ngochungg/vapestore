@@ -25,7 +25,7 @@
                             <tr>
                                 <th scope="col">Customer Name</th>
                                 <th>Phone number</th>
-                                <th>Address</th>
+                                <th>Delivery address</th>
                                 <th>Payment method</th>
                             </tr>
                             </thead>
@@ -35,7 +35,7 @@
                                     <tr>
                                         <td>{{ $customer->name }}</td>
                                         <td>{{ $customer->phone }}</td>
-                                        <td>{{ $customer->address }}</td>
+                                        <td>{{ $customer->delivery_address }}</td>
                                         <td>{{ $customer->payment_method }}</td>
                                     </tr>
                                     @endif

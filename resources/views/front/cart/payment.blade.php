@@ -81,7 +81,7 @@
                                         <form action="{{ URL::to('/order-place') }}" method="POST">
                                             @csrf
                                             <div class="payment-options">
-                                                <h2>Select payment</h2>
+                                                <h3>Select payment</h3>
 {{--                                                <span>--}}
 {{--                                                    <label><input name="payment_option" value="Paypal" type="radio" checked="checked"> Paypal</label>--}}
 {{--                                                </span>--}}
@@ -92,6 +92,9 @@
                                                     <option name="payment_option" value="Paypal">Paypal</option>
                                                     <option name="payment_option" value="Cash">Cash</option>
                                                 </select>
+                                                <h3>
+                                                    Delivery address: <input type="text" name="delivery_address">
+                                                </h3>
                                             </div>
                                             <div style="margin-top: -100px;">
                                                 <input type="submit" value="Order" name="send_order_place" class="btn add-to-cart" style="background: orange; color: white">
