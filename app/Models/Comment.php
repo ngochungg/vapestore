@@ -9,6 +9,8 @@ class Comment extends Model
 {
     use HasFactory;
     protected $guarded = [];
+//    protected $primaryKey= ['id'];
+
     public function product() {
         return $this->hasOne(Product::class,'id','product_id');
     }
