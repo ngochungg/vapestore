@@ -142,7 +142,12 @@ class CheckoutController extends Controller
             ->get()->where('order_id', 'LIKE', $id);
 //        $check_cart = session()->get('cart');
 //        dd($order_by_id);
-        return view('admin.order.view_order', compact('order_by_id','id'));
+        $payment = DB::table('orders')->get()->where('order_id', 'LIKE', $id);
+        $customer_info = DB::table('orders')
+            ->join('users', 'orders.customer_id','=','users.id')
+            ->join('payment','orders.payment_id','=','payment.payment_id')
+            ->get()->where('order_id', 'LIKE', $id);
+        return view('admin.order.view_order', compact('order_by_id','id','payment','customer_info'));
     }
 
     public function processing($order_id, Request $req){

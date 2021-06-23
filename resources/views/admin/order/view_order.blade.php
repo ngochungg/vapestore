@@ -30,7 +30,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($order_by_id as $customer)
+                            @foreach($customer_info as $customer)
                                 @if($customer->order_id == $id)
                                     <tr>
                                         <td>{{ $customer->name }}</td>
@@ -80,11 +80,10 @@
                                     <td>
                                         <form action="{{ route('update',['order_id'=>$id]) }}" method='post'>
                                             @csrf
-                                            @foreach($order_by_id as $order)
+                                            @foreach($payment as $order)
                                                 @if($order->order_status != 'Cancel')
                                                     <input type="radio" class="btn btn primary"  id="option1" name="order_status" value="Processing"
                                                         {{ ($order_by_id->payment_method = 'Processing')? "checked" : "" }}>Processing</label>
-
                                                     <input style="margin-left: 20px" type="radio" id="option2" name="order_status" value="Processed"
                                                         {{ ($order_by_id->payment_method == 'Processed')? "checked" : "" }} >Processed</label>
                                                     <input style="margin-left: 20px" type="radio" id="option2" name="order_status" value="Cancel"
