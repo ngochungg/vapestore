@@ -26,6 +26,7 @@
 <script src="{{asset('/front/js/price-range.js')}}"></script>
 <script src="{{asset('/front/js/jquery.prettyPhoto.js')}}"></script>
 <script src="{{asset('/front/js/main.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @yield('js')
 </body>
 @include('front.components.footer')

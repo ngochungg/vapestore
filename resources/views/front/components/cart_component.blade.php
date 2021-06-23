@@ -23,9 +23,10 @@
                     @php
                         $total = 0;
                     @endphp
-                    <tr>
+
                         @if(isset($carts))
                             @foreach($carts as $id => $cartItem)
+                            <tr>
                                 @csrf
                                 @php
                                     $total += $cartItem['price'] * $cartItem['quantity'];
@@ -64,9 +65,10 @@
                                         <i class="fa fa-times"></i>
                                     </a>
                                 </td>
+                            </tr>
                             @endforeach
                         @endif
-                    </tr>
+
 
 
                     </tbody>

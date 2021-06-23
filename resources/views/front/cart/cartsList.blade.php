@@ -36,7 +36,12 @@
                 success: function(data) {
                     if(data.code == 200) {
                         $('.cart_wrapper').html(data.cart_component);
-                        alert('Update successful');
+                        swal({
+                            title: "Update",
+                            text: "",
+                            icon: "success",
+                            button: "Continue",
+                        });
                     }
                 },
                 error: function() {
@@ -56,7 +61,7 @@
                 success: function(data) {
                     if(data.code == 200) {
                         $('.cart_wrapper').html(data.cart_component);
-                        alert('Delete successful');
+                        swal("Delete!", "success");
                     }
                 },
                 error: function() {
