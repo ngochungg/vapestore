@@ -184,19 +184,23 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
+                            <th scope="col">Order Code</th>
+                            <th scope="col">Create at</th>
+                            <th scope="col">Total</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($orders as $order)
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <th>{{$order->order_code}}</th>
+                            <td>{{$order->created_at}}</td>
+                            <td>${{$order->order_total}}</td>
+                            <td><a href="{{route('order_detail',['id'=>$order->order_id])}}"
+                                class="btn btn-default">Detail</i>
+                                </a></td>
                         </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div><!--/tab-pane-->

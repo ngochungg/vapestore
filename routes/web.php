@@ -297,7 +297,8 @@ Route::post('products/details/{id}', 'Homecontroller@comment')->name('Comment');
 Route::get('/Register', 'UsersController@Register')->name('Register');
 Route::post('/Registration', 'UsersController@Registration')->name('Registration');
 //profile
-Route::get('/profile', 'Homecontroller@profile')->name('profile');
+Route::get('/profile/{id}', 'Homecontroller@profile')->name('profile');
+Route::get('/profile/order_detail/{id}', 'Homecontroller@order_detail')->name('order_detail');
 //forgot_password
 //Route::get('/forgot_password', 'UsersController@forgot_password')->name('forgot_password');
 //Route::post('/forgot_password', 'UsersController@Rpassword')->name('Rpassword');

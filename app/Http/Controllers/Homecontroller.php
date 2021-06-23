@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Order;
+use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\Http\Request;
@@ -13,10 +15,14 @@ class Homecontroller extends Controller
 {
     private $comment;
     private $product_comment;
-    public function __construct(Comment $comment,Product $product_comment)
+    private $order;
+    private $DetailOrder;
+    public function __construct(Comment $comment,Product $product_comment,Order $order,OrderDetails $DetailOrder)
     {
         $this->comment = $comment;
         $this->product_comment = $product_comment;
+        $this->order = $order;
+        $this->DetailOrder = $DetailOrder;
     }
     public function authenLogin()
     {
@@ -76,10 +82,17 @@ class Homecontroller extends Controller
         return view('admin.comment.index', compact('comments'));
     }
 
-    public function profile(){
+    public function profile($id){
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
-        $Popular_Products= Product::all()->random(4);
-        return view('front.customer.profile', compact( 'categoriesLimit','Popular_Products'));
+//        $Popular_Products= Product::all()->random(4);
+        $orders = $this->order->wherecustomer_id($id)->get();
+        return view('front.customer.profile', compact( 'categoriesLimit','orders'));
+    }
+    public function order_detail($id){
+        $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
+//        $Popular_Products= Product::all()->random(4);
+        $orders = $this->order->find($id);
+        return view('front.customer.order_detail', compact( 'categoriesLimit','orders'));
     }
 
 }

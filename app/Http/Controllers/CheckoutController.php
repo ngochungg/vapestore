@@ -99,7 +99,7 @@ class CheckoutController extends Controller
         $order_data['order_total'] = $total;
         $order_data['order_status'] = 'New order';
         $order_data['created_at'] = Carbon\Carbon::now();
-        $order_data['order_code'] = substr(md5(microtime()),rand(0,26),5);
+        $order_data['order_code'] = substr(md5(microtime()),rand(0,26),10);
         $order_id = DB::table('orders')->insertGetId($order_data);
 
 
