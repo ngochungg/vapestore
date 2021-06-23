@@ -13,7 +13,9 @@
             <th scope="col">Name Product</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
+            @if($orders->order_status == 'New order')
             <th scope="col">Action</th>
+                @endif
         </tr>
         </thead>
         <tbody>
@@ -21,8 +23,13 @@
         <tr>
             <td>{{$Detail->product_name}}</td>
             <td>{{$Detail->product_price}}</td>
-            <td >{{$Detail->product_sales_quantity}}</td>
-            <td></td>
+            @if($orders->order_status == 'New order')
+            <td>{{$Detail->product_sales_quantity}}</td>
+            <td>abc</td>
+            @else
+                <td>{{$Detail->product_sales_quantity}}</td>
+            @endif
+
         </tr>
         @endforeach
         <tr>
@@ -37,7 +44,11 @@
                     Order completed
                 @endif
             </td>
-            <td>Total: ${{$orders->order_total}}</td>
+            @if($orders->order_status == 'New order')
+            <td colspan="2">Total: ${{$orders->order_total}}</td>
+            @else
+                <td>Total: ${{$orders->order_total}}</td>
+            @endif
         </tr>
 
         </tbody>
