@@ -68,12 +68,6 @@
                                         <p>$ {{ $cartItem['price'] * $cartItem['quantity'] }}</p>
                                         </p>
                                     </td>
-                                    <td class="cart_delete">
-                                        <!--remove cart-->
-                                        <a class="cart_quantity_delete cart_deletes" href="" data-id="{{ $id }}">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </td>
                             </tr>
                             @endforeach
                             </tbody>
@@ -126,53 +120,4 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelir.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-    <script>
-
-        function cartUpdate(event) {
-            event.preventDefault();
-            let urlUpdateCart= $('.update_cart_url').data('url');
-            let id = $(this).data('id');
-            let quantity = $(this).parents('tr').find('input.quantity').val();
-            $.ajax({
-                type: "GET",
-                url: urlUpdateCart,
-                data: {id: id,quantity: quantity},
-                success: function(data) {
-                    if(data.code == 200) {
-                        $('.cart_wrapper').html(data.cart_component);
-                        alert('Update successful');
-                    }
-                },
-                error: function() {
-
-                }
-            });
-        }
-
-        function cartDelete(event) {
-            event.preventDefault();
-            let urlDelete = $('.cartD').data('url');
-            let id = $(this).data('id');
-            $.ajax({
-                type: "GET",
-                url: urlDelete,
-                data: {id: id},
-                success: function(data) {
-                    if(data.code == 200) {
-                        $('.cart_wrapper').html(data.cart_component);
-                        alert('Delete successful');
-                    }
-                },
-                error: function() {
-
-                }
-            });
-        }
-
-        $(function () {
-            $(document).on('click', '.cart_update', cartUpdate);
-            $(document).on('click', '.cart_deletes', cartDelete);
-        })
-    </script>
 @endsection
