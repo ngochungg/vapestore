@@ -32,14 +32,14 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{route('menus.index')}}" class="nav-link">
-                        <i class="nav-icon fa fa-bars"></i>
-                        <p>
-                            Menus
-                        </p>
-                    </a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a href="{{route('menus.index')}}" class="nav-link">--}}
+{{--                        <i class="nav-icon fa fa-bars"></i>--}}
+{{--                        <p>--}}
+{{--                            Menus--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
                     <a href="{{route('product.index')}}" class="nav-link">
                         <i class="nav-icon fab fa-product-hunt"></i>
@@ -50,7 +50,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('order.index')}}" class="nav-link">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <i class="nav-icon fa fa-shopping-cart" aria-hidden="true"></i>
                         <p>
                             Order
                         </p>
