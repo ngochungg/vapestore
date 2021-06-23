@@ -92,7 +92,8 @@ class Homecontroller extends Controller
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
 //        $Popular_Products= Product::all()->random(4);
         $orders = $this->order->find($id);
-        return view('front.customer.order_detail', compact( 'categoriesLimit','orders'));
+        $DetailOrders = $this->DetailOrder->whereorder_id($id)->get();
+        return view('front.customer.order_detail', compact( 'categoriesLimit','orders','DetailOrders'));
     }
 
 }
