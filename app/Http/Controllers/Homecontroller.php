@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Redirect;
 class Homecontroller extends Controller
 {
     private $comment;
-    public function __construct(Comment $comment)
+    private $product_comment;
+    public function __construct(Comment $comment,Product $product_comment)
     {
         $this->comment = $comment;
+        $this->product_comment = $product_comment;
     }
     public function authenLogin()
     {
@@ -48,13 +50,16 @@ class Homecontroller extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'product_id'=> $products->id,
-            'comment' => $request->comment
+            'comment' => $request->comment,
+            'product_name' => $products->name
         ]);
         return redirect()->route('seeDetails',$products->id);
     }
     public function ReComment(){
         $this->authenLogin();
         $comments = $this->comment->latest()->paginate(10);
+//        $product_comments = $this->product_comment->latest();
+//        dd($comments);
         return view('admin.comment.index', compact('comments'));
     }
     public function reply($id){

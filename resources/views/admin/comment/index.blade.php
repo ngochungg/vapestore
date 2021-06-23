@@ -45,7 +45,7 @@
                                             Answered: {{$comment->reply}}
                                         @endif
                                     </td>
-                                    <td>{{$comment->product->name}}
+                                    <td>{{$comment->product_name}}
                                     </td>
                                     <td>
                                         <a href="{{route('reply',['id'=>$comment->id])}}"
