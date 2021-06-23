@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,7 @@ use Session;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Payment;
+use Carbon;
 session_start();
 
 class CheckoutController extends Controller
@@ -96,6 +98,8 @@ class CheckoutController extends Controller
         $order_data['payment_id'] = $payment_id;
         $order_data['order_total'] = $total;
         $order_data['order_status'] = 'New order';
+        $order_data['created_at'] = Carbon\Carbon::now();
+        $order_data['order_code'] = substr(md5(microtime()),rand(0,26),5);
         $order_id = DB::table('orders')->insertGetId($order_data);
 
 
