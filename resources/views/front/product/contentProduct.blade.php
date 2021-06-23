@@ -45,7 +45,12 @@
 
 
                         <div class="wrap-butons">
-                            <a href="#" class="btn add-to-cart" style="background-color: orange">Add to Cart</a>
+                            <a href="#"
+                               data-url="{{ route('addToCart', ['id'=> $products->id]) }}"
+                               class="btn add-to-cart add_to_cart"
+                                style="background: orange">
+                                Add to cart
+                            </a>
                         </div>
                     </div>
                     <div class="advance-info">

@@ -83,30 +83,39 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-6">
+                                    <div>
+                                        <form action="{{ URL::to('/order-place') }}" method="POST">
+                                            @csrf
+                                            <div class="payment-options">
+                                                <h2>Select payment</h2>
+{{--                                                <span>--}}
+{{--                                                    <label><input name="payment_option" value="Paypal" type="radio" checked="checked"> Paypal</label>--}}
+{{--                                                </span>--}}
+{{--                                                <span>--}}
+{{--                                                    <label><input name="payment_option" value="Cash" type="radio"> Cash</label>--}}
+{{--                                                </span>--}}
+                                                <select class="form-control" name="payment_option">
+                                                    <option name="payment_option" value="Paypal">Paypal</option>
+                                                    <option name="payment_option" value="Cash">Cash</option>
+                                                </select>
+                                            </div>
+                                            <div style="margin-top: -100px;">
+                                                <input type="submit" value="Order" name="send_order_place" class="btn add-to-cart" style="background: orange; color: white">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
                                     <div class="total_area">
                                         <ul>
-                                            <li>Total <span>${{ $total }}</span></li>
+                                            <li>Total <span>${{ $total }}</span>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section><!--/#do_action-->
-                    <form action="{{ URL::to('/order-place') }}" method="POST">
-                        @csrf
-                        <div class="payment-options">
-                            <h2>Select payment</h2>
-                            <span>
-						        <label><input name="payment_option" value="ATM" type="radio"> Direct Bank Transfer</label>
-					        </span>
-                            <span>
-						        <label><input name="payment_option" value="Cash" type="radio"> Cash</label>
-					        </span>
-                        </div>
-                        <div style="margin-top: -100px">
-                            <input type="submit" value="Order" name="send_order_place" class="btn btn-primary btn-sm">
-                        </div>
-                    </form>
+
 
                 </div>
             </div>

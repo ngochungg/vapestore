@@ -41,4 +41,6 @@
 
 
     </div>
+    @include('front.components.price_range')
 </div>
+

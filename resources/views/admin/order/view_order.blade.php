@@ -80,14 +80,18 @@
                                     <td>
                                         <form action="{{ route('update',['order_id'=>$id]) }}" method='post'>
                                             @csrf
-                                            <input type="radio" class="btn btn primary"  id="option1" name="order_status" value="Processing"
-                                                {{ ($order_by_id->payment_method = 'Processing')? "checked" : "" }}>Processing</label>
+                                            @foreach($order_by_id as $order)
+                                                @if($order->order_status != 'Cancel')
+                                                    <input type="radio" class="btn btn primary"  id="option1" name="order_status" value="Processing"
+                                                        {{ ($order_by_id->payment_method = 'Processing')? "checked" : "" }}>Processing</label>
 
-                                            <input style="margin-left: 20px" type="radio" id="option2" name="order_status" value="Processed"
-                                                {{ ($order_by_id->payment_method == 'Processed')? "checked" : "" }} >Processed</label>
-                                            <input style="margin-left: 20px" type="radio" id="option2" name="order_status" value="Cancel"
-                                                {{ ($order_by_id->payment_method == 'Processed')? "checked" : "" }} >Cancel</label>
-                                            <input style="margin-left: 50px" type="submit" value="Save" class="btn btn-success">
+                                                    <input style="margin-left: 20px" type="radio" id="option2" name="order_status" value="Processed"
+                                                        {{ ($order_by_id->payment_method == 'Processed')? "checked" : "" }} >Processed</label>
+                                                    <input style="margin-left: 20px" type="radio" id="option2" name="order_status" value="Cancel"
+                                                        {{ ($order_by_id->payment_method == 'Cancel')? "checked" : "" }} >Cancel</label>
+                                                    <input style="margin-left: 50px" type="submit" value="Save" class="btn btn-success">
+                                                    @endif
+                                            @endforeach
                                         </form>
                                     </td>
                                     <td></td>

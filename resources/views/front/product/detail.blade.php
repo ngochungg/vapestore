@@ -46,6 +46,40 @@
 <script src="{{asset('/front/js/jquery-1.12.4.minb8ff.js')}}"></script>
 <script src="{{asset('/front/js/chosen.jquery.min.js')}}"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelir.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function addToCart(event) {
+        event.preventDefault();
+        let urlCart = $(this).data('url');
+        $.ajax({
+            type: "GET",
+            url: urlCart,
+            dataType: 'json',
+            success: function(data) {
+                if(data.code === 200) {
+                    swal({
+                        title: "Add to cart",
+                        text: "",
+                        icon: "success",
+                        button: "Continue",
+                    });
+                }
+            },
+            error: function() {
+
+            },
+        });
+    }
+    $(function() {
+
+        $('.add_to_cart').on('click', addToCart);
+
+    })
+</script>
+
 
 @yield('js')
 </body>

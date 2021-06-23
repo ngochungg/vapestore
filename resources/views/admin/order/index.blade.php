@@ -38,11 +38,11 @@
                                     <td>{{ $order-> name }}</td>
                                     <td>$ {{ $order->order_total }}</td>
                                     <td>{{ $order->order_status }}</td>
-                                    <td>
-                                        <a href="{{route('order.details/{orderId}',['id'=>$order->order_id])}}"
-                                           class="btn btn-default"><i class="fas fa-eye"></i>
-                                        </a>
-                                    </td>
+                                        <td>
+                                            <a href="{{route('order.details/{orderId}',['id'=>$order->order_id])}}"
+                                               class="btn btn-default"><i class="fas fa-eye"></i>
+                                            </a>
+                                        </td>
                                 </tr>
                             @endforeach
 

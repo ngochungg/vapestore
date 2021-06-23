@@ -112,7 +112,12 @@ class CheckoutController extends Controller
         }
         $req->session()->forget('cart');
         $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
-        return view('front.cart.thankyou', compact('categoriesLimit'));
+        if($data['payment_method'] != 'Paypal') {
+            return view('front.cart.thankyou', compact('categoriesLimit'));
+        } else {
+            return view('front.cart.paypal');
+        }
+
     }
 
     //back-end
@@ -123,7 +128,6 @@ class CheckoutController extends Controller
             ->join('users', 'orders.customer_id', '=', 'users.id')
             ->select('orders.*', 'users.name')
             ->orderby('orders.order_id')->get();
-
         return view('admin.order.index', compact('all_order'));
     }
 
