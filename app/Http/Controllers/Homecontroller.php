@@ -95,5 +95,11 @@ class Homecontroller extends Controller
         $DetailOrders = $this->DetailOrder->whereorder_id($id)->get();
         return view('front.customer.order_detail', compact( 'categoriesLimit','orders','DetailOrders'));
     }
+    public function order_Cancel($id){
+        $this->order->find($id)->update([
+            'order_status'=>'Cancel'
+        ]);
+        return redirect()->route('order_detail',[$id]);
+    }
 
 }

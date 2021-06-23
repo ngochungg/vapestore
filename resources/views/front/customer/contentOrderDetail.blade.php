@@ -50,6 +50,13 @@
                 <td>Total: ${{$orders->order_total}}</td>
             @endif
         </tr>
+        @if ($orders->order_status == 'New order')
+        <tr>
+            <td colspan="4">
+                <a class='btn btn-danger col-md-12' href="{{route('order_Cancel',['id'=>$orders->order_id])}}">Cancel order</a>
+            </td>
+        </tr>
+        @endif
 
         </tbody>
     </table></div>
