@@ -37,7 +37,7 @@
             @if($orders->order_status == 'New order')
                     Orders are waiting for confirmation
             @elseif($orders->order_status == 'Cancel')
-                    The shop refused the order
+                    Order is canceled
             @elseif($orders->order_status == 'Processing')
                     Order is being shipped
             @elseif($orders->order_status == 'Processed')
