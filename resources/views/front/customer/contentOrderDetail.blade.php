@@ -3,9 +3,18 @@
 <div class="row">
 <div class="col-md-2"></div>
 <div class="col-md-8">
-    <div><h5>Name</h5>{{Auth::user()->name}}</div>
-    <div><h5>Phone</h5>{{Auth::user()->phone}}</div>
-    <div><h5>Address</h5>{{Auth::user()->address}}</div>
+    <div>
+        <h4>Name</h4>
+        <div style="font-size: 16px">{{Auth::user()->name}}</div>
+    </div>
+    <div>
+        <h4>Phone</h4>
+        <div style="font-size: 16px">{{Auth::user()->phone}}</div>
+    </div>
+    <div>
+        <h4>Address</h4>
+        <div style="font-size: 16px">{{Auth::user()->address}}</div>
+    </div>
     <div>
     <table class="table">
         <thead>
@@ -13,9 +22,9 @@
             <th scope="col">Name Product</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
-            @if($orders->order_status == 'New order')
+{{--            @if($orders->order_status == 'New order')--}}
             <th scope="col">Total</th>
-                @endif
+{{--                @endif--}}
         </tr>
         </thead>
         <tbody>
@@ -33,7 +42,7 @@
         </tr>
         @endforeach
         <tr>
-            <td colspan="2">Status:
+            <th colspan="2">Status:
             @if($orders->order_status == 'New order')
                     Orders are waiting for confirmation
             @elseif($orders->order_status == 'Cancel')
@@ -43,12 +52,13 @@
             @elseif($orders->order_status == 'Processed')
                     Order completed
                 @endif
-            </td>
+            </th>
             @if($orders->order_status == 'New order')
             <td colspan="2">Total: ${{$orders->order_total}}</td>
             @else
-                <td>Total: ${{$orders->order_total}}</td>
+                <th>Total: ${{$orders->order_total}}</th>
             @endif
+            <td></td>
         </tr>
         @if ($orders->order_status == 'New order')
             <tr>
