@@ -13,7 +13,8 @@
 @section('content')
 
     <div class="content-wrapper">
-        @include('admin.layouts.partials.content_header',['name'=>'Order','key'=>'List'])
+        @include('admin.layouts.partials.content_header',['name'=>'Cancel','key'=>'List'])
+
         @include('admin.order.view_order_layout')
 
     </div>

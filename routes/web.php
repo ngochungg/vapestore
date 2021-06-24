@@ -109,17 +109,17 @@ Route::prefix('admin')->group(function () {
             'as' => 'order.index',
             'uses' => 'CheckoutController@index'
         ]);
-        Route::get('/create', [
-            'as' => 'order.create',
-            'uses' => 'AdminOrderController@create'
+        Route::get('/order_processing', [
+            'as' => 'order.processing',
+            'uses' => 'CheckoutController@processing_order'
         ]);
-        Route::post('/store', [
-            'as' => 'order.store',
-            'uses' => 'AdminOrderController@store'
+        Route::get('/order_complete', [
+            'as' => 'order.complete',
+            'uses' => 'CheckoutController@complete_order'
         ]);
-        Route::get('/edit/{id}', [
-            'as' => 'order.edit',
-            'uses' => 'AdminOrderController@edit'
+        Route::get('/order_cancel', [
+            'as' => 'order.cancel',
+            'uses' => 'CheckoutController@cancel_order'
         ]);
         Route::post('/update/{id}', [
             'as' => 'order.update',
@@ -134,9 +134,7 @@ Route::prefix('admin')->group(function () {
             'uses' => 'CheckoutController@details'
         ]);
     });
-
     Route::post('/status-update1/{order_id}', 'CheckoutController@processing')->name('update');
-
     Route::prefix('slider')->group(function () {
         Route::get('/', [
             'as' => 'slider.index',

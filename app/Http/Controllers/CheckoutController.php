@@ -116,12 +116,11 @@ class CheckoutController extends Controller
             DB::table('order_details')->insert($order_d_data);
         }
         $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
+        $req->session()->forget('cart');
         if($data['payment_method'] != 'Paypal') {
             return view('front.cart.thankyou', compact('categoriesLimit'));
-            $req->session()->forget('cart');
         } else {
             return view('front.cart.paypal');
-            $req->session()->forget('cart');
         }
     }
 
@@ -132,7 +131,7 @@ class CheckoutController extends Controller
         $all_order = DB::table('orders')
             ->join('users', 'orders.customer_id', '=', 'users.id')
             ->select('orders.*', 'users.name')
-            ->orderby('orders.order_id')->get();
+            ->orderby('orders.order_id')->get()->where('order_status','LIKE', 'New order');
         return view('admin.order.index', compact('all_order'));
     }
 
@@ -155,6 +154,8 @@ class CheckoutController extends Controller
         return view('admin.order.view_order', compact('order_by_id','id','payment','customer_info'));
     }
 
+
+
     public function processing($order_id, Request $req){
         $this->authenLogin();
 //        dd($order_id);
@@ -162,5 +163,32 @@ class CheckoutController extends Controller
             'order_status' => $req->order_status,
         ]);
         return redirect()->route('order.index');
+    }
+
+    public function processing_order() {
+        $this->authenLogin();
+        $all_order = DB::table('orders')
+            ->join('users', 'orders.customer_id', '=', 'users.id')
+            ->select('orders.*', 'users.name')
+            ->orderby('orders.order_id')->get()->where('order_status','LIKE', 'Processing');
+        return view('admin.order.processing_order', compact('all_order'));
+    }
+
+    public function complete_order() {
+        $this->authenLogin();
+        $all_order = DB::table('orders')
+            ->join('users', 'orders.customer_id', '=', 'users.id')
+            ->select('orders.*', 'users.name')
+            ->get()->where('order_status','LIKE', 'Processed');
+        return view('admin.order.complete_order', compact('all_order'));
+    }
+
+    public function cancel_order() {
+        $this->authenLogin();
+        $all_order = DB::table('orders')
+            ->join('users', 'orders.customer_id', '=', 'users.id')
+            ->select('orders.*', 'users.name')
+            ->orderby('orders.order_id')->get()->where('order_status','LIKE', 'Cancel');
+        return view('admin.order.cancel_order', compact('all_order'));
     }
 }

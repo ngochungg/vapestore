@@ -49,12 +49,41 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('order.index')}}" class="nav-link">
-                        <i class="nav-icon fa fa-shopping-cart" aria-hidden="true"></i>
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
                         <p>
                             Order
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('order.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Manage order</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('order.processing')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Processing order</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('order.complete')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Completed order</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('order.cancel')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Cancel order</p>
+                            </a>
+                        </li>
+                    </ul>
+
+
                 </li>
                 <li class="nav-item">
                     <a href="{{route('slider.index')}}" class="nav-link">

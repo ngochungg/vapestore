@@ -23,7 +23,8 @@
                             <h4>Customer Information</h4>
                             <thead>
                             <tr>
-                                <th scope="col">Customer Name</th>
+                                <th scope="col">Order code</th>
+                                <th>Customer Name</th>
                                 <th>Phone number</th>
                                 <th>Delivery address</th>
                                 <th>Payment method</th>
@@ -33,6 +34,7 @@
                             @foreach($customer_info as $customer)
                                 @if($customer->order_id == $id)
                                     <tr>
+                                        <td>{{ $customer->order_code }}</td>
                                         <td>{{ $customer->name }}</td>
                                         <td>{{ $customer->phone }}</td>
                                         <td>{{ $customer->delivery_address }}</td>
@@ -82,13 +84,13 @@
                                             @csrf
                                             @foreach($payment as $order)
                                                 @if($order->order_status != 'Cancel')
+                                                    @if($order->order_status != 'Processed')
                                                     <input type="radio" class="btn btn primary"  id="option1" name="order_status" value="Processing"
                                                         {{ ($order_by_id->payment_method = 'Processing')? "checked" : "" }}>Processing</label>
-                                                    <input style="margin-left: 20px" type="radio" id="option2" name="order_status" value="Processed"
-                                                        {{ ($order_by_id->payment_method == 'Processed')? "checked" : "" }} >Processed</label>
-                                                    <input style="margin-left: 20px" type="radio" id="option2" name="order_status" value="Cancel"
-                                                        {{ ($order_by_id->payment_method == 'Cancel')? "checked" : "" }} >Cancel</label>
+                                                    <input style="margin-left: 20px" type="radio" id="option2" name="order_status" value="Processed">Processed</label>
+                                                    <input style="margin-left: 20px" type="radio" id="option2" name="order_status" value="Cancel">Cancel</label>
                                                     <input style="margin-left: 50px" type="submit" value="Save" class="btn btn-success">
+                                                        @endif
                                                     @endif
                                             @endforeach
                                         </form>

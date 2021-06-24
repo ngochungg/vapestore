@@ -14,7 +14,7 @@
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
             @if($orders->order_status == 'New order')
-            <th scope="col">Action</th>
+            <th scope="col">Total</th>
                 @endif
         </tr>
         </thead>
@@ -22,13 +22,13 @@
         @foreach($DetailOrders as $Detail)
         <tr>
             <td>{{$Detail->product_name}}</td>
-            <td>{{$Detail->product_price}}</td>
-            @if($orders->order_status == 'New order')
+            <td>${{$Detail->product_price}}</td>
+{{--            @if($orders->order_status == 'New order')--}}
             <td>{{$Detail->product_sales_quantity}}</td>
-            <td>abc</td>
-            @else
-                <td>{{$Detail->product_sales_quantity}}</td>
-            @endif
+            <td>${{ $Detail->product_sales_quantity * $Detail->product_price }}</td>
+{{--            @else--}}
+{{--                <td>{{$Detail->product_sales_quantity}}</td>--}}
+{{--            @endif--}}
 
         </tr>
         @endforeach
@@ -51,12 +51,13 @@
             @endif
         </tr>
         @if ($orders->order_status == 'New order')
-        <tr>
-            <td colspan="4">
-                <a class='btn btn-danger col-md-12' href="{{route('order_Cancel',['id'=>$orders->order_id])}}">Cancel order</a>
-            </td>
-        </tr>
+            <tr>
+                <td colspan="4">
+                    <a class='btn btn-danger col-md-12' href="{{route('order_Cancel',['id'=>$orders->order_id])}}">Cancel order</a>
+                </td>
+            </tr>
         @endif
+
 
         </tbody>
     </table></div>
