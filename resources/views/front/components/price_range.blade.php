@@ -1,7 +1,8 @@
 <div class="price-range"><!--price-range-->
-    <h2>Price Range</h2>
-    <div class="well">
-        <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-        <b>$ 0</b> <b class="pull-right">$ 600</b>
-    </div>
+
 </div><!--/price-range-->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelir.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

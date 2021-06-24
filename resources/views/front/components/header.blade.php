@@ -70,7 +70,10 @@
                 @include('front.components.menu')
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
+                        <form action="{{ route('searchName') }}" method="GET">
+                            <input type="text" name="search" placeholder="Search" required/>
+                            <button type="submit">Search</button>
+                        </form>
                     </div>
                 </div>
             </div>

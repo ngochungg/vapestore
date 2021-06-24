@@ -320,3 +320,7 @@ Route::get('callback/facebook', 'UsersController@handleCallbackFace');
 Route::get('paywithpaypal', array('as' => 'paywithpaypal','uses' => 'PaypalController@payWithPaypal',));
 Route::post('paypal', array('as' => 'paypal','uses' => 'PaypalController@postPaymentWithpaypal',));
 Route::get('paypal', array('as' => 'status','uses' => 'PaypalController@getPaymentStatus',));
+
+//search
+Route::get('/search-name/', 'SearchController@search_name')->name('searchName');
+Route::get('/search-price/', 'SearchController@search_price')->name('searchPrice');

@@ -19,36 +19,42 @@
     <section>
         <div class="container">
             <div class="row">
-                    @include('front.components.sidebar_home')
+                @include('front.components.sidebar_home')
                 <div class="col-sm-9 padding-right">
                     <div class="features_items"><!--features_items-->
                         <h2 class="title text-center">New Products</h2>
-                        @foreach($products as $product)
-                            <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <img src="{{ config('app.base_url') . $product->feature_image_path }}" alt="" style="height: 250px">
-                                            <p style="font-size: 18px; font-weight:300;line-height: 20px; margin-top: 10px;margin-bottom: 0px">{{ $product->name }}</p>
-                                        <p style="color: orange">$ {{ $product->price }}</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                    <div class="product-overlay">
-                                        <div class="overlay-content">
-                                            <h2>$ {{ $product->price }}</h2>
-                                            <a href="{{route('seeDetails',['id'=> $product->id])}}"><p>{{ $product->name }}</p></a>
+                        @if($price->isNotEmpty())
+                            @foreach($price as $product)
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="{{ config('app.base_url') . $product->feature_image_path }}" alt="" style="height: 250px">
+                                                <p style="font-size: 18px; font-weight:300;line-height: 20px; margin-top: 10px;margin-bottom: 0px">{{ $product->name }}</p>
+                                                <p style="color: orange">$ {{ $product->price }}</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                                            <div class="product-overlay">
+                                                <div class="overlay-content">
+                                                    <h2>$ {{ $product->price }}</h2>
+                                                    <a href="{{route('seeDetails',['id'=> $product->id])}}"><p>{{ $product->name }}</p></a>
 
-                                            <a href="#"
-                                               data-url="{{ route('addToCart', ['id'=> $product->id]) }}"
-                                               class="btn btn-primary add_to_cart">
-                                                Add to cart
-                                            </a>
+                                                    <a href="#"
+                                                       data-url="{{ route('addToCart', ['id'=> $product->id]) }}"
+                                                       class="btn btn-primary add_to_cart">
+                                                        Add to cart
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            @endforeach
+                        @else
+                            <div>
+                                <h3>No posts found</h3>
                             </div>
-                        </div>
-                        @endforeach
+                        @endif
                     </div><!--features_items-->
 
 
