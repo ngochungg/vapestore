@@ -33,7 +33,7 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-3 clearfix">
                     <div class="logo pull-left">
-                        <a href="index.html"><img src="/front/images/imgvape/logo.jpg" alt="" width="100px" /></a>
+                       <img src="/front/images/imgvape/logo.jpg" alt="" width="100px" />
                     </div>
 
                 </div>
