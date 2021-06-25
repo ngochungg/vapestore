@@ -36,8 +36,8 @@
                 <h2>1</h2>
                 <h4>Buy directly</h4>
                 <p>VAPESTORE OFFICIAL </p>
-                <p>Address: <a href="https://goo.gl/maps/ADnd4PdLr2YRvz2h8" >590 CMT8, District 3, HCM City </a>  <br>
-                    Hotline: <a href="tel:0909 678999" >0909 678999</a>  <br>
+                <p>Address: <a href="https://goo.gl/maps/ADnd4PdLr2YRvz2h8">{{$address->content}}</a>  <br>
+                    Hotline: <a href="tel:{{$phone->content}}" >{{$phone->content}}</a>  <br>
                     GMaps -> <a href="https://goo.gl/maps/8jyQsya855nC7XEi9"> VAPESTORE</a><br>
                     <br>
 
@@ -71,8 +71,8 @@
                 <h4>Warranty Method</h4>
                 <p>Please pack the warranty product and send it to VAPESTORE.</p>
                 <ul type="disc">
-                    <li>Address: 590 CMT8, Distrist 3, HCM City</li>
-                    <li>To: Mr Bean- 0909 678999</li>
+                    <li>Address: {{$address->content}}</li>
+                    <li>To: Mr Bean- {{$phone->content}}</li>
                 </ul>
             </div>
         </div>

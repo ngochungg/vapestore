@@ -83,10 +83,10 @@
 
                 <div class="col-sm-4">
                     <div class="single-widget1"><br>
-                        <div class="glyphicon glyphicon-map-marker"> <n style="font-family: Arial"> 590 CMT8, District 3, HCM City</n></div><br><br>
-                        <div class="glyphicon glyphicon-phone"> PhoneNumber: <a href="tel:0909678999" style="color: white">0909678999</a></div><br><br>
-                        <div class="glyphicon glyphicon-envelope"> Mails: <a href="mailto:VapeStore@gmail.com"style="color: white">VapeStore@gmail.com</a></div><br><br>
-                        <div class="glyphicon glyphicon-phone"> Open: 8h-20h</div>
+                        <div class="glyphicon glyphicon-map-marker"> <n style="font-family: Arial">Address: {{$address->content}}</n></div><br><br>
+                        <div class="glyphicon glyphicon-phone"> PhoneNumber: <a href="tel:{{$phone->content}}" style="color: white">{{$phone->content}}</a></div><br><br>
+                        <div class="glyphicon glyphicon-envelope"> Mails: <a href="mailto:{{$email->content}}"style="color: white">{{$email->content}}</a></div><br><br>
+                        <div class="glyphicon glyphicon-phone"> Open: {{$open->content}}</div>
 
                     </div>
                 </div>

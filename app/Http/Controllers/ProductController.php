@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Cart;
+use App\Models\Information;
 use App\Models\Product;
 use App\Traits\DeleteModelTrait;
 use Illuminate\Http\Request;
@@ -37,6 +38,7 @@ class ProductController extends Controller
     public function showCart() {
 //        echo"<pre>";
 //        print_r(session()->get('cart'));
+
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
             //addtocart old
 //        $cart = Cart::all();
@@ -52,8 +54,15 @@ class ProductController extends Controller
 
         //addtocart new
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
+        $phone = Information::where('key','Phone')->first();
+        $title = Information::where('key','Title')->first();
+        $open = Information::where('key','Open')->first();
+        $fb = Information::where('key','Facebook Link')->first();
+        $ytb = Information::where('key','YouTube Link')->first();
+        $email = Information::where('key','Email')->first();
+        $address = Information::where('key','Address')->first();
         $carts = session()->get('cart');
-        return view('front.cart.cartsList',compact('carts', 'categoriesLimit'));
+        return view('front.cart.cartsList',compact('carts', 'categoriesLimit','phone','title','open','fb','ytb','email','address'));
     }
 
     public function updateCart(Request $req) {
