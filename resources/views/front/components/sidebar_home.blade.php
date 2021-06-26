@@ -40,4 +40,7 @@
 
 
     </div>
+{{--    <div class="container">--}}
+{{--        <img src="{{'/front/images/imgvape/quangcao.jpg'}}" height="600px" width="250px" >--}}
+{{--    </div>--}}
 </div>

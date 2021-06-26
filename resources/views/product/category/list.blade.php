@@ -40,7 +40,7 @@
                                         <h3 style="color: #FFFFFF">$ {{ $product->price }}</h3>
 
                                         <a href="#"
-                                           data-url="{{ route('addToCart', ['id'=> $product->id]) }}"
+                                           data-url="{{ route('addToCart', ['id'=> $product->id])}}"
                                             class="btn btn-primary add_to_cart">
                                             Add to cart
                                         </a>

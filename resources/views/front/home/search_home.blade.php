@@ -13,9 +13,7 @@
 @endsection
 
 @section('content')
-    <!--/slider-->
-    @include('front.components.slider')
-    <!--/slider-->
+
     <section>
         <div class="container">
             <div class="row">
@@ -30,14 +28,14 @@
                                         <div class="single-products">
                                             <div class="productinfo text-center">
                                                 <img src="{{ config('app.base_url') . $product->feature_image_path }}" alt="" style="height: 250px">
-                                                <p style="font-size: 18px; font-weight:300;line-height: 20px; margin-top: 10px;margin-bottom: 0px">{{ $product->name }}</p>
+                                                <p style="font-size: 18px; font-weight:300;line-height: 20px; margin-top: 10px;margin-bottom: 0px;height: 40px">{{ $product->name }}</p>
                                                 <p style="color: orange">$ {{ $product->price }}</p>
                                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                             </div>
                                             <div class="product-overlay">
                                                 <div class="overlay-content">
                                                     <h2>$ {{ $product->price }}</h2>
-                                                    <a href="{{route('seeDetails',['id'=> $product->id])}}"><p>{{ $product->name }}</p></a>
+                                                    <a href="{{route('seeDetails',['id'=> $product->id])}}" ><p>{{ $product->name }}</p></a>
 
                                                     <a href="#"
                                                        data-url="{{ route('addToCart', ['id'=> $product->id]) }}"

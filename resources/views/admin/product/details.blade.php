@@ -26,13 +26,14 @@
                                 <div class="row">
                                     <div class="col-sm-6" >
                                         <div style="height: 450px">
-                                            <img src="{{$product->feature_image_path}}" height="450px">
+                                            <img src="{{$product->feature_image_path}}"style="height: 450px; max-width: 500px" >
                                         </div>
+                                        <hr>
                                         <div style="margin-top:10px;height: 200px;" >
                                             @foreach($product->productImages as $productImageItem)
-                                                  <div>
+                                                  <c>
                                                        <img class="image-product" src="{{$productImageItem->image_path}}">
-                                                  </div>
+                                                  </c>
                                              @endforeach
                                         </div>
                                     </div>

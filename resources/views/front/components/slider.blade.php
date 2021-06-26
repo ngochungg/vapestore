@@ -15,17 +15,13 @@
 
                         @foreach($sliders as $key => $slider)
                             <div class="item {{$key==0 ? 'active' : ''}} ">
-                            <div class="col-sm-3" style="background-color: black; max-width: 250px;height: 450px; margin-left: -100px;word-wrap: break-word ">
-                                <h3 style="color: yellow;font-family: 'Lucida Console';">{{$slider->name}}</h3>
-                                <p style="color: lightgrey ;font-family:'Palatino Linotype' ">{{$slider->description}}</p>
+
+                                <div class="col-sm-12" >
+                                    <h3 class="slider-name pull-right">{{$slider->name}}</h3>
+                                    <div class="slider-des ">{{$slider->description}}</div>
+                                    <img src="{{$slider->image_path}}"  alt="slider"  class="slider-img" >
+                               </div>
                             </div>
-
-
-                            <div class="col-sm-9">
-                                <img src="{{$slider->image_path}}"  alt="" width="900px" height="450px" >
-                           </div>
-
-                        </div>
                         @endforeach
                     </div>
 

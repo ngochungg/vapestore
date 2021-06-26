@@ -3,17 +3,17 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 main-content-area">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-content-area">
                 <div class="wrap-product-detail">
                     <div class="detail-media">
                         <div class="product-gallery">
                             <ul class="slides" >
                                 <li data-thumb="{{$products->feature_image_path}}" >
-                                    <img src="{{$products->feature_image_path}}" alt="product thumbnail" style="max-width: 500px">
+                                    <img src="{{$products->feature_image_path}}" alt="product thumbnail" style="max-width: 500px;margin-left: 50px">
                                 </li>
                                 @foreach($products->productImages as $productImageItem)
-                                    <li data-thumb="{{$productImageItem->image_path}}" style="width: 500px">
-                                        <img src="{{$productImageItem->image_path}}" alt="product thumbnail" style="max-width: 500px">
+                                    <li data-thumb="{{$productImageItem->image_path}}" style="width: 500px;">
+                                        <img src="{{$productImageItem->image_path}}" alt="product thumbnail" style="max-width: 500px;margin-left: 50px;">
                                     </li>
                                 @endforeach
 
@@ -23,7 +23,7 @@
 
                     <div class="detail-info" style="margin-left:0px">
                         <h2 class="product-name">{{$products->name}}</h2>
-                        <div class="wrap-price" style="margin-top: 5px"><span class="product-price" style="color: #fa2210;">${{$products->price}}</span></div>
+                        <div class="wrap-price" style="margin-top: 5px"><span class="product-price" style="color: #fa2210;"> ${{$products->price}}</span></div>
                         <hr style="max-width: 70%">
 
                         <div class="pro-content">{!! $products->content !!}</div>
@@ -48,7 +48,7 @@
                             <a href="#"
                                data-url="{{ route('addToCart', ['id'=> $products->id]) }}"
                                class="btn add-to-cart add_to_cart"
-                                style="background: orange">
+                                style="background: orange ">
                                 Add to cart
                             </a>
                         </div>
@@ -205,14 +205,14 @@
 
             <div class="single-advance-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="wrap-show-advance-info-box style-1 box-in-site">
-                    <h3 class="title-box">New Products</h3>
+                    <h3 class="title-box" style="border-radius: 3px">New Products</h3>
                     <div class="wrap-products">
                         <div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
                             @foreach($New_Products as $product_new)
                             <div class="product product-style-2 equal-elem ">
                                 <div class="product-thumnail" >
                                     <a href="{{route('seeDetails',['id'=> $product_new->id])}}" title="Click to go to {!! $product_new->name !!}" >
-                                        <figure ><img src="{{$product_new->feature_image_path}}" style="height: 250px" alt=""></figure>
+                                        <div style="max-width: 200px;word-wrap: break-word"><img src="{{$product_new->feature_image_path}}" style="height: 200px;max-width: 200px;margin-left: 0px" alt=""></div>
                                     </a>
                                     <div class="group-flash">
                                         <span class="flash-item new-label">new</span>
