@@ -5,22 +5,20 @@
                 <div class="col-sm-5">
                     <div class="contactinfo" >
                         <ul class="nav nav-pills">
-                            <li style="top: 7px;margin-left: 30px;font-family:Gill Sans, sans-serif">V A P E S T O R E - CHEAP TASTY TONIC<WEBSITE></WEBSITE></li>
+                            <li style="top: 7px">{{$title->content}}</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-2">
-                    <div > <h5  class="fa fa-phone"> HOTLINE: <a href="tel:0909678999"><i></i> 0909.678999</a></h5></div>
+                    <div> <h5  class="fa fa-phone"> HOTLINE: <a style="color:black" href="tel:{{$phone->content}}">{{$phone->content}}</a></h5></div>
 
                 </div>
                 <div class="col-sm-5">
                     <div class="social-icons pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="https://www.twitter.com/"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="https://www.dribbble.com/"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="https://www.google.com/"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a style="color: blue" href="{{$fb->content}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li><a style="color: red" href="{{$ytb->content}}" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                            <li><a href="mailto:{{$email->content}}" target="_blank"><i class="fa fa-google-plus"></i></a></li>
                         </ul>
                     </div>
                 </div>

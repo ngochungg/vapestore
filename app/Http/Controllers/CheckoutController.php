@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Information;
 use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use DB;
@@ -73,7 +74,14 @@ class CheckoutController extends Controller
     {
         $carts = session()->get('cart');
         $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
-        return view('front.cart.payment', compact('categoriesLimit', 'carts'));
+        $phone = Information::where('key','Phone')->first();
+        $title = Information::where('key','Title')->first();
+        $open = Information::where('key','Open')->first();
+        $fb = Information::where('key','Facebook Link')->first();
+        $ytb = Information::where('key','YouTube Link')->first();
+        $email = Information::where('key','Email')->first();
+        $address = Information::where('key','Address')->first();
+        return view('front.cart.payment', compact('categoriesLimit', 'carts','phone','title','open','fb','ytb','email','address'));
     }
 
     public function order_place(Request $req)
@@ -116,9 +124,16 @@ class CheckoutController extends Controller
             DB::table('order_details')->insert($order_d_data);
         }
         $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
+        $phone = Information::where('key','Phone')->first();
+        $title = Information::where('key','Title')->first();
+        $open = Information::where('key','Open')->first();
+        $fb = Information::where('key','Facebook Link')->first();
+        $ytb = Information::where('key','YouTube Link')->first();
+        $email = Information::where('key','Email')->first();
+        $address = Information::where('key','Address')->first();
         $req->session()->forget('cart');
         if($data['payment_method'] != 'Paypal') {
-            return view('front.cart.thankyou', compact('categoriesLimit'));
+            return view('front.cart.thankyou', compact('categoriesLimit','phone','title','open','fb','ytb','email','address'));
         } else {
             return view('front.cart.paypal');
         }

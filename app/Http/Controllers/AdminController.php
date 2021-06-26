@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderDetails;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -57,7 +61,15 @@ class AdminController extends Controller
     }
     public function showHome () {
        $this->authenLogin();
-       return view('admin.home');
+        $newOrders = Order::whereorder_status('New order')->get();
+        $newOrder = $newOrders->count();
+        $User = User::whererole('1')->get();
+        $user = $User->count();
+        $Product = Product::all();
+        $product = $Product->count();
+        $completeOrders = Order::whereorder_status('Processed')->get();
+        $complete = $completeOrders->count();
+        return view('admin.home',compact('newOrder','user','product','complete'));
     }
 
 }

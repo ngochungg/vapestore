@@ -187,6 +187,20 @@ Route::prefix('admin')->group(function () {
             'uses' => 'SettingsController@delete'
         ]);
     });
+    Route::prefix('information')->group(function () {
+        Route::get('/',[
+            'as' => 'information.index',
+            'uses' => 'InformationController@index'
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'information.edit',
+            'uses' => 'InformationController@edit'
+        ]);
+        Route::post('/update/{id}', [
+            'as' => 'information.update',
+            'uses' => 'InformationController@update'
+        ]);
+    });
     Route::prefix('users')->group(function () {
         Route::get('/', [
             'as' => 'users.index',

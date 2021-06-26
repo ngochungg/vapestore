@@ -23,7 +23,14 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-
+                <li class="nav-item">
+                    <a href="{{Url('/home')}}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="{{route('categories.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -32,14 +39,14 @@
                         </p>
                     </a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a href="{{route('menus.index')}}" class="nav-link">--}}
-{{--                        <i class="nav-icon fa fa-bars"></i>--}}
-{{--                        <p>--}}
-{{--                            Menus--}}
-{{--                        </p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li class="nav-item">
+                    <a href="{{route('information.index')}}" class="nav-link">
+                        <i class="nav-icon fa fa-address-card"></i>
+                        <p>
+                            Store Information
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="{{route('product.index')}}" class="nav-link">
                         <i class="nav-icon fab fa-product-hunt"></i>
@@ -82,7 +89,6 @@
                             </a>
                         </li>
                     </ul>
-
 
                 </li>
                 <li class="nav-item">
@@ -149,7 +155,6 @@
                             </a>
                         </li>
                     </ul>
-
 
                 </li>
                 <li class="nav-item">
