@@ -76,6 +76,8 @@
                         <c>Address:</c><a href="https://goo.gl/maps/MNKFzXZUVaFEaHb37">{{$address->content}}</a><br>
                         <c>Phone Number: </c><a href="tel:{{$phone->content}} ">{{$phone->content}}</a><br>
                         <c>Email: </c><a href="mailto:{{$email->content}}">{{$email->content}}</a><br>
+                        <c>Open: </c>{{$open->content}}<br>
+
                     </address>
                 </div>
             </div>
