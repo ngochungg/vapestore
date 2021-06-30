@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Order;
+use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 use Validator;
 use URL;
@@ -104,7 +106,6 @@ class PaypalController extends Controller
     public function getPaymentStatus(Request $request)
     {
         $payment_id = Session::get('paypal_payment_id');
-
         Session::forget('paypal_payment_id');
         if (empty($request->input('PayerID')) || empty($request->input('token'))) {
             \Session::put('error','Payment failed');

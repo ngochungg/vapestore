@@ -40,6 +40,7 @@
                             @php
                                 $total = 0;
                             @endphp
+
                             <tr>
                                 @foreach($carts as $id => $cartItem)
                                     @csrf

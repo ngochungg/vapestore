@@ -14,16 +14,12 @@ use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Payment;
 use Carbon;
+use App\Models\Product;
+use App\Models\Cart;
 session_start();
 
 class CheckoutController extends Controller
 {
-
-    public function __construct(Order $order, Payment $payment)
-    {
-        $this->order = $order;
-        $this->payment = $payment;
-    }
 
     //front-end
     public function authenLogin()
@@ -123,6 +119,9 @@ class CheckoutController extends Controller
             $order_d_data['product_sales_quantity'] = $cartItem['quantity'];
             DB::table('order_details')->insert($order_d_data);
         }
+        $req->session()->forget('cart');
+
+        //infor
         $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
         $phone = Information::where('key','Phone')->first();
         $title = Information::where('key','Title')->first();
@@ -131,7 +130,18 @@ class CheckoutController extends Controller
         $ytb = Information::where('key','YouTube Link')->first();
         $email = Information::where('key','Email')->first();
         $address = Information::where('key','Address')->first();
-        $req->session()->forget('cart');
+
+
+        //quantity
+//        $carts = session()->get('cart');
+//        foreach($carts as $cartItem) {
+//            $product = Product::all();
+//            Product::find($cartItem->id)->update([
+//                'quantity' => $product->quantity - $order_d_data['product_sales_quantity'],
+//            ]);
+//        }
+
+
         if($data['payment_method'] != 'Paypal') {
             return view('front.cart.thankyou', compact('categoriesLimit','phone','title','open','fb','ytb','email','address'));
         } else {

@@ -37,8 +37,18 @@
                             <label for="amount" class="col-md-4 control-label">Enter Amount</label>
 
                             <div class="col-md-6">
-                                <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" autofocus>
-
+{{--                                <div id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" autofocus>--}}
+                                @php
+                                    $total = 0;
+                                    $carts = session()->get('cart');
+                                @endphp
+                                    @foreach($carts as $id => $cartItem)
+                                        @csrf
+                                        @php
+                                            $total += $cartItem['price'] * $cartItem['quantity'];
+                                        @endphp
+                                @endforeach
+                                <input class="form-control" name="amount" id="amount" value="{{ $total }}" readonly>
                                 @if ($errors->has('amount'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('amount') }}</strong>
