@@ -54,7 +54,7 @@
                         <div class="small-box bg-warning">
                             <div class="inner">
                                 <h3>{{$user}}</h3>
-                                <p>User Registrations</p>
+                                <p style="color:white">User Registrations</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
@@ -79,6 +79,59 @@
                     </div>
                     <!-- ./col -->
 
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                               <h3>New Order</h3>
+
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Order code</th>
+                                        <th scope="col">Customer Name</th>
+                                        <th scope="col">Order Total</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($all_order as $key => $order)
+                                        <tr>
+                                            <td>{{ $order->order_code }}</td>
+                                            <td>{{ $order-> name }}</td>
+                                            <td>$ {{ $order->order_total }}</td>
+                                            <td>
+                                                <a href="{{route('order.details/{orderId}',['id'=>$order->order_id])}}"
+                                                   class="btn btn-default"><i class="fas fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-footer"><h5><b>Total estimated revenue<span class="float-right">${{$RevenueNewOrder}}</span></b></h5></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><b>Revenue</b></h3>
+                            </div>
+                            <div class="card-body">
+                                 <h5>Processing: <span class="float-right"> ${{$processing}}</span></h5>
+
+                                <h5>Processed: <span class="float-right"> ${{$processed}}</span></h5>
+                            </div>
+                                <div class="card-footer">
+                                <h5><b>Total Revenue: <span class="float-right"> ${{$Revenue}}</span></b></h5></div>
+
+
+                        </div>
+                    </div>
                 </div>
                 <!-- /.row -->
             </div><!-- /.container-fluid -->

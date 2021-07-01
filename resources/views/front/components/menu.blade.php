@@ -17,7 +17,7 @@
                     @include('front.components.child_menu', ['$categoryParent' => $categoryParent])
             </li>
             @endforeach
-
+            <li><a href="{{route('frontNew')}}">News</a></li>
             <li><a href="/Contact">Contact</a></li>
             <li><a href="/Online-help">Online-Help</a></li>
         </ul>

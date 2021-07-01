@@ -161,30 +161,34 @@ Route::prefix('admin')->group(function () {
             'uses' => 'SliderController@delete'
         ]);
     });
-    Route::prefix('settings')->group(function () {
+    Route::prefix('new')->group(function () {
         Route::get('/', [
-            'as' => 'settings.index',
-            'uses' => 'SettingsController@index'
+            'as' => 'new.index',
+            'uses' => 'NewsController@index'
         ]);
         Route::get('/create', [
-            'as' => 'settings.create',
-            'uses' => 'SettingsController@create'
+            'as' => 'new.create',
+            'uses' => 'NewsController@create'
         ]);
         Route::post('/store', [
-            'as' => 'settings.store',
-            'uses' => 'SettingsController@store'
+            'as' => 'new.store',
+            'uses' => 'NewsController@store'
         ]);
         Route::get('/edit/{id}', [
-            'as' => 'settings.edit',
-            'uses' => 'SettingsController@edit'
+            'as' => 'new.edit',
+            'uses' => 'NewsController@edit'
         ]);
         Route::post('/update/{id}', [
-            'as' => 'settings.update',
-            'uses' => 'SettingsController@update'
+            'as' => 'new.update',
+            'uses' => 'NewsController@update'
         ]);
         Route::get('/delete/{id}', [
-            'as' => 'settings.delete',
-            'uses' => 'SettingsController@delete'
+            'as' => 'new.delete',
+            'uses' => 'NewsController@delete'
+        ]);
+        Route::get('/details/{id}', [
+            'as' => 'new.details',
+            'uses' => 'NewsController@details'
         ]);
     });
     Route::prefix('information')->group(function () {
@@ -338,3 +342,7 @@ Route::get('paypal', array('as' => 'status','uses' => 'PaypalController@getPayme
 //search
 Route::get('/search-name/', 'SearchController@search_name')->name('searchName');
 Route::get('/search-price/', 'SearchController@search_price')->name('searchPrice');
+
+//profile
+Route::get('/new', 'NewsController@frontNew')->name('frontNew');
+Route::get('/new/{id}', 'NewsController@front2New')->name('front2New');
