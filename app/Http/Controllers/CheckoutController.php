@@ -119,7 +119,6 @@ class CheckoutController extends Controller
             $order_d_data['product_sales_quantity'] = $cartItem['quantity'];
             DB::table('order_details')->insert($order_d_data);
         }
-        $req->session()->forget('cart');
 
         //infor
         $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
@@ -144,6 +143,7 @@ class CheckoutController extends Controller
 
         if($data['payment_method'] != 'Paypal') {
             return view('front.cart.thankyou', compact('categoriesLimit','phone','title','open','fb','ytb','email','address'));
+            $req->session()->forget('cart');
         } else {
             return view('front.cart.paypal');
         }
