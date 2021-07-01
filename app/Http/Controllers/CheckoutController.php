@@ -83,7 +83,6 @@ class CheckoutController extends Controller
     public function order_place(Request $req)
     {
         //insert payment_method
-
         $data = array();
 
         $data['payment_method'] = $req->payment_option;
@@ -96,41 +95,6 @@ class CheckoutController extends Controller
             $total += $cartItem['price'] * $cartItem['quantity'];
         }
 
-        //insert order
-        $order_data = array();
-        $order_data['customer_id'] = Auth::id();
-        $order_data['payment_id'] = $payment_id;
-        $order_data['order_total'] = $total;
-        $order_data['order_status'] = 'New order';
-        $order_data['created_at'] = Carbon\Carbon::now();
-        $order_data['order_code'] = substr(md5(microtime()),rand(0,26),5);
-        $order_data['delivery_address'] = $req->delivery_address;
-        $order_id = DB::table('orders')->insertGetId($order_data);
-
-
-        //insert order details
-//        $carts = session()->get('cart');
-        foreach ($carts as $id => $cartItem) {
-            $order_d_data = array();
-            $order_d_data['order_id'] = $order_id;
-            $order_d_data['product_id'] = $id;
-            $order_d_data['product_name'] = $cartItem['name'];
-            $order_d_data['product_price'] = $cartItem['price'];
-            $order_d_data['product_sales_quantity'] = $cartItem['quantity'];
-            DB::table('order_details')->insert($order_d_data);
-        }
-
-        //infor
-        $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
-        $phone = Information::where('key','Phone')->first();
-        $title = Information::where('key','Title')->first();
-        $open = Information::where('key','Open')->first();
-        $fb = Information::where('key','Facebook Link')->first();
-        $ytb = Information::where('key','YouTube Link')->first();
-        $email = Information::where('key','Email')->first();
-        $address = Information::where('key','Address')->first();
-
-
         //quantity
 //        $carts = session()->get('cart');
 //        foreach($carts as $cartItem) {
@@ -140,13 +104,76 @@ class CheckoutController extends Controller
 //            ]);
 //        }
 
-
         if($data['payment_method'] != 'Paypal') {
+            //insert order
+            $order_data = array();
+            $order_data['customer_id'] = Auth::id();
+            $order_data['payment_id'] = $payment_id;
+            $order_data['order_total'] = $total;
+            $order_data['order_status'] = 'New order';
+            $order_data['created_at'] = Carbon\Carbon::now();
+            $order_data['order_code'] = substr(md5(microtime()),rand(0,26),5);
+            $order_data['delivery_address'] = $req->delivery_address;
+            $order_id = DB::table('orders')->insertGetId($order_data);
+
+
+            //insert order details
+            foreach ($carts as $id => $cartItem) {
+                $order_d_data = array();
+                $order_d_data['order_id'] = $order_id;
+                $order_d_data['product_id'] = $id;
+                $order_d_data['product_name'] = $cartItem['name'];
+                $order_d_data['product_price'] = $cartItem['price'];
+                $order_d_data['product_sales_quantity'] = $cartItem['quantity'];
+                DB::table('order_details')->insert($order_d_data);
+            }
+
+            //infor
+            $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
+            $phone = Information::where('key','Phone')->first();
+            $title = Information::where('key','Title')->first();
+            $open = Information::where('key','Open')->first();
+            $fb = Information::where('key','Facebook Link')->first();
+            $ytb = Information::where('key','YouTube Link')->first();
+            $email = Information::where('key','Email')->first();
+            $address = Information::where('key','Address')->first();
+            $req->session()->forget('cart');
+
             return view('front.cart.thankyou', compact('categoriesLimit','phone','title','open','fb','ytb','email','address'));
-            $req->session()->forget('cart');
         } else {
-            return view('front.cart.paypal');
-            $req->session()->forget('cart');
+            //insert order
+            $order_data = array();
+            $order_data['customer_id'] = Auth::id();
+            $order_data['payment_id'] = $payment_id;
+            $order_data['order_total'] = $total;
+            $order_data['order_status'] = 'New order';
+            $order_data['created_at'] = Carbon\Carbon::now();
+            $order_data['order_code'] = substr(md5(microtime()),rand(0,26),5);
+            $order_data['delivery_address'] = $req->delivery_address;
+            $order_id = DB::table('orders')->insertGetId($order_data);
+
+
+            //insert order details
+            foreach ($carts as $id => $cartItem) {
+                $order_d_data = array();
+                $order_d_data['order_id'] = $order_id;
+                $order_d_data['product_id'] = $id;
+                $order_d_data['product_name'] = $cartItem['name'];
+                $order_d_data['product_price'] = $cartItem['price'];
+                $order_d_data['product_sales_quantity'] = $cartItem['quantity'];
+                DB::table('order_details')->insert($order_d_data);
+            }
+
+            //infor
+            $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
+            $phone = Information::where('key','Phone')->first();
+            $title = Information::where('key','Title')->first();
+            $open = Information::where('key','Open')->first();
+            $fb = Information::where('key','Facebook Link')->first();
+            $ytb = Information::where('key','YouTube Link')->first();
+            $email = Information::where('key','Email')->first();
+            $address = Information::where('key','Address')->first();
+            return view('front.cart.paypal', compact('categoriesLimit','phone','title','open','fb','ytb','email','address'));
         }
     }
 

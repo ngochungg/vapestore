@@ -36,9 +36,9 @@ class PaypalController extends Controller
         $this->_api_context->setConfig($paypal_configuration['settings']);
     }
 
-    public function payWithPaypal()
+    public function payWithPaypal(Request $req)
     {
-        return view('paywithpaypal');
+        return view('front.cart.paypal');
     }
 
     public function postPaymentWithpaypal(Request $request)
@@ -118,6 +118,7 @@ class PaypalController extends Controller
 
         if ($result->getState() == 'approved') {
             \Session::put('success','Payment success !!');
+            $request->session()->forget('cart');
             return Redirect::route('paywithpaypal');
         }
 
