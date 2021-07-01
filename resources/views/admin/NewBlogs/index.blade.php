@@ -42,6 +42,8 @@
                                         <img class="product_image" src="{{$new->image_path}}" alt="" style="height: 100px">
                                     </td>
                                     <td>
+                                        <a href="{{route('new.details',['id'=>$new->id])}}"
+                                           class="btn btn-default"><i class="fas fa-eye"></i></a>
 
                                         <a href="{{route('new.edit',['id'=>$new->id])}}"
                                            class="btn btn-info" style="width: 42.38px"><i class="fas fa-edit"></i></a>

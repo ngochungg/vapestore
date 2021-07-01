@@ -186,6 +186,10 @@ Route::prefix('admin')->group(function () {
             'as' => 'new.delete',
             'uses' => 'NewsController@delete'
         ]);
+        Route::get('/details/{id}', [
+            'as' => 'new.details',
+            'uses' => 'NewsController@details'
+        ]);
     });
     Route::prefix('information')->group(function () {
         Route::get('/',[
@@ -338,3 +342,7 @@ Route::get('paypal', array('as' => 'status','uses' => 'PaypalController@getPayme
 //search
 Route::get('/search-name/', 'SearchController@search_name')->name('searchName');
 Route::get('/search-price/', 'SearchController@search_price')->name('searchPrice');
+
+//profile
+Route::get('/new', 'NewsController@frontNew')->name('frontNew');
+Route::get('/new/{id}', 'NewsController@front2New')->name('front2New');

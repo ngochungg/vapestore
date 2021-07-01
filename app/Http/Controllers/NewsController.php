@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NewsAddRequest;
+use App\Models\Category;
+use App\Models\Information;
 use App\Models\NewBlog;
 use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
@@ -96,5 +98,36 @@ class NewsController extends Controller
         } catch (\Exception $exception) {
             Log::error('Lỗi : ' . $exception->getMessage() . '---Line: ' . $exception->getLine());
         }
+    }
+    public function details($id){
+        $this->authenLogin();
+        $news = $this->newBlog->find($id);
+        return view('admin.newBlogs.details',compact('news'));
+    }
+    public function frontNew(){
+        $phone = Information::where('key','Phone')->first();
+        $title = Information::where('key','Title')->first();
+        $open = Information::where('key','Open')->first();
+        $fb = Information::where('key','Facebook Link')->first();
+        $ytb = Information::where('key','YouTube Link')->first();
+        $email = Information::where('key','Email')->first();
+        $address = Information::where('key','Address')->first();
+        $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
+        $news = $this->newBlog->latest()->paginate(10);
+        return view('front.new.new',compact('categoriesLimit','phone','title',
+            'open','fb','ytb','email','address','news'));
+    }
+    public function front2New($id){
+        $phone = Information::where('key','Phone')->first();
+        $title = Information::where('key','Title')->first();
+        $open = Information::where('key','Open')->first();
+        $fb = Information::where('key','Facebook Link')->first();
+        $ytb = Information::where('key','YouTube Link')->first();
+        $email = Information::where('key','Email')->first();
+        $address = Information::where('key','Address')->first();
+        $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
+        $news = $this->newBlog->find($id);
+        return view('front.new.newDetail',compact('categoriesLimit','phone','title',
+            'open','fb','ytb','email','address','news'));
     }
 }
