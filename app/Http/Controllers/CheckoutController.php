@@ -146,6 +146,7 @@ class CheckoutController extends Controller
             $req->session()->forget('cart');
         } else {
             return view('front.cart.paypal');
+            $req->session()->forget('cart');
         }
     }
 
