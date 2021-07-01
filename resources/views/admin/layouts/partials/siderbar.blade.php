@@ -99,14 +99,14 @@
                         </p>
                     </a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a href="{{route('settings.index')}}" class="nav-link">--}}
-{{--                        <i class="nav-icon fas fa-cogs"></i>--}}
-{{--                        <p>--}}
-{{--                            Settings--}}
-{{--                        </p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li class="nav-item">
+                    <a href="{{route('new.index')}}" class="nav-link">
+                        <i class="nav-icon far fa-newspaper"></i>
+                        <p>
+                            News
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="{{route('ReComment')}}" class="nav-link">
                         <i class="nav-icon fas fa-question"></i>

@@ -84,7 +84,6 @@ class CategoryController extends Controller
                 'code' => 200,
                 'message' => 'success'
             ], 200);
-
         } catch (\Exception $exception) {
             Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
             return response()->json([
