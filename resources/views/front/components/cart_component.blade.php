@@ -24,8 +24,8 @@
                         $total = 0;
                     @endphp
 
-                        @if(isset($carts))
-                            @foreach($carts as $id => $cartItem)
+                    @if(isset($carts))
+                        @foreach($carts as $id => $cartItem)
                             <tr>
                                 @csrf
                                 @php
@@ -66,8 +66,8 @@
                                     </a>
                                 </td>
                             </tr>
-                            @endforeach
-                        @endif
+                        @endforeach
+                    @endif
 
 
 
@@ -91,14 +91,14 @@
                         <li>Total <span>${{ $total }}</span></li>
                     </ul>
                     @php
-                    $user = \Illuminate\Support\Facades\Auth::id();
+                        $user = \Illuminate\Support\Facades\Auth::id();
                     @endphp
                     @if(isset($cartItem))
                         @if($user != null)
                             <a class="btn btn-default check_out" href="{{ URL::to('/payment') }}">Check Out</a>
                         @else
                             <a class="btn btn-default check_out" href="{{ URL::to('/login-checkout') }}">Check Out</a>
-                            @endif
+                        @endif
                     @else
                     @endif
 

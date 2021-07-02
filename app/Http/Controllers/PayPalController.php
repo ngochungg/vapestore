@@ -41,15 +41,21 @@ class PaypalController extends Controller
     public function payWithPaypal(Request $req)
     {
         $carts = session()->get('cart');
-        $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
-        $phone = Information::where('key','Phone')->first();
-        $title = Information::where('key','Title')->first();
-        $open = Information::where('key','Open')->first();
-        $fb = Information::where('key','Facebook Link')->first();
-        $ytb = Information::where('key','YouTube Link')->first();
-        $email = Information::where('key','Email')->first();
-        $address = Information::where('key','Address')->first();
-        return view('front.cart.paywithpaypal', compact('categoriesLimit', 'carts','phone','title','open','fb','ytb','email','address'));
+        if(isset($carts)) {
+            $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
+            $phone = Information::where('key','Phone')->first();
+            $title = Information::where('key','Title')->first();
+            $open = Information::where('key','Open')->first();
+            $fb = Information::where('key','Facebook Link')->first();
+            $ytb = Information::where('key','YouTube Link')->first();
+            $email = Information::where('key','Email')->first();
+            $address = Information::where('key','Address')->first();
+            return view('front.cart.paywithpaypal', compact('categoriesLimit',
+                'carts','phone','title','open','fb','ytb','email','address'));
+        } else {
+            return Redirect::route('homef');
+        }
+
     }
 
     public function postPaymentWithpaypal(Request $request)
@@ -116,6 +122,16 @@ class PaypalController extends Controller
 
     public function getPaymentStatus(Request $request)
     {
+        //infor
+        $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
+        $phone = Information::where('key','Phone')->first();
+        $title = Information::where('key','Title')->first();
+        $open = Information::where('key','Open')->first();
+        $fb = Information::where('key','Facebook Link')->first();
+        $ytb = Information::where('key','YouTube Link')->first();
+        $email = Information::where('key','Email')->first();
+        $address = Information::where('key','Address')->first();
+
         $payment_id = Session::get('paypal_payment_id');
         Session::forget('paypal_payment_id');
         if (empty($request->input('PayerID')) || empty($request->input('token'))) {
@@ -130,7 +146,8 @@ class PaypalController extends Controller
         if ($result->getState() == 'approved') {
             \Session::put('success','Payment success !!');
             $request->session()->forget('cart');
-            return Redirect::route('homef');
+            return view('front.cart.thankyou',compact('categoriesLimit'
+                ,'phone','title','open','fb','ytb','email','address'));
         }
 
         \Session::put('error','Payment failed !!');

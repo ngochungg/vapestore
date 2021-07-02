@@ -36,23 +36,6 @@ class ProductController extends Controller
     }
 
     public function showCart() {
-//        echo"<pre>";
-//        print_r(session()->get('cart'));
-
-        $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
-            //addtocart old
-//        $cart = Cart::all();
-//        $products= DB::table('cart')
-////            ->join('products', 'cart.product_id','=', 'products.id')
-////            ->where('cart.user_id')
-////            ->select('products.*')
-////            ->get();
-//            ->join('products', 'cart.product_id','=', 'products.id')
-//            ->select('products.*', 'cart.id as cart_id')
-//            ->get();
-//        return view('front.cart.cartsList', compact('products', 'categoriesLimit', 'cart'));
-
-        //addtocart new
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
         $phone = Information::where('key','Phone')->first();
         $title = Information::where('key','Title')->first();
@@ -66,15 +49,16 @@ class ProductController extends Controller
     }
 
     public function updateCart(Request $req) {
-        if($req->id && $req->quantity) {
-            $carts = session()->get('cart');
+    $carts = session()->get('cart');
+    if($req->id && $req->quantity) {
             $carts[$req->id]['quantity'] = $req->quantity;
             session()->put('cart', $carts);
             $carts = session()->get('cart');
             $cartComponent = view('front.components.cart_component', compact('carts'))->render();
             return response()->json(['cart_component' => $cartComponent, 'code' => 200], 200);
-        }
+            }
     }
+
 
     public function deleteCart(Request $req) {
         if($req->id) {
