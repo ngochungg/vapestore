@@ -31,12 +31,17 @@ class Homecontroller extends Controller
     }
     public function authenLogin()
     {
-        if (auth()->check()){
+        if (auth()->check() && auth()->user()->role == 1){
+            return Redirect::to('/')->send();
+        }
+        elseif (auth()->check() && auth()->user()->role == 2){
             return Redirect::to('home');
-        }else{
+        }
+        else{
             return Redirect::to('admin')->send();
         }
     }
+
     public function index(){
         $sliders= Slider::latest()->get();
         $products = Product::latest()->take(6)->get();
@@ -106,7 +111,7 @@ class Homecontroller extends Controller
     }
 
     public function profile($id){
-
+        if (auth()->check()){
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
 //        $Popular_Products= Product::all()->random(4);
         $orders = $this->order->wherecustomer_id($id)->get();
@@ -118,6 +123,9 @@ class Homecontroller extends Controller
         $email = $this->info->where('key','Email')->first();
         $address = $this->info->where('key','Address')->first();
         return view('front.customer.profile', compact( 'categoriesLimit','orders','phone','title','open','fb','ytb','email','address'));
+        }else{
+                return Redirect::to('admin')->send();
+        }
     }
     public function order_detail($id){
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
