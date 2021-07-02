@@ -58,7 +58,7 @@ class Homecontroller extends Controller
 //        $categories = Category::where('parent_id',0)->get();
         $products = Product::find($id);
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
-        $Popular_Products= Product::all()->random(4);
+//        $Popular_Products= Product::all()->random(4);
         $phone = $this->info->where('key','Phone')->first();
         $title = $this->info->where('key','Title')->first();
         $open = $this->info->where('key','Open')->first();
@@ -66,9 +66,12 @@ class Homecontroller extends Controller
         $ytb = $this->info->where('key','YouTube Link')->first();
         $email = $this->info->where('key','Email')->first();
         $address = $this->info->where('key','Address')->first();
-        $New_Products= Product::latest()->take(10)->get();
+        $cateID = Product::find($id)->category_id;
+        $relatedProducts = Product::where('category_id',$cateID)->take(10)->get();
+//        dd($relatedProducts);
+//        $New_Products= Product::latest()->take(10)->get();
 
-        return view('front.product.detail',compact('products', 'categoriesLimit','Popular_Products','New_Products', 'phone','title','open','fb','ytb','email','address'));
+        return view('front.product.detail',compact('products', 'categoriesLimit','relatedProducts', 'phone','title','open','fb','ytb','email','address'));
     }
     public function comment(request $request,$id){
         $products = Product::find($id);

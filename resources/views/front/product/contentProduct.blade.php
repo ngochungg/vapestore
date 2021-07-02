@@ -205,10 +205,10 @@
 
             <div class="single-advance-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="wrap-show-advance-info-box style-1 box-in-site">
-                    <h3 class="title-box" style="border-radius: 3px">New Products</h3>
+                    <h3 class="title-box" style="border-radius: 3px">Related products</h3>
                     <div class="wrap-products">
                         <div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
-                            @foreach($New_Products as $product_new)
+                            @foreach($relatedProducts as $product_new)
                             <div class="product product-style-2 equal-elem ">
                                 <div class="product-thumnail" >
                                     <a href="{{route('seeDetails',['id'=> $product_new->id])}}" title="Click to go to {!! $product_new->name !!}" >
