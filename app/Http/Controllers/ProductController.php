@@ -49,14 +49,14 @@ class ProductController extends Controller
     }
 
     public function updateCart(Request $req) {
-    $carts = session()->get('cart');
-    if($req->id && $req->quantity) {
+        $carts = session()->get('cart');
+        if($req->id && $req->quantity) {
             $carts[$req->id]['quantity'] = $req->quantity;
             session()->put('cart', $carts);
             $carts = session()->get('cart');
             $cartComponent = view('front.components.cart_component', compact('carts'))->render();
             return response()->json(['cart_component' => $cartComponent, 'code' => 200], 200);
-            }
+        }
     }
 
 
