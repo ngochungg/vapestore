@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use Session;
 use App\Models\Order;
 use App\Models\OrderDetails;
@@ -126,6 +127,10 @@ class CheckoutController extends Controller
                 $order_d_data['product_price'] = $cartItem['price'];
                 $order_d_data['product_sales_quantity'] = $cartItem['quantity'];
                 DB::table('order_details')->insert($order_d_data);
+                DB::update(
+                    'update products set quantity = quantity - ? where id = ?',
+                    [$cartItem['quantity'], $id]
+                );
             }
 
             //infor
@@ -165,15 +170,15 @@ class CheckoutController extends Controller
             }
 
             //infor
-            $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
-            $phone = Information::where('key','Phone')->first();
-            $title = Information::where('key','Title')->first();
-            $open = Information::where('key','Open')->first();
-            $fb = Information::where('key','Facebook Link')->first();
-            $ytb = Information::where('key','YouTube Link')->first();
-            $email = Information::where('key','Email')->first();
-            $address = Information::where('key','Address')->first();
-            return view('front.cart.paypal', compact('categoriesLimit','phone','title','open','fb','ytb','email','address'));
+//            $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
+//            $phone = Information::where('key','Phone')->first();
+//            $title = Information::where('key','Title')->first();
+//            $open = Information::where('key','Open')->first();
+//            $fb = Information::where('key','Facebook Link')->first();
+//            $ytb = Information::where('key','YouTube Link')->first();
+//            $email = Information::where('key','Email')->first();
+//            $address = Information::where('key','Address')->first();
+            return Redirect::route('paywithpaypal');
         }
     }
 

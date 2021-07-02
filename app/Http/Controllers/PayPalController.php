@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Category;
+use App\Models\Information;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
@@ -38,7 +40,16 @@ class PaypalController extends Controller
 
     public function payWithPaypal(Request $req)
     {
-        return view('front.cart.paypal');
+        $carts = session()->get('cart');
+        $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
+        $phone = Information::where('key','Phone')->first();
+        $title = Information::where('key','Title')->first();
+        $open = Information::where('key','Open')->first();
+        $fb = Information::where('key','Facebook Link')->first();
+        $ytb = Information::where('key','YouTube Link')->first();
+        $email = Information::where('key','Email')->first();
+        $address = Information::where('key','Address')->first();
+        return view('front.cart.paywithpaypal', compact('categoriesLimit', 'carts','phone','title','open','fb','ytb','email','address'));
     }
 
     public function postPaymentWithpaypal(Request $request)
@@ -119,10 +130,10 @@ class PaypalController extends Controller
         if ($result->getState() == 'approved') {
             \Session::put('success','Payment success !!');
             $request->session()->forget('cart');
-            return Redirect::route('paywithpaypal');
+            return Redirect::route('homef');
         }
 
         \Session::put('error','Payment failed !!');
-        return Redirect::route('paywithpaypal');
+        return Redirect::to('front.cart.payment');
     }
 }
