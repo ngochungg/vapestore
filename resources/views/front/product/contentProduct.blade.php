@@ -35,9 +35,10 @@
 
                                 <div class="quantity-input">
                                     <a class="btn btn-reduce" href="#"></a>
-                                    <input type="text" name="product-quatity" value="1" data-max="{!! $products->quantity !!}"  >
+                                    <input type="text" name="product-quatity" value="1" onkeypress="return event.charCode != 45" data-max="{!! $products->quantity !!}">
                                     <a class="btn btn-increase" href="#"></a>
                                 </div>
+                                <h6>Number of products left in stock {{$products->quantity }}</h6>
                             </div>
                         @elseif($products->quantity<=0)
                             <div><h3 style="color:red">Out of stock</h3></div>
@@ -60,7 +61,7 @@
                             <a href="#Comment" class="tab-control-item">Question</a>
                             <a href="#Answer" class="tab-control-item">Answer</a>
                         </div>
-                        <div class="tab-contents">
+                        <div class="tab-contents active">
 
                             <div class="tab-content-item " id="description">
                                 <div class="pro-content">{!! $products->description !!}</div>
@@ -149,7 +150,7 @@
                                     </div>
                                 </div><!-- Categories widget-->
                             </div>
-                            <div class="tab-content-item active" id="Answer">
+                            <div class="tab-content-item " id="Answer">
                                 @foreach($products->commentProduct as $comment)
                                         <div>
                                             <ul>

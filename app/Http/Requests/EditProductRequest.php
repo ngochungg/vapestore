@@ -25,8 +25,8 @@ class EditProductRequest extends FormRequest
     {
         return [
             'name' => 'bail|required|max:255|min:10',
-            'price'=>'bail|required|integer',
-            'quantity'=>'bail|required|integer',
+            'price'=>'bail|required|integer|min:0',
+            'quantity'=>'bail|required|integer|min:0',
         ];
     }
 }

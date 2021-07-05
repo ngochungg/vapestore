@@ -45,7 +45,8 @@ class ProductController extends Controller
         $email = Information::where('key','Email')->first();
         $address = Information::where('key','Address')->first();
         $carts = session()->get('cart');
-        return view('front.cart.cartsList',compact('carts', 'categoriesLimit','phone','title','open','fb','ytb','email','address'));
+        return view('front.cart.cartsList',compact('carts', 'categoriesLimit','phone','title',
+            'open','fb','ytb','email','address'));
     }
 
     public function updateCart(Request $req) {

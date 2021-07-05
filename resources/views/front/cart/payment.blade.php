@@ -98,7 +98,8 @@
                                                 </h3>
                                             </div>
                                             <div style="margin-top: -100px;">
-                                                <input type="submit" value="Order" name="send_order_place" class="btn add-to-cart" style="background: orange; color: white">
+                                                <input type="submit" value="Order" name="send_order_place"
+                                                       class="btn add-to-cart" style="background: orange; color: white">
                                             </div>
                                         </form>
                                     </div>
