@@ -45,17 +45,14 @@
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="quantity">
-                                        <p>{{ $cartItem['quantity'] }}</p>
-{{--                                        <p><input type="number" value="{{ $cartItem['quantity'] }}" data-min="1" min="1" class="quantity"--}}
-{{--                                                  onkeypress="return event.charCode != 45"--}}
-{{--                                            ></p>--}}
+                                        <p><input type="number" value="{{ $cartItem['quantity'] }}" min="1" class="quantity"></p>
                                     </div>
-{{--                                    <div class="cart_delete">--}}
-{{--                                        <!--update cart-->--}}
-{{--                                        <a class="btn btn_primary cart_update" href="" data-id="{{ $id }}">--}}
-{{--                                            <i class="fa fa-refresh"></i>--}}
-{{--                                        </a>--}}
-{{--                                    </div>--}}
+                                    <div class="cart_delete">
+                                        <!--update cart-->
+                                        <a class="btn btn_primary cart_update" href="" data-id="{{ $id }}">
+                                            <i class="fa fa-refresh"></i>
+                                        </a>
+                                    </div>
                                 </td>
                                 <td class="cart_total">
                                     <p class="cart_total_price">
