@@ -45,18 +45,19 @@ class ProductController extends Controller
         $email = Information::where('key','Email')->first();
         $address = Information::where('key','Address')->first();
         $carts = session()->get('cart');
-        return view('front.cart.cartsList',compact('carts', 'categoriesLimit','phone','title','open','fb','ytb','email','address'));
+        return view('front.cart.cartsList',compact('carts', 'categoriesLimit','phone','title',
+            'open','fb','ytb','email','address'));
     }
 
     public function updateCart(Request $req) {
-        $carts = session()->get('cart');
-        if($req->id && $req->quantity) {
+    $carts = session()->get('cart');
+    if($req->id && $req->quantity) {
             $carts[$req->id]['quantity'] = $req->quantity;
             session()->put('cart', $carts);
             $carts = session()->get('cart');
             $cartComponent = view('front.components.cart_component', compact('carts'))->render();
             return response()->json(['cart_component' => $cartComponent, 'code' => 200], 200);
-        }
+            }
     }
 
 
