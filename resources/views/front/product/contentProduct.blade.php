@@ -32,10 +32,9 @@
                         @if($products->quantity>0)
                             <h4>Quantity:</h4>
                             <div class="quantity">
-
                                 <div class="quantity-input">
                                     <a class="btn btn-reduce" href="#"></a>
-                                    <input type="text" name="product-quatity" value="1" data-max="{!! $products->quantity !!}"  >
+                                        <input type="text" name="product-quatity" value="1" data-max="{!! $products->quantity !!}"  >
                                     <a class="btn btn-increase" href="#"></a>
                                 </div>
                             </div>
@@ -237,4 +236,6 @@
     </div><!--end container-->
 
 </main>
+
+
 <!--main area-->

@@ -51,6 +51,33 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+
+    function cartUpdate(event) {
+        event.preventDefault();
+        let urlUpdateCart= $('.update_cart_url').data('url');
+        let id = $(this).data('id');
+        let quantity = $(this).parents('tr').find('input.quantity').val();
+        $.ajax({
+            type: "GET",
+            url: urlUpdateCart,
+            data: {id: id,quantity: quantity},
+            success: function(data) {
+                if(data.code == 200) {
+                    $('.cart_wrapper').html(data.cart_component);
+                    swal({
+                        title: "Update",
+                        text: "",
+                        icon: "success",
+                        button: "Continue",
+                    });
+                }
+            },
+            error: function() {
+
+            }
+        });
+    }
+
     function addToCart(event) {
         event.preventDefault();
         let urlCart = $(this).data('url');
@@ -75,6 +102,7 @@
     }
     $(function() {
 
+        $(document).on('click', '.cart_update', cartUpdate);
         $('.add_to_cart').on('click', addToCart);
 
     })

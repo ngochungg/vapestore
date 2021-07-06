@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
     use DeleteModelTrait;
-    public function addToCart($id) {
+    public function addToCart($id, Request $req) {
         $product = Product::find($id);
         $cart = session()->get('cart');
         if (isset($cart[$id])) {
