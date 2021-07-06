@@ -29,7 +29,6 @@ use PayPal\Api\Transaction;
 class PaypalController extends Controller
 {
     private $_api_context;
-
     public function __construct()
     {
 
@@ -151,6 +150,6 @@ class PaypalController extends Controller
         }
 
         \Session::put('error','Payment failed !!');
-        return Redirect::to('front.cart.payment');
+        return Redirect::route('paywithpaypal');
     }
 }

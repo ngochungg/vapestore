@@ -1665,7 +1665,11 @@ h2.title {
 #do_action .total_area {
     padding-bottom: 18px !important;
 }
-
+.voucher_button{
+    background-color: green;
+    color: white;
+    font-size: 30px;
+}
 #do_action .total_area,
 #do_action .chose_area {
     border: 1px solid #E6E4DF;
@@ -1677,7 +1681,6 @@ h2.title {
 .total_area span {
     float: right;
 }
-
 .total_area ul li {
     background: #E6E4DF;
     color: #696763;
