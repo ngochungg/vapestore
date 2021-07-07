@@ -34,7 +34,7 @@
                             <div class="quantity">
                                 <div class="quantity-input">
                                     <a class="btn btn-reduce" href="#"></a>
-                                        <input type="text" name="product-quatity" value="1" data-max="{!! $products->quantity !!}"  >
+                                        <input type="text" id="cart-quantity" name="product-quatity" value="1" data-max="{!! $products->quantity !!}"  >
                                     <a class="btn btn-increase" href="#"></a>
                                 </div>
                                 <div>The remaining amount {{$products->quantity }}</div>
@@ -45,12 +45,11 @@
 
 
                         <div class="wrap-butons">
-                            <a href="#"
-                               data-url="{{ route('addToCart', ['id'=> $products->id]) }}"
-                               class="btn add-to-cart add_to_cart"
-                                style="background: orange ">
+                            <a href="#" id="add-to-cart" data-pid="{{ $products->id }}" class="btn add-to-cart" style="background: orange ">
                                 Add to cart
                             </a>
+{{--                               data-url="{{ route('addToCart', ['id'=> $products->id]) }}"--}}
+
                         </div>
                     </div>
                     <div class="advance-info">

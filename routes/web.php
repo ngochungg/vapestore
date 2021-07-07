@@ -286,7 +286,7 @@ Route::get('/category/slug/{id}', [
 //show cart
 Route::get('product/show-cart', 'ProductController@showCart')->name('showCart');
 //add to cart
-Route::get('/products/add-to-cart/{id}', 'ProductController@addToCart')->name('addToCart');
+Route::get('/products/add-to-cart', 'ProductController@addToCart')->name('addToCart');
 //update cart
 Route::get('/products/update-cart', 'ProductController@updateCart')->name('updateCart');
 //remove cart

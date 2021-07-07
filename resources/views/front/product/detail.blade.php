@@ -27,7 +27,7 @@
 </head>
 <body>
 @include('front.components.header')
-@yield('content')
+{{--@yield('content')--}}
 @include('front.product.contentProduct')
 @include('front.components.footer')
 
@@ -51,6 +51,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+
+    // setup csrf-token cho post method
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     function cartUpdate(event) {
         event.preventDefault();
@@ -80,11 +87,17 @@
 
     function addToCart(event) {
         event.preventDefault();
-        let urlCart = $(this).data('url');
+        //alert($('#cart-quantity').val());
+        // let urlCart = $(this).data('url');
+        let pid = $(this).data('pid');
+        let quantity = $('#cart-quantity').val();
+        if (quantity === '')
+            quantity = 1;
         $.ajax({
             type: "GET",
-            url: urlCart,
+            url: '{{ route('addToCart') }}',
             dataType: 'json',
+            data: { id: pid, quantity: quantity},
             success: function(data) {
                 if(data.code === 200) {
                     swal({
@@ -103,7 +116,7 @@
     $(function() {
 
         $(document).on('click', '.cart_update', cartUpdate);
-        $('.add_to_cart').on('click', addToCart);
+        $('.add-to-cart').on('click', addToCart);
 
     })
 </script>

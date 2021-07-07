@@ -15,16 +15,17 @@ use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
     use DeleteModelTrait;
-    public function addToCart($id, Request $req) {
-        $product = Product::find($id);
+    public function addToCart(Request $req) {
+
+        $product = Product::find($req->id);
         $cart = session()->get('cart');
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
+        if (isset($cart[$req->id])) {
+            $cart[$req->id]['quantity'] = $cart[$req->id]['quantity'] + $req->quantity;
         } else {
-            $cart[$id] = [
+            $cart[$req->id] = [
                 'name' => $product->name,
                 'price' => $product->price,
-                'quantity' => 1,
+                'quantity' => $req->quantity,
                 'image' =>$product->feature_image_path,
             ];
         }
