@@ -49,7 +49,28 @@
                                     @php
                                         $total += $cartItem['price'] * $cartItem['quantity'] ;
                                     @endphp
+                                    @if(session()->get('coupon'))
+                                        @foreach(Session::get('coupon') as $key => $cou)
+                                            @if($cou['coupon_condition']==1)
+                                                @php
+                                                    $total_coupon=number_format(($total *$cou['coupon_number'])/100);
+                                                @endphp
 
+                                            @else
+                                                @php
+                                                    $total_coupon=number_format($cou['coupon_number']);
+                                                @endphp
+                                            @endif
+                                            <?php
+                                            $final= $total-$total_coupon;
+                                            ?>
+                                        @endforeach
+                                    @else
+                                        <?php
+                                        $total_coupon=0;
+                                        ?>
+
+                                    @endif
                                     <td class="cart_product">
                                         <a href="">
                                             <img src="{{ $cartItem['image'] }} " alt=""
@@ -74,23 +95,7 @@
                                     </td>
                             </tr>
                             @endforeach
-                            @if(session()->get('coupon'))
-                                @foreach(Session::get('coupon') as $key => $cou)
-                                    @if($cou['coupon_condition']==1)
-                                        @php
-                                            $total_coupon=number_format(($total *$cou['coupon_number'])/100);
-                                        @endphp
 
-                                    @else
-                                        @php
-                                            $total_coupon=number_format($cou['coupon_number']);
-                                        @endphp
-                                    @endif
-                                    <?php
-                                        $final= $total-$total_coupon;
-                                        ?>
-                                @endforeach
-                            @endif
                             </tbody>
                         </table>
                     </div>
@@ -126,15 +131,7 @@
                                 <div class="col-sm-6" style="margin-left: 30px">
                                     <div class="total_area" >
                                         <ul>
-{{--                                            @php--}}
-{{--                                                if($total_coupon){--}}
-{{--                                                       <div style="background-color: green;color: white">Have voucher</div>--}}
-{{--                                                        }--}}
-{{--                                               endif--}}
-{{--                                            @endphp--}}
-
-
-                                            <li style="height: 45px;font-size: 22px;">Total <span>${{ $final}}</span>
+                                            <li style="height: 45px;font-size: 22px;">Total <span>${{ $total-$total_coupon}}</span>
 
                                         </ul>
                                     </div>
@@ -142,7 +139,6 @@
                             </div>
                         </div>
                     </section><!--/#do_action-->
-
 
                 </div>
             </div>
