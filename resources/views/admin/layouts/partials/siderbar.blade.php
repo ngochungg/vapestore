@@ -58,7 +58,7 @@
                 <li class="nav-item">
                     {{--                    <a href="{{URL :: to('/insert-coupon')}}" class="nav-link">--}}
                     <a href="{{URL :: to('/list-coupon')}}" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fas fa-ticket-alt"></i>
                         <p>
                             Coupon
                         </p>
