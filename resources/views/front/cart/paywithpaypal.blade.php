@@ -1,3 +1,5 @@
+
+
 @extends('front.layouts.master')
 
 @section('title')
@@ -11,6 +13,7 @@
 @section('js')
     <script src="{{asset('home/home.js')}}"></script>
 @endsection
+
 @section('content')
     <div class="cart_wrapper">
         <section id="cart_items">
@@ -84,6 +87,36 @@
 
                                                 <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
                                                     <div class="col-md-6">
+                                                        @php
+                                                            $total = 0;
+                                                            $carts = session()->get('cart');
+                                                        @endphp
+                                                        @foreach($carts as $id => $cartItem)
+                                                            @csrf
+                                                            @php
+                                                                $total += $cartItem['price'] * $cartItem['quantity'];
+                                                            @endphp
+                                                        @endforeach
+                                                        @if(session()->get('coupon'))
+                                                            @foreach(Session::get('coupon') as $key => $cou)
+                                                                @if($cou['coupon_condition']==1)
+                                                                    @php
+                                                                        $total_coupon=number_format(($total *$cou['coupon_number'])/100);
+                                                                    @endphp
+                                                                @else
+                                                                    @php
+                                                                        $total_coupon=number_format($cou['coupon_number']);
+                                                                    @endphp
+                                                                @endif
+                                                                <?php
+                                                                $final=$total - $total_coupon;
+                                                                ?>
+                                                            @endforeach
+                                                        @else
+                                                            <?php
+                                                            $total_coupon=0;
+                                                            ?>
+                                                        @endif
                                                         <div class="container">
                                                             <section id="do_action">
                                                                 <div class="container">
@@ -91,37 +124,8 @@
                                                                         <div class="col-sm-6">
                                                                             <div class="total_area">
                                                                                 <ul>
-                                                                                    @php
-                                                                                        $total = 0;
-                                                                                        $carts = session()->get('cart');
-                                                                                    @endphp
-                                                                                    @foreach($carts as $id => $cartItem)
-                                                                                        @csrf
-                                                                                        @php
-                                                                                            $total += $cartItem['price'] * $cartItem['quantity'];
-                                                                                        @endphp
-                                                                                    @endforeach
-                                                                                    @if(session()->get('coupon'))
-                                                                                        @foreach(Session::get('coupon') as $key => $cou)
-                                                                                            @if($cou['coupon_condition']==1)
-                                                                                                @php
-                                                                                                    $total_coupon=number_format(($total *$cou['coupon_number'])/100);
-                                                                                                @endphp
-                                                                                            @else
-                                                                                                @php
-                                                                                                    $total_coupon=number_format($cou['coupon_number']);
-                                                                                                @endphp
-                                                                                            @endif
-                                                                                            <?php
-                                                                                            $final=$total - $total_coupon;
-                                                                                            ?>
-                                                                                        @endforeach
-                                                                                        @if($total_coupon)
-                                                                                                    <h3>Total:</h3><input class="form-control" name="amount" id="amount" value="{{ $final }}" readonly>
-                                                                                        @else
-                                                                                                    <h3>Total:</h3><input class="form-control" name="amount" id="amount" value="{{ $total }}" readonly>
-                                                                                        @endif
-                                                                                    @endif
+                                                                                    <h3>Total:</h3>
+                                                                                    <input class="form-control" name="amount" id="amount" value="{{ $total-$total_coupon }}" readonly>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -154,6 +158,8 @@
                             </div>
                         </div>
                     </section><!--/#do_action-->
+
+
                 </div>
             </div>
         </section> <!--/#cart_items-->
