@@ -1,4 +1,5 @@
 
+
 @extends('front.layouts.master')
 
 @section('title')
@@ -29,7 +30,7 @@
                             <thead>
                             <tr class="cart_menu">
                                 <td class="image">Item</td>
-                                <td class="description"></td>
+                                <td class="name">Name</td>
                                 <td class="price">Price</td>
                                 <td class="quantity">Quantity</td>
                                 <td class="total">Total</td>
@@ -39,6 +40,7 @@
                             <tbody>
                             @php
                                 $total = 0;
+                                $carts = session()->get('cart');
                             @endphp
 
                             <tr>
@@ -95,6 +97,22 @@
                                                                 $total += $cartItem['price'] * $cartItem['quantity'];
                                                             @endphp
                                                         @endforeach
+                                                        @if(session()->get('coupon'))
+                                                            @foreach(Session::get('coupon') as $key => $cou)
+                                                                @if($cou['coupon_condition']==1)
+                                                                    @php
+                                                                        $total_coupon=number_format(($total *$cou['coupon_number'])/100);
+                                                                    @endphp
+                                                                @else
+                                                                    @php
+                                                                        $total_coupon=number_format($cou['coupon_number']);
+                                                                    @endphp
+                                                                @endif
+                                                                <?php
+                                                                $final=$total - $total_coupon;
+                                                                ?>
+                                                            @endforeach
+                                                        @endif
                                                         <div class="container">
                                                             <section id="do_action">
                                                                 <div class="container">
@@ -103,7 +121,7 @@
                                                                             <div class="total_area">
                                                                                 <ul>
                                                                                     <h3>Total:</h3>
-                                                                                    <input class="form-control" name="amount" id="amount" value="{{ $total }}" readonly>
+                                                                                    <input class="form-control" name="amount" id="amount" value="{{ $final }}" readonly>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>

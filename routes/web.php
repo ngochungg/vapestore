@@ -346,3 +346,13 @@ Route::get('/search-price/', 'SearchController@search_price')->name('searchPrice
 //profile
 Route::get('/new', 'NewsController@frontNew')->name('frontNew');
 Route::get('/new/{id}', 'NewsController@front2New')->name('front2New');
+
+//coupon
+Route::post('/check-coupon','CheckoutController@check_coupon');
+Route::post('/insert-coupon-code','CouponController@insert_coupon_code');
+Route::get('/insert-coupon', 'CouponController@insert_coupon');
+Route::get('/list-coupon', 'CouponController@list_coupon');
+Route::get('/delete-coupon/{coupon_id}', 'CouponController@delete_coupon');
+Route::get('/drop-coupon', 'CouponController@drop_coupon');
+
+
