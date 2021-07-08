@@ -88,8 +88,17 @@
             <div class="col-sm-6">
                 <div class="total_area">
                     <ul>
-                        <li>Total <span>${{ $total }}</span></li>
+                        @php
+                            $total = 0;
+                            $total_coupon =0;
+                        @endphp
+                        @foreach($carts as $id => $cartItem)
+                            @csrf
 
+                            @php
+                                $total += $cartItem['price'] * $cartItem['quantity'] ;
+                            @endphp
+                            <li>Total <span>${{ $total }}</span></li>
                         @if(isset($cartItem))
                             @if(session()->get('coupon'))
                                 @foreach(Session::get('coupon') as $key=>$cou)
@@ -99,13 +108,13 @@
                                             <p>
                                                 @php
                                                     $total_coupon=number_format(($total *$cou['coupon_number'])/100);
-                                                    $final =$total-$total_coupon;
                                                 echo'<p>Reduced money:'.'<span>$'.$total_coupon.'</span>'.'</p>';
                                                 @endphp
                                             </p>
                                             <hr style=" border: solid 1px white; width: 80%">
                                             <p>
-                                                Total after discount:  <span>${{number_format($final)}}</span></p>
+
+                                                Total after discount:  <span>${{number_format($total-$total_coupon)}}</span></p>
                                             <a class="fa fa-trash-o delete_coupon" href="{{url('/drop-coupon')}}" name="drop-coupon" title="Remove coupon" ></a>
 
                                             </p>
@@ -116,46 +125,25 @@
                                             <p>
                                                 @php
                                                     $total_coupon=$cou['coupon_number'];
-                                                    $final=$total-$total_coupon;
                                                 @endphp
                                             </p>
                                             <hr style=" border: solid 1px white; width: 80%">
                                             <p>
-                                                Total after discount:  <span>${{number_format($final)}}</span></p>
+                                                Total after discount:  <span>${{number_format($total-$total_coupon)}}</span></p>
                                             <a class="fa fa-trash-o delete_coupon" href="{{url('/drop-coupon')}}" name="drop-coupon" title="Remove coupon" ></a>
 
                                             </p>
                                         </li>
                                     @endif
                                 @endforeach
-
-
                             @endif
+
 
                             <li>
                                 <form method="post" action="{{url('/check-coupon')}}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-sm-9"><input type="text" class="form-control" placeholder="Enter coupon" name="coupon" >
-{{--                                                                                @if(session()->get('coupon'))--}}
-{{--                                                                                    @foreach(Session::get('coupon') as $key=>$cou)--}}
-{{--                                                                                        @if($cou['coupon_code'] )--}}
-{{--                                                                                            <div>--}}
-{{--                                                                                                <?php--}}
-{{--                                                                                                echo ' success'--}}
-{{--                                                                                                ?>--}}
-{{--                                                                                            </div>--}}
-
-{{--                                                                                            @else--}}
-{{--                                                                                            <div>--}}
-{{--                                                                                                <?php--}}
-{{--                                                                                                echo'wrong'--}}
-{{--                                                                                                ?>--}}
-{{--                                                                                            </div>--}}
-
-{{--                                                                                        @endif--}}
-{{--                                                                                    @endforeach--}}
-{{--                                                                                @endif--}}
 
                                         </div>
                                         <div class="col-sm-2"><input type="submit" value="Check coupon"  class="btn btn-default check_coupon" name="check_coupon" style="margin-left: -10px"></div>
@@ -164,6 +152,7 @@
                             </li>
 
                         @endif
+                        @endforeach
                     </ul>
 
                     @php
