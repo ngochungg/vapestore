@@ -12,6 +12,7 @@
             <ul class="nav nav-tabs" >
                 <li class="active nav-info"><a data-toggle="tab" href="#Information">Information</a></li>
                 <li class="nav-info"><a data-toggle="tab" href="#edit">Change Information</a></li>
+                <li class="nav-info"><a data-toggle="tab" href="#editPassword">Change Password</a></li>
                 <li class="nav-info"><a data-toggle="tab" href="#history">Order history</a></li>
             </ul>
 
@@ -171,7 +172,7 @@
 
                         <br><br>
                         <div class="col-xs-2"></div>
-                        <button class="btn btn-success col-xs-8" type="submit">
+                        <button class="btn btn-success col-xs-8" type="submit" style="margin: 20px auto;" >
                             <i class="glyphicon glyphicon-ok-sign"></i> Save</button>
                         <div class="col-xs-2"></div>
 
@@ -179,6 +180,44 @@
 
                     <hr>
 
+                </div><br>
+                <div class="tab-pane " id="editPassword">
+                    @foreach ($errors->all() as $error)
+                        <h4 style="text-align: center" class="text-danger">{{ $error }}</h4>
+                    @endforeach
+                    <form class="form" action="{{route('users.updatePassCustomers',['id'=>Auth::user()->id])}}" method="post" id="registrationForm" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <label for="new_password"><h4>New password</h4></label>
+                                <input type="password" class="form-control" name="new_password"
+                                       placeholder="New password" id="new_password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <label for="new_confirm_password"><h4>Confirm password</h4></label>
+                                <input type="password" class="form-control" name="new_confirm_password"
+                                       placeholder="Confirm password" id="new_confirm_password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label for="current_password"><h4>Current Password</h4></label>
+                                <input type="password"
+                                       class="form-control"
+                                       placeholder="Enter Price Product"
+                                       name="current_password" id="current_password"/>
+
+                            </div>
+                        </div>
+
+
+                        <button class="btn btn-success col-xs-12" style="margin: 20px auto;" type="submit">
+                            <i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+
+
+                    </form>
                 </div><br>
                 <div class="tab-pane" id="history">
                     <table class="table">
