@@ -49,7 +49,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('product.index')}}" class="nav-link">
-                        <i class="nav-icon fab fa-product-hunt"></i>
+                        <i class="nav-icon fas fa-boxes"></i>
                         <p>
                             Products
                         </p>
@@ -64,6 +64,7 @@
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
@@ -121,6 +122,14 @@
                         <i class="nav-icon fas fa-question"></i>
                         <p>
                             Question
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('contact.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-inbox"></i>
+                        <p>
+                            Contact
                         </p>
                     </a>
                 </li>

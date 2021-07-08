@@ -88,7 +88,12 @@
                     <div class="contact-form">
                         <h2 class="title text-center">Get In Touch</h2>
                         <div class="status alert alert-success" style="display: none"></div>
-                        <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+                        @if (Session::has('message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ Session::get('message') }}
+                            </div>
+                        @endif
+                        <form action="{{route('contact.add')}}" id="main-contact-form" class="contact-form row" name="contact-form" method="post">
                             @csrf
                             <div class="form-group col-md-12">
                                 <input type="text" name="name" class="form-control" required="required" placeholder="Name">

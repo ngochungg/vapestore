@@ -205,6 +205,20 @@ Route::prefix('admin')->group(function () {
             'uses' => 'InformationController@update'
         ]);
     });
+    Route::prefix('contact')->group(function () {
+        Route::get('/',[
+            'as' => 'contact.index',
+            'uses' => 'ContactController@index'
+        ]);
+        Route::post('/store', [
+            'as' => 'contact.add',
+            'uses' => 'ContactController@store'
+        ]);
+        Route::get('/check/{id}', [
+            'as' => 'contact.delete',
+            'uses' => 'ContactController@delete'
+        ]);
+    });
     Route::prefix('users')->group(function () {
         Route::get('/', [
             'as' => 'users.index',
@@ -269,6 +283,7 @@ Route::prefix('admin')->group(function () {
     });
     Route::get('comment', 'Homecontroller@ReComment')->name('ReComment');
     Route::get('comment/reply/{id}', 'Homecontroller@reply')->name('reply');
+    Route::get('comment/{id}', 'Homecontroller@commentDelete')->name('commentDelete');
     Route::post('comment/reply/{id}', 'Homecontroller@replyComment')->name('replyComment');
 });
 

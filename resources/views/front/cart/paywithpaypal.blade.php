@@ -108,10 +108,11 @@
                                                                         $total_coupon=number_format($cou['coupon_number']);
                                                                     @endphp
                                                                 @endif
-                                                                <?php
-                                                                $final=$total - $total_coupon;
-                                                                ?>
                                                             @endforeach
+                                                        @else
+                                                            <?php
+                                                            $total_coupon=0;
+                                                            ?>
                                                         @endif
                                                         <div class="container">
                                                             <section id="do_action">
@@ -121,7 +122,7 @@
                                                                             <div class="total_area">
                                                                                 <ul>
                                                                                     <h3>Total:</h3>
-                                                                                    <input class="form-control" name="amount" id="amount" value="{{ $final }}" readonly>
+                                                                                    <input class="form-control" name="amount" id="amount" value="{{ $total-$total_coupon }}" readonly>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>

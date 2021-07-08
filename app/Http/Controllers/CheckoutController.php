@@ -17,7 +17,6 @@ class CheckoutController extends Controller
 
     public function check_coupon(Request $request){
         $data = $request ->all();
-        print_r($data);
         $coupon = Coupon::where('coupon_code',$data['coupon'])->first();
         if ($coupon){
             $count_coupon=$coupon->count();

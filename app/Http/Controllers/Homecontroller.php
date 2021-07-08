@@ -9,6 +9,7 @@ use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Information;
 
@@ -146,6 +147,24 @@ class Homecontroller extends Controller
             'order_status'=>'Cancel'
         ]);
         return redirect()->route('order_detail',[$id]);
+    }
+
+    public function commentDelete($id)
+    {
+        try {
+            $this->comment->find($id)->delete();
+            return response()->json([
+                'code' => 200,
+                'message' => 'success'
+            ], 200);
+        } catch (\Exception $exception) {
+            Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
+            return response()->json([
+                'code' => 500,
+                'message' => 'fail'
+            ], 500);
+        }
+
     }
 
 }
