@@ -99,12 +99,13 @@
                                             <p>
                                                 @php
                                                     $total_coupon=number_format(($total *$cou['coupon_number'])/100);
+                                                    $final =$total-$total_coupon;
                                                 echo'<p>Reduced money:'.'<span>$'.$total_coupon.'</span>'.'</p>';
                                                 @endphp
                                             </p>
                                             <hr style=" border: solid 1px white; width: 80%">
                                             <p>
-                                                Total after discount:  <span>${{number_format($total-$total_coupon)}}</span></p>
+                                                Total after discount:  <span>${{number_format($final)}}</span></p>
                                             <a class="fa fa-trash-o delete_coupon" href="{{url('/drop-coupon')}}" name="drop-coupon" title="Remove coupon" ></a>
 
                                             </p>
@@ -115,17 +116,20 @@
                                             <p>
                                                 @php
                                                     $total_coupon=$cou['coupon_number'];
+                                                    $final=$total-$total_coupon;
                                                 @endphp
                                             </p>
                                             <hr style=" border: solid 1px white; width: 80%">
                                             <p>
-                                                Total after discount:  <span>${{number_format($total-$total_coupon)}}</span></p>
+                                                Total after discount:  <span>${{number_format($final)}}</span></p>
                                             <a class="fa fa-trash-o delete_coupon" href="{{url('/drop-coupon')}}" name="drop-coupon" title="Remove coupon" ></a>
 
                                             </p>
                                         </li>
                                     @endif
                                 @endforeach
+
+
                             @endif
 
                             <li>
