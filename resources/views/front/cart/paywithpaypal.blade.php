@@ -108,9 +108,6 @@
                                                                         $total_coupon=number_format($cou['coupon_number']);
                                                                     @endphp
                                                                 @endif
-                                                                <?php
-                                                                $final=$total - $total_coupon;
-                                                                ?>
                                                             @endforeach
                                                         @else
                                                             <?php
