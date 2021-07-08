@@ -125,15 +125,6 @@ class CheckoutController extends Controller
             $total += $cartItem['price'] * $cartItem['quantity'];
         }
 
-        //quantity
-//        $carts = session()->get('cart');
-//        foreach($carts as $cartItem) {
-//            $product = Product::all();
-//            Product::find($cartItem->id)->update([
-//                'quantity' => $product->quantity - $order_d_data['product_sales_quantity'],
-//            ]);
-//        }
-
         if($data['payment_method'] != 'Paypal') {
             //insert order
             $order_data = array();

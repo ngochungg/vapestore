@@ -20,6 +20,7 @@ class CreateCommentsTable extends Migration
             $table ->string('product_id');
             $table ->text('comment');
             $table ->text('reply')->nullable();
+            $table->string('product_name')->nullable();
             $table->timestamps();
         });
     }

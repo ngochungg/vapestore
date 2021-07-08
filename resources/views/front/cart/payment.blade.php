@@ -103,12 +103,6 @@
                                             @csrf
                                             <div class="payment-options">
                                                 <h3>Select payment</h3>
-                                                <span>
-                                                    <label><input name="payment_option" value="Paypal" type="radio" checked="checked"> Paypal</label>
-                                                </span>
-                                                <span>
-                                                    <label><input name="payment_option" value="Cash" type="radio"> Cash</label>
-                                                </span>
                                                 <select class="form-control" name="payment_option">
                                                     <option name="payment_option" value="Paypal">Paypal</option>
                                                     <option name="payment_option" value="Cash">Cash</option>
