@@ -31,11 +31,11 @@
 
 <div>
 
-    <div class="row">
+    <div class="row" style="margin:auto">
         <div class="col-md-2"></div>
-        <div class="col-md-8 single-blog-post">
+        <div class="col-md-6 single-blog-post">
             @foreach($news as $newBlog)
-            <h3><a href="{{route('front2New',['id'=>$newBlog->id])}}">{{$newBlog->news_title}}</a></h3>
+            <h3><a href="{{route('front2New',['id'=>$newBlog->id])}}" >{{$newBlog->news_title}}</a></h3>
             <div class="post-meta">
                 <ul>
                     <li><i class="fa fa-calendar"> {{$newBlog->created_at}}</i></li>
@@ -47,6 +47,7 @@
                 <hr>
             @endforeach
         </div>
+        
 {{--    <div class="col-md-5">--}}
 {{--        <img src="{{$newBlog->image_path}}" alt="" class="img-thumbnail" width="250px">--}}
 {{--    </div>--}}
