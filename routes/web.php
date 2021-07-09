@@ -213,6 +213,20 @@ Route::prefix('admin')->group(function () {
             'uses' => 'InformationController@update'
         ]);
     });
+    Route::prefix('contact')->group(function () {
+        Route::get('/',[
+            'as' => 'contact.index',
+            'uses' => 'ContactController@index'
+        ]);
+        Route::post('/store', [
+            'as' => 'contact.add',
+            'uses' => 'ContactController@store'
+        ]);
+        Route::get('/check/{id}', [
+            'as' => 'contact.delete',
+            'uses' => 'ContactController@delete'
+        ]);
+    });
     Route::prefix('users')->group(function () {
         Route::get('/', [
             'as' => 'users.index',
@@ -274,9 +288,14 @@ Route::prefix('admin')->group(function () {
             'as' => 'users.updateCustomer',
             'uses' => 'UsersController@updateCustomer'
         ]);
+        Route::post('/updatePassCustomers/{id}', [
+            'as' => 'users.updatePassCustomers',
+            'uses' => 'UsersController@updatePassCustomers'
+        ]);
     });
     Route::get('comment', 'Homecontroller@ReComment')->name('ReComment');
     Route::get('comment/reply/{id}', 'Homecontroller@reply')->name('reply');
+    Route::get('comment/{id}', 'Homecontroller@commentDelete')->name('commentDelete');
     Route::post('comment/reply/{id}', 'Homecontroller@replyComment')->name('replyComment');
 });
 
@@ -294,7 +313,7 @@ Route::get('/category/slug/{id}', [
 //show cart
 Route::get('product/show-cart', 'ProductController@showCart')->name('showCart');
 //add to cart
-Route::get('/products/add-to-cart/{id}', 'ProductController@addToCart')->name('addToCart');
+Route::get('/products/add-to-cart', 'ProductController@addToCart')->name('addToCart');
 //update cart
 Route::get('/products/update-cart', 'ProductController@updateCart')->name('updateCart');
 //remove cart
@@ -376,3 +395,12 @@ route::get('hidden/{id}',[
     'as'=>'hidden',
     'uses'=>'RatingController@hidden'
 ]);
+//coupon
+Route::post('/check-coupon','CheckoutController@check_coupon');
+Route::post('/insert-coupon-code','CouponController@insert_coupon_code');
+Route::get('/insert-coupon', 'CouponController@insert_coupon');
+Route::get('/list-coupon', 'CouponController@list_coupon');
+Route::get('/delete-coupon/{coupon_id}', 'CouponController@delete_coupon');
+Route::get('/drop-coupon', 'CouponController@drop_coupon');
+
+

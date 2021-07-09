@@ -24,8 +24,8 @@
                         $total = 0;
                     @endphp
 
-                        @if(isset($carts))
-                            @foreach($carts as $id => $cartItem)
+                    @if(isset($carts))
+                        @foreach($carts as $id => $cartItem)
                             <tr>
                                 @csrf
                                 @php
@@ -34,7 +34,7 @@
                                 <td class="cart_product">
                                     <a href="">
                                         <img src="{{ $cartItem['image'] }} " alt=""
-                                             style="width: 200px; height: auto; border-bottom: 1px solid #ccc; margin-bottom: 20px; padding-bottom: 20px">
+                                             style="width: 200px; height: 200px;; margin-bottom: 20px; padding-bottom: 20px">
                                     </a>
                                 </td>
                                 <td class="cart_description">
@@ -45,7 +45,7 @@
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="quantity">
-                                        <p><input type="number" value="{{ $cartItem['quantity'] }}" min="1" class="quantity"></p>
+                                        <p><input type="number" value="{{ $cartItem['quantity'] }}" min="1"  class="quantity"></p>
                                     </div>
                                     <div class="cart_delete">
                                         <!--update cart-->
@@ -66,8 +66,8 @@
                                     </a>
                                 </td>
                             </tr>
-                            @endforeach
-                        @endif
+                        @endforeach
+                    @endif
 
 
 
@@ -88,18 +88,91 @@
             <div class="col-sm-6">
                 <div class="total_area">
                     <ul>
-                        <li>Total <span>${{ $total }}</span></li>
+                        @php
+                            $total = 0;
+                            $total_coupon =0;
+                        @endphp
+                        @foreach($carts as $id => $cartItem)
+                            @csrf
+
+                            @php
+                                $total += $cartItem['price'] * $cartItem['quantity'] ;
+                            @endphp
+                            <li>Total <span>${{ $total }}</span></li>
+                        @if(isset($cartItem))
+                            @if(session()->get('coupon'))
+                                @foreach(Session::get('coupon') as $key=>$cou)
+                                    @if($cou['coupon_condition']==1)
+                                        <li>
+                                            Reduced: <span>{{$cou['coupon_number']}}%</span>
+                                            <p>
+                                                @php
+                                                    $total_coupon=number_format(($total *$cou['coupon_number'])/100);
+                                                echo'<p>Reduced money:'.'<span>$'.$total_coupon.'</span>'.'</p>';
+                                                @endphp
+                                            </p>
+                                            <hr style=" border: solid 1px white; width: 80%">
+                                            <p>
+
+                                                Total after discount:  <span>${{number_format($total-$total_coupon)}}</span></p>
+                                            <a class="fa fa-trash-o delete_coupon" href="{{url('/drop-coupon')}}" name="drop-coupon" title="Remove coupon" ></a>
+
+                                            </p>
+                                        </li>
+                                    @else()
+                                        <li>
+                                            Reduced: <span>${{$cou['coupon_number']}}</span>
+                                            <p>
+                                                @php
+                                                    $total_coupon=$cou['coupon_number'];
+                                                @endphp
+                                            </p>
+                                            <hr style=" border: solid 1px white; width: 80%">
+                                            <p>
+                                                Total after discount:  <span>${{number_format($total-$total_coupon)}}</span></p>
+                                            <a class="fa fa-trash-o delete_coupon" href="{{url('/drop-coupon')}}" name="drop-coupon" title="Remove coupon" ></a>
+
+                                            </p>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            @endif
+
+
+                            <li>
+                                <form method="post" action="{{url('/check-coupon')}}">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-sm-9"><input type="text" class="form-control" placeholder="Enter coupon" name="coupon" >
+
+                                        </div>
+                                        <div class="col-sm-2"><input type="submit" value="Check coupon"  class="btn btn-default check_coupon" name="check_coupon" style="margin-left: -10px"></div>
+                                    </div>
+                                </form>
+                            </li>
+
+                        @endif
+                        @endforeach
                     </ul>
+
                     @php
-                    $user = \Illuminate\Support\Facades\Auth::id();
+                        $user = \Illuminate\Support\Facades\Auth::id();
                     @endphp
+
                     @if(isset($cartItem))
                         @if($user != null)
                             <a class="btn btn-default check_out" href="{{ URL::to('/payment') }}">Check Out</a>
+
                         @else
                             <a class="btn btn-default check_out" href="{{ URL::to('/login-checkout') }}">Check Out</a>
-                            @endif
+                        @endif
                     @else
+                        @if(isset($cartItem)==false)
+                            @if(session()->get('coupon'))
+                                @foreach(Session::forget('coupon') as $key)
+                                @endforeach
+                            @endif
+                        @endif
                     @endif
 
 

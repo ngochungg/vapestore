@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Category;
+use App\Models\Information;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
@@ -27,7 +29,6 @@ use PayPal\Api\Transaction;
 class PaypalController extends Controller
 {
     private $_api_context;
-
     public function __construct()
     {
 
@@ -36,9 +37,24 @@ class PaypalController extends Controller
         $this->_api_context->setConfig($paypal_configuration['settings']);
     }
 
-    public function payWithPaypal()
+    public function payWithPaypal(Request $req)
     {
-        return view('paywithpaypal');
+        $carts = session()->get('cart');
+        if(isset($carts)) {
+            $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
+            $phone = Information::where('key','Phone')->first();
+            $title = Information::where('key','Title')->first();
+            $open = Information::where('key','Open')->first();
+            $fb = Information::where('key','Facebook Link')->first();
+            $ytb = Information::where('key','YouTube Link')->first();
+            $email = Information::where('key','Email')->first();
+            $address = Information::where('key','Address')->first();
+            return view('front.cart.paywithpaypal', compact('categoriesLimit',
+                'carts','phone','title','open','fb','ytb','email','address'));
+        } else {
+            return Redirect::route('homef');
+        }
+
     }
 
     public function postPaymentWithpaypal(Request $request)
@@ -105,6 +121,16 @@ class PaypalController extends Controller
 
     public function getPaymentStatus(Request $request)
     {
+        //infor
+        $categoriesLimit = Category::where('parent_id', 0)->take(5)->get();
+        $phone = Information::where('key','Phone')->first();
+        $title = Information::where('key','Title')->first();
+        $open = Information::where('key','Open')->first();
+        $fb = Information::where('key','Facebook Link')->first();
+        $ytb = Information::where('key','YouTube Link')->first();
+        $email = Information::where('key','Email')->first();
+        $address = Information::where('key','Address')->first();
+
         $payment_id = Session::get('paypal_payment_id');
         Session::forget('paypal_payment_id');
         if (empty($request->input('PayerID')) || empty($request->input('token'))) {
@@ -118,7 +144,9 @@ class PaypalController extends Controller
 
         if ($result->getState() == 'approved') {
             \Session::put('success','Payment success !!');
-            return Redirect::route('paywithpaypal');
+            $request->session()->forget('cart');
+            return view('front.cart.thankyou',compact('categoriesLimit'
+                ,'phone','title','open','fb','ytb','email','address'));
         }
 
         \Session::put('error','Payment failed !!');

@@ -125,6 +125,18 @@ class UsersController extends Controller
         return view('admin.user.details',compact('user'));
     }
 
+    public function updatePassCustomers(request $request, $id){
+        $request->validate([
+            'current_password' => ['required', new MatchOldPassword()],
+            'new_password' => ['required'],
+            'new_confirm_password' => ['same:new_password'],
+        ]);
+        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+        $this->authenLogin();
+        $user = $this->user->find($id);
+        return redirect()->route('logout');
+    }
+
 
     public function editInformation($id)
     {

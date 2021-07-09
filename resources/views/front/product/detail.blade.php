@@ -28,7 +28,7 @@
 </head>
 <body>
 @include('front.components.header')
-@yield('content')
+{{--@yield('content')--}}
 @include('front.product.contentProduct')
 @include('front.components.footer')
 
@@ -53,13 +53,53 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
-    function addToCart(event) {
+
+    // setup csrf-token cho post method
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    function cartUpdate(event) {
         event.preventDefault();
-        let urlCart = $(this).data('url');
+        let urlUpdateCart= $('.update_cart_url').data('url');
+        let id = $(this).data('id');
+        let quantity = $(this).parents('tr').find('input.quantity').val();
         $.ajax({
             type: "GET",
-            url: urlCart,
+            url: urlUpdateCart,
+            data: {id: id,quantity: quantity},
+            success: function(data) {
+                if(data.code == 200) {
+                    $('.cart_wrapper').html(data.cart_component);
+                    swal({
+                        title: "Update",
+                        text: "",
+                        icon: "success",
+                        button: "Continue",
+                    });
+                }
+            },
+            error: function() {
+
+            }
+        });
+    }
+
+    function addToCart(event) {
+        event.preventDefault();
+        //alert($('#cart-quantity').val());
+        // let urlCart = $(this).data('url');
+        let pid = $(this).data('pid');
+        let quantity = $('#cart-quantity').val();
+        if (quantity === '')
+            quantity = 1;
+        $.ajax({
+            type: "GET",
+            url: '{{ route('addToCart') }}',
             dataType: 'json',
+            data: { id: pid, quantity: quantity},
             success: function(data) {
                 if(data.code === 200) {
                     swal({
@@ -94,6 +134,8 @@
     $(this).empty().append($span);
   });
 }
+        $(document).on('click', '.cart_update', cartUpdate);
+        $('.add-to-cart').on('click', addToCart);
 
 </script>
 

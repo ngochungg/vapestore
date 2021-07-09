@@ -128,23 +128,22 @@
                         @if($products->quantity>0)
                             <h4>Quantity:</h4>
                             <div class="quantity">
-
                                 <div class="quantity-input">
                                     <a class="btn btn-reduce" href="#"></a>
-                                    <input type="text" name="product-quatity" value="1" data-max="{!! $products->quantity !!}"  >
+                                        <input type="text" id="cart-quantity" name="product-quatity" value="1" data-max="{!! $products->quantity !!}"  >
                                     <a class="btn btn-increase" href="#"></a>
                                 </div>
+                                <div>The remaining amount {{$products->quantity }}</div>
                             </div>
                         @elseif($products->quantity<=0)
                             <div><h3 style="color:red">Out of stock</h3></div>
                         @endif
                         <div class="wrap-butons">
-                            <a href="#"
-                               data-url="{{ route('addToCart', ['id'=> $products->id]) }}"
-                               class="btn add-to-cart add_to_cart"
-                                style="background: orange ">
+                            <a href="#" id="add-to-cart" data-pid="{{ $products->id }}" class="btn add-to-cart" style="background: orange ">
                                 Add to cart
                             </a>
+{{--                               data-url="{{ route('addToCart', ['id'=> $products->id]) }}"--}}
+
                         </div>
                     </div>
                     <div class="advance-info">
@@ -155,7 +154,7 @@
                             <a href="#Answer" class="tab-control-item">Answer</a>
                             <a href="#Rating" class="tab-control-item">User Rating</a>
                         </div>
-                        <div class="tab-contents">
+                        <div class="tab-contents ative">
 
                             <div class="tab-content-item active" id="description">
                                 <div class="pro-content">{!! $products->description !!}</div>
@@ -244,7 +243,7 @@
                                     </div>
                                 </div><!-- Categories widget-->
                             </div>
-                            <div class="tab-content-item" id="Answer">
+                            <div class="tab-content-item " id="Answer">
                                 @foreach($products->commentProduct as $comment)
                                         <div>
                                             <ul>
@@ -355,10 +354,10 @@
 
             <div class="single-advance-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="wrap-show-advance-info-box style-1 box-in-site">
-                    <h3 class="title-box" style="border-radius: 3px">New Products</h3>
+                    <h3 class="title-box" style="border-radius: 3px">Related products</h3>
                     <div class="wrap-products">
                         <div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
-                            @foreach($New_Products as $product_new)
+                            @foreach($relatedProducts as $product_new)
                             <div class="product product-style-2 equal-elem ">
                                 <div class="product-thumnail" >
                                     <a href="{{route('seeDetails',['id'=> $product_new->id])}}" title="Click to go to {!! $product_new->name !!}" >
@@ -387,4 +386,6 @@
     </div><!--end container-->
 
 </main>
+
+
 <!--main area-->

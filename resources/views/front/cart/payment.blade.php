@@ -42,11 +42,33 @@
                             @endphp
 
                             <tr>
+
                                 @foreach($carts as $id => $cartItem)
                                     @csrf
+
                                     @php
-                                        $total += $cartItem['price'] * $cartItem['quantity'];
+                                        $total += $cartItem['price'] * $cartItem['quantity'] ;
                                     @endphp
+                                    @if(session()->get('coupon'))
+                                        @foreach(Session::get('coupon') as $key => $cou)
+                                            @if($cou['coupon_condition']==1)
+                                                @php
+                                                    $total_coupon=number_format(($total *$cou['coupon_number'])/100);
+                                                @endphp
+
+                                            @else
+                                                @php
+                                                    $total_coupon=number_format($cou['coupon_number']);
+                                                @endphp
+                                            @endif
+
+                                        @endforeach
+                                    @else
+                                        <?php
+                                        $total_coupon=0;
+                                        ?>
+
+                                    @endif
                                     <td class="cart_product">
                                         <a href="">
                                             <img src="{{ $cartItem['image'] }} " alt=""
@@ -71,30 +93,25 @@
                                     </td>
                             </tr>
                             @endforeach
+
                             </tbody>
                         </table>
                     </div>
                     <section id="do_action">
                         <div class="container">
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <div>
                                         <form action="{{ URL::to('/order-place') }}" method="POST">
                                             @csrf
                                             <div class="payment-options">
                                                 <h3>Select payment</h3>
-{{--                                                <span>--}}
-{{--                                                    <label><input name="payment_option" value="Paypal" type="radio" checked="checked"> Paypal</label>--}}
-{{--                                                </span>--}}
-{{--                                                <span>--}}
-{{--                                                    <label><input name="payment_option" value="Cash" type="radio"> Cash</label>--}}
-{{--                                                </span>--}}
                                                 <select class="form-control" name="payment_option">
                                                     <option name="payment_option" value="Paypal">Paypal</option>
                                                     <option name="payment_option" value="Cash">Cash</option>
                                                 </select>
                                                 <h3>
-                                                    Delivery address: <input type="text" name="delivery_address">
+                                                    Delivery address: <input type="text" name="delivery_address" required>
                                                 </h3>
                                             </div>
                                             <div style="margin-top: -100px;">
@@ -103,17 +120,17 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="total_area">
+                                <div class="col-sm-6" style="margin-left: 30px">
+                                    <div class="total_area" >
                                         <ul>
-                                            <li>Total <span>${{ $total }}</span>
+                                            <li style="height: 45px;font-size: 22px;">Total <span>${{ $total-$total_coupon}}</span>
+
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section><!--/#do_action-->
-
 
                 </div>
             </div>

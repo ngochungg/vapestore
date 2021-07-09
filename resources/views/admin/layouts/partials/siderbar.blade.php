@@ -11,7 +11,9 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{Auth::user()->image_path}}" class="img-circle elevation-2" alt="User Image">
+                <a href="{{route('users.details',['id'=>Auth::user()->id])}}" class="d-block">
+                    <img src="{{Auth::user()->image_path}}" class="img-circle elevation-2" alt="User Image">
+                </a>
             </div>
             <div class="info">
             <a href="{{route('users.details',['id'=>Auth::user()->id])}}" class="d-block">{{Auth::user()->name}}</a>
@@ -49,12 +51,22 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('product.index')}}" class="nav-link">
-                        <i class="nav-icon fab fa-product-hunt"></i>
+                        <i class="nav-icon fas fa-boxes"></i>
                         <p>
                             Products
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    {{--                    <a href="{{URL :: to('/insert-coupon')}}" class="nav-link">--}}
+                    <a href="{{URL :: to('/list-coupon')}}" class="nav-link">
+                        <i class="nav-icon fas fa-ticket-alt"></i>
+                        <p>
+                            Coupon
+                        </p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
@@ -127,6 +139,14 @@
                         <i class="nav-icon fas fa-question"></i>
                         <p>
                             Question
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('contact.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-inbox"></i>
+                        <p>
+                            Contact
                         </p>
                     </a>
                 </li>

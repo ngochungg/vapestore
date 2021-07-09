@@ -10,7 +10,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-    @include('admin.layouts.partials.content_header',['name'=>'Reply','key'=>'Comment'])
+    @include('admin.layouts.partials.content_header',['name'=>'Reply','key'=>'Question'])
     <!-- /.content-header -->
 
         <!-- Main content -->

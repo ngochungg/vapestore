@@ -39,8 +39,8 @@
                                             <a href="{{route('seeDetails',['id'=> $product->id])}}"><p class="overlay-name">{{ $product->name }}</p></a>
 
                                             <a href="#"
-                                               data-url="{{ route('addToCart', ['id'=> $product->id]) }}"
-                                               class="btn btn-primary add_to_cart">
+                                               data-pid="{{ $product->id }}"
+                                               class="btn btn-primary add-to-cart">
                                                 Add to cart
                                             </a>
                                         </div>
@@ -68,11 +68,15 @@
     <script>
         function addToCart(event) {
             event.preventDefault();
-            let urlCart = $(this).data('url');
+            //alert($('#cart-quantity').val());
+            // let urlCart = $(this).data('url');
+            let pid = $(this).data('pid');
+
             $.ajax({
                 type: "GET",
-                url: urlCart,
+                url: '{{ route('addToCart') }}',
                 dataType: 'json',
+                data: { id: pid, quantity: 1},
                 success: function(data) {
                     if(data.code === 200) {
                         swal({
@@ -89,7 +93,7 @@
         }
         $(function() {
 
-            $('.add_to_cart').on('click', addToCart);
+            $('.add-to-cart').on('click', addToCart);
 
         })
     </script>

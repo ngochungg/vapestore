@@ -19,6 +19,8 @@ class CreateOrderTable extends Migration
             $table->integer('payment_id');
             $table->integer('order_total');
             $table->string('order_status');
+            $table->string('order_code');
+            $table->string('delivery_address');
             $table->timestamps();
         });
     }
