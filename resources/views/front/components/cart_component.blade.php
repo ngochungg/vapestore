@@ -92,16 +92,20 @@
                             $total = 0;
                             $total_coupon =0;
                         @endphp
+                        @if(isset($carts))
                         @foreach($carts as $id => $cartItem)
                             @csrf
 
                             @php
                                 $total += $cartItem['price'] * $cartItem['quantity'] ;
                             @endphp
+                        @endforeach
+                        @endif
                             <li>Total <span>${{ $total }}</span></li>
-                        @if(isset($cartItem))
+                        @if(isset($carts))
                             @if(session()->get('coupon'))
-                                @foreach(Session::get('coupon') as $key=>$cou)
+                                @foreach(session()->get('coupon') as $key=>$cou)
+
                                     @if($cou['coupon_condition']==1)
                                         <li>
                                             Reduced: <span>{{$cou['coupon_number']}}%</span>
@@ -152,7 +156,7 @@
                             </li>
 
                         @endif
-                        @endforeach
+
                     </ul>
 
                     @php
@@ -166,15 +170,15 @@
                         @else
                             <a class="btn btn-default check_out" href="{{ URL::to('/login-checkout') }}">Check Out</a>
                         @endif
-                    @else
+
+                    @endif
+
                         @if(isset($cartItem)==false)
                             @if(session()->get('coupon'))
-                                @foreach(Session::forget('coupon') as $key)
+                                @foreach(session()->forget('coupon') as $key)
                                 @endforeach
                             @endif
                         @endif
-                    @endif
-
 
 
 

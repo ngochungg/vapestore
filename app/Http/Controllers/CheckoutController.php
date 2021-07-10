@@ -29,6 +29,7 @@ class CheckoutController extends Controller
                             'coupon_code'=>$coupon->coupon_code,
                             'coupon_condition'=>$coupon->coupon_condition,
                             'coupon_number'=>$coupon->coupon_number,
+                            'coupon_time'=>$coupon->coupon_time
                         );
 
                         Session::put('coupon',$cou);
@@ -38,10 +39,12 @@ class CheckoutController extends Controller
                         'coupon_code'=>$coupon->coupon_code,
                         'coupon_condition'=>$coupon->coupon_condition,
                         'coupon_number'=>$coupon->coupon_number,
+                        'coupon_time'=>$coupon->coupon_time
                     );
                     Session::put('coupon',$cou);
                 }
                 Session::save();
+
                 return redirect()->back();
             }
 
@@ -120,16 +123,43 @@ class CheckoutController extends Controller
 
         $carts = session()->get('cart');
         $total = 0;
+
+
         foreach ($carts as $cartItem) {
             $total += $cartItem['price'] * $cartItem['quantity'];
         }
-        
+           $tengido=DB::table('coupon')->get('coupon_code');
+
+//        $long=Coupon::wherecoupon_code(session()->get('coupon')->coupon_code)->get('coupon_id');
+//        dd($long);
+        if(session()->get('coupon')){
+            foreach(Session::get('coupon') as $key=>$cou){
+                if($cou['coupon_condition']==1){
+                    $total_coupon=($total *$cou['coupon_number'])/100;
+                    $final=$total-$total_coupon;
+
+                }
+                else{
+                    $total_coupon=$cou['coupon_number'];
+                    $final=$total-$total_coupon;
+                }
+
+                DB::update(
+                    'update coupon set coupon_time = coupon_time - ? where coupon_code = ?',
+                    [$cou['coupon_time']-1,$tengido]
+                );
+            }
+        }
+        else{
+            $final=$total;
+        }
+
         if($data['payment_method'] != 'Paypal') {
             //insert order
             $order_data = array();
             $order_data['customer_id'] = Auth::id();
             $order_data['payment_id'] = $payment_id;
-            $order_data['order_total'] = $total;
+            $order_data['order_total'] = $final;
             $order_data['order_status'] = 'New order';
             $order_data['created_at'] = Carbon\Carbon::now();
             $order_data['order_code'] = substr(md5(microtime()),rand(0,26),5);
@@ -146,6 +176,10 @@ class CheckoutController extends Controller
                 $order_d_data['product_price'] = $cartItem['price'];
                 $order_d_data['product_sales_quantity'] = $cartItem['quantity'];
                 DB::table('order_details')->insert($order_d_data);
+                DB::update(
+                    'update products set quantity = quantity - ? where id = ?',
+                    [$cartItem['quantity'], $id]
+                );
             }
 
             //infor
