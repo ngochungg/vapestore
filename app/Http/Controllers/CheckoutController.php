@@ -123,7 +123,7 @@ class CheckoutController extends Controller
         foreach ($carts as $cartItem) {
             $total += $cartItem['price'] * $cartItem['quantity'];
         }
-
+        
         if($data['payment_method'] != 'Paypal') {
             //insert order
             $order_data = array();
