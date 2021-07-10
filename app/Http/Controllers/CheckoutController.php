@@ -128,16 +128,11 @@ class CheckoutController extends Controller
         foreach ($carts as $cartItem) {
             $total += $cartItem['price'] * $cartItem['quantity'];
         }
-<<<<<<< HEAD
 
 
 //           $tengido=DB::table('coupon')->get('coupon_code');
 //        $bao= session()->get('coupon','coupon_code');
 //        $bao1= $bao['coupon_code'];
-=======
-           $tengido=DB::table('coupon')->get('coupon_code');
-
->>>>>>> 647c49c57afa2f06b61fa35633b6f331a31da102
 //        $long=Coupon::wherecoupon_code(session()->get('coupon')->coupon_code)->get('coupon_id');
 //        dd($bao);
         if(session()->get('coupon')){
@@ -163,6 +158,8 @@ class CheckoutController extends Controller
         else{
             $final=$total;
         }
+
+
 
         if($data['payment_method'] != 'Paypal') {
             //insert order
