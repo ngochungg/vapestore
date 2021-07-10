@@ -130,26 +130,29 @@ class CheckoutController extends Controller
         }
 
 
-           $tengido=DB::table('coupon')->get('coupon_code');
-
+//           $tengido=DB::table('coupon')->get('coupon_code');
+//        $bao= session()->get('coupon','coupon_code');
+//        $bao1= $bao['coupon_code'];
 //        $long=Coupon::wherecoupon_code(session()->get('coupon')->coupon_code)->get('coupon_id');
-//        dd($long);
+//        dd($bao);
         if(session()->get('coupon')){
             foreach(Session::get('coupon') as $key=>$cou){
                 if($cou['coupon_condition']==1){
                     $total_coupon=($total *$cou['coupon_number'])/100;
                     $final=$total-$total_coupon;
-
                 }
                 else{
                     $total_coupon=$cou['coupon_number'];
                     $final=$total-$total_coupon;
                 }
 
-                DB::update(
-                    'update coupon set coupon_time = coupon_time - ? where coupon_code = ?',
-                    [$cou['coupon_time']-1,$tengido]
-                );
+                Coupon::wherecoupon_number($cou['coupon_number'])->update([
+                    'coupon_number'=>$cou['coupon_number']-1
+                ]);
+//                DB::update(
+//                    'update coupon set coupon_time = coupon_time - ? where coupon_code = ?',
+//                    [$cou['coupon_time']-1,$tengido]
+//                );
             }
         }
         else{
