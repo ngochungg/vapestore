@@ -33,7 +33,7 @@
                         <form class="" action="{{route('users.updatePass',['id'=>$user->id])}}" method='post' enctype="multipart/form-data" >
                             @csrf
                             <div class="form-group">
-                                <label>Password</label>
+                                <label>Current Password</label>
                                 <input type="password"
                                        class="form-control"
                                        placeholder="Enter your current password"
@@ -44,7 +44,6 @@
                                 <input type="password"
                                        class="form-control"
                                        placeholder="Enter New Password"
-
                                        name="new_password"/>
                             </div>
                             <div class="form-group">
