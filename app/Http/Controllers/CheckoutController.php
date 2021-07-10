@@ -147,7 +147,7 @@ class CheckoutController extends Controller
                 }
 
                 Coupon::wherecoupon_number($cou['coupon_number'])->update([
-                    'coupon_number'=>$cou['coupon_number']-1
+                    'coupon_time'=>$cou['coupon_time']-1
                 ]);
 //                DB::update(
 //                    'update coupon set coupon_time = coupon_time - ? where coupon_code = ?',
