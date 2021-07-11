@@ -26,15 +26,17 @@
                         @foreach($products as $product)
                             <div class="col-sm-4">
                                 <div class="product-image-wrapper" >
-
-
                                     <div class="single-products">
                                         <div class="productinfo text-center">
                                             <div class="ribbon">NEW</div>
                                             <img src="{{ config('app.base_url') . $product->feature_image_path }}" alt="" style="height: 250px">.
                                             <p style="font-size: 18px; font-weight:300;line-height: 20px; margin-top: 10px;margin-bottom: 0px;height: 40px">{{ $product->name }}</p>
                                             <p style="color: orange; font-size: 16px">$ {{ $product->price }}</p>
-                                            <a href="#" class="btn btn-default add-to-cart" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            @if($product->quantity>0)
+                                                <a href="#" class="btn btn-default add-to-cart" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            @elseif($product->quantity<=0)
+                                                <div><h3 style="color:red">Out of stock</h3></div>
+                                            @endif
                                         </div>
 
                                         <div class="product-overlay">
@@ -42,11 +44,15 @@
                                                 <h2>$ {{ $product->price }}</h2>
                                                 <a href="{{route('seeDetails',['id'=> $product->id])}}"><p class="overlay-name">{{ $product->name }}</p></a>
 
-                                                <a href="#"
-                                                   data-pid="{{ $product->id }}"
-                                                   class="btn btn-primary add-to-cart">
-                                                    Add to cart
-                                                </a>
+                                                @if($product->quantity>0)
+                                                    <a href="#"
+                                                       data-pid="{{ $product->id }}"
+                                                       class="btn btn-primary add-to-cart">
+                                                        Add to cart
+                                                    </a>
+                                                @elseif($product->quantity<=0)
+                                                    <div><h3 style="color:red"></h3></div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

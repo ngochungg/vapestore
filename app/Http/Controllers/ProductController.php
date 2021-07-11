@@ -38,21 +38,37 @@ class ProductController extends Controller {
 
     public function showCart() {
         $carts = session()->get('cart');
-        foreach ($carts as $cartItem) {
-            $product = DB::table('products')->where('name', 'LIKE', $cartItem['name'])->first();
+        if(isset($carts)) {
+            foreach ($carts as $cartItem) {
+                $product = DB::table('products')->where('name', 'LIKE', $cartItem['name'])->first();
+            }
+            $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
+            $phone = Information::where('key','Phone')->first();
+            $title = Information::where('key','Title')->first();
+            $open = Information::where('key','Open')->first();
+            $fb = Information::where('key','Facebook Link')->first();
+            $ytb = Information::where('key','YouTube Link')->first();
+            $email = Information::where('key','Email')->first();
+            $address = Information::where('key','Address')->first();
+
+
+            return view('front.cart.cartsList',compact('carts', 'categoriesLimit','phone','title',
+                'open','fb','ytb','email','address','product'));
+        } else {
+            $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
+            $phone = Information::where('key','Phone')->first();
+            $title = Information::where('key','Title')->first();
+            $open = Information::where('key','Open')->first();
+            $fb = Information::where('key','Facebook Link')->first();
+            $ytb = Information::where('key','YouTube Link')->first();
+            $email = Information::where('key','Email')->first();
+            $address = Information::where('key','Address')->first();
+
+
+            return view('front.cart.cartsList',compact('carts', 'categoriesLimit','phone','title',
+                'open','fb','ytb','email','address'));
         }
-        $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
-        $phone = Information::where('key','Phone')->first();
-        $title = Information::where('key','Title')->first();
-        $open = Information::where('key','Open')->first();
-        $fb = Information::where('key','Facebook Link')->first();
-        $ytb = Information::where('key','YouTube Link')->first();
-        $email = Information::where('key','Email')->first();
-        $address = Information::where('key','Address')->first();
 
-
-        return view('front.cart.cartsList',compact('carts', 'categoriesLimit','phone','title',
-            'open','fb','ytb','email','address','product'));
     }
 
     public function updateCart(Request $req) {
