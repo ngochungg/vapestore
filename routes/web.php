@@ -218,6 +218,14 @@ Route::prefix('admin')->group(function () {
             'as' => 'contact.delete',
             'uses' => 'ContactController@delete'
         ]);
+        Route::get('/reply/{id}', [
+            'as' => 'contact.edit',
+            'uses' => 'ContactController@edit'
+        ]);
+        Route::post('/send/{id}', [
+            'as' => 'contact.send',
+            'uses' => 'ContactController@send'
+        ]);
     });
     Route::prefix('users')->group(function () {
         Route::get('/', [

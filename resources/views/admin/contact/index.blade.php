@@ -25,6 +25,7 @@
                                 <th scope="col">Phone</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Message</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -37,11 +38,19 @@
                                     <td>{{ $contacts->phone}}</td>
                                     <td>{{ $contacts->email}}</td>
                                     <td>{{ $contacts->message}}</td>
+                                    <td>@if($contacts->reply == '')
+                                            Not contacted yet
+                                         @else
+                                            Contacted
+                                    @endif
+                                    </td>
                                     <td>
+                                        <a href="{{route('contact.edit',['id'=>$contacts->id])}}"
+                                           class="btn btn-default"><i class="fas fa-edit"></i></a>
                                         <a href=""
                                            data-url="{{route('contact.delete',['id'=>$contacts->id])}}"
-                                           class="action_check">
-                                            <i style="font-size:25px" class="fas fa-check"></i></a>
+                                           class="btn btn-success action_check">
+                                            <i style="" class="fas fa-check"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
