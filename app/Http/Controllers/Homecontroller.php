@@ -74,9 +74,9 @@ class Homecontroller extends Controller
         $email = $this->info->where('key','Email')->first();
         $address = $this->info->where('key','Address')->first();
         $New_Products= Product::latest()->take(10)->get();
-        $count=OrderDetails::where('product_id',$id)->where('rating','>',0)->count();
+        $count=OrderDetails::where('product_id',$id)->where('rating','>',0)->where('show_order',1)->count();
         //dd($count);
-        $rated=OrderDetails::where('product_id',$id)->get();
+        $rated=OrderDetails::where('product_id',$id)->where('show_order',1)->get();
         $total=0;
         foreach($rated as $rated){
                $total+=$rated->rating;
