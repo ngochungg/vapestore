@@ -1,0 +1,8 @@
+.product_image{
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+.container_image{
+    margin-top: 20px;
+}
