@@ -34,7 +34,7 @@ class MenuController extends Controller
     public function index()
     {
         $this->authenLogin();
-        $menus = $this->menu->paginate(5);
+        $menus = $this->menu->paginate(3);
         return view('admin.menus.index',compact('menus'));
     }
 

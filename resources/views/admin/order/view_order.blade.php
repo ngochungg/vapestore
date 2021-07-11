@@ -11,14 +11,8 @@
     <script src="{{asset('admins/product/index/index.js')}}"></script>
 @endsection
 @section('content')
-<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<style>
-    .glyphicon:hover{
-        color: #e6b169 !important;
-    }
-</style>    
-<div class="content-wrapper">
+
+    <div class="content-wrapper">
         @include('admin.layouts.partials.content_header',['name'=>'Order','key'=>'Details'])
 
         <div class="content">
@@ -63,9 +57,6 @@
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Total</th>
-                                <th scope="col">Rate</th>
-                                <th scope="col">Comment</th>
-                                <th scope="col">Show</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -78,20 +69,12 @@
                                 $i++;
                                 $total += $c->product_price * $c->product_sales_quantity;
                             @endphp
-                            
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>{{ $c->product_name }}</td>
                                     <td>{{ $c->product_sales_quantity }}</td>
                                     <td>${{ $c->product_price  }}</td>
                                     <td>${{ $c->product_price * $c->product_sales_quantity }}</td>
-                                    <td>{{ $c->rating}}<span class="fa fa-star checked"></span></td>
-                                    <td>{{ $c->comment}}</span></td>
-                                    @if($c->show_order==0)
-                                    <td style="vertical-align: middle;"><a href="{{route('show',$c->order_details_id)}}"class="icon" style="cursor: pointer;"><i class="glyphicon glyphicon-ok" style="font-size: 30px;color: black;"></i></a></td>
-                                    @else
-                                    <td style="vertical-align: middle;"><a href="{{route('hidden',$c->order_details_id)}}"class="icon" style="cursor: pointer;"><i class="glyphicon glyphicon-ok" style="font-size: 30px;color: #FE980F;"></i></a></td>
-                                    @endif
                                 </tr>
                             @endforeach
                                 <tr>

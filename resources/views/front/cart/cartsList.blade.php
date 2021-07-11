@@ -61,7 +61,7 @@
                 success: function(data) {
                     if(data.code == 200) {
                         $('.cart_wrapper').html(data.cart_component);
-                        swal("Delete!", "success");
+                        swal("Delete!", "");
                     }
                 },
                 error: function() {

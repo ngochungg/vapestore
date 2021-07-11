@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\CommentNews;
+
 use App\Http\Requests\NewsAddRequest;
 use App\Models\Category;
 use App\Models\Information;
@@ -38,10 +38,6 @@ class NewsController extends Controller
         $news = $this->newBlog->latest()->paginate(5);
         return view('admin.newBlogs.index', compact('news'));
     }
-    public function comment_index(){
-        $comment=CommentNews::orderByDesc('id')->paginate(5);
-        return view('admin.newBlogs.comment', compact('comment'));
-    }
     public function create(){
         $this->authenLogin();
         return view('admin.newBlogs.add');
@@ -67,23 +63,6 @@ class NewsController extends Controller
     public function delete($id) {
         try {
             $this->newBlog->find($id)->delete();
-            return response()->json([
-                'code' => 200,
-                'message' => 'success'
-            ], 200);
-
-        } catch (\Exception $exception) {
-            Log::error('Message: ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
-            return response()->json([
-                'code' => 500,
-                'message' => 'fail'
-            ], 500);
-        }
-    }
-    public function comment_delete($id){
-        try {
-            $comment=CommentNews::find($id);
-            $comment->delete();
             return response()->json([
                 'code' => 200,
                 'message' => 'success'
@@ -148,21 +127,7 @@ class NewsController extends Controller
         $address = Information::where('key','Address')->first();
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
         $news = $this->newBlog->find($id);
-
-        //tất cả phản hồi từ tin tức id
-        //dd($id);
-        $c=CommentNews::where('id_news',$id)->count();
-        $comment1=CommentNews::where('id_news',$id)->orderByDesc('id')->take(3)->get();
-        // foreach($comment1 as $i){
-        //     echo $i->comment;
-        //     echo "<br>";
-        // }
-         $comment2=CommentNews::where('id_news',$id)->take($c-3)->get();
-        // foreach($comment2 as $i2){
-        //     echo $i2->comment;
-        //     echo "<br>";
-        // }
-         return view('front.new.newDetail',compact('categoriesLimit','phone','title',
-              'open','fb','ytb','email','address','news','comment1','comment2'));
+        return view('front.new.newDetail',compact('categoriesLimit','phone','title',
+            'open','fb','ytb','email','address','news'));
     }
 }

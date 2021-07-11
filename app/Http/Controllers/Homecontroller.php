@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Order;
-use App\Models\User;
 use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\Slider;
@@ -61,8 +60,6 @@ class Homecontroller extends Controller
             'phone','title','open','fb','ytb','email','address'));
     }
     public function showDetail($id){
-        $products = Product::latest()->take(6)->get();
-//        $categories = Category::where('parent_id',0)->get();
         $products = Product::find($id);
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
 //        $Popular_Products= Product::all()->random(4);
@@ -73,30 +70,12 @@ class Homecontroller extends Controller
         $ytb = $this->info->where('key','YouTube Link')->first();
         $email = $this->info->where('key','Email')->first();
         $address = $this->info->where('key','Address')->first();
-        $New_Products= Product::latest()->take(10)->get();
-        $count=OrderDetails::where('product_id',$id)->where('rating','>',0)->where('show_order',1)->count();
-        //dd($count);
-        $rated=OrderDetails::where('product_id',$id)->where('show_order',1)->get();
-        $total=0;
-        foreach($rated as $rated){
-               $total+=$rated->rating;
-        }
-        //dd($total);
-        if($count==0){
-            $avg=5;
-        }
-        else{
-            $avg=round($total/$count,2);
-        }
-        //dd($avg);
-        $id_order=OrderDetails::where('product_id',$id)->get();
-        //dd($id_order);
-        
         $cateID = Product::find($id)->category_id;
         $relatedProducts = Product::where('category_id',$cateID)->take(10)->get();
 //        dd($relatedProducts);
 //        $New_Products= Product::latest()->take(10)->get();
-        return view('front.product.detail',compact('products', 'categoriesLimit','relatedProducts','New_Products', 'phone','title','open','fb','ytb','email','address','avg','id_order'));
+
+        return view('front.product.detail',compact('products', 'categoriesLimit','relatedProducts', 'phone','title','open','fb','ytb','email','address'));
     }
     public function comment(request $request,$id){
         $products = Product::find($id);
@@ -151,7 +130,6 @@ class Homecontroller extends Controller
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
 //        $Popular_Products= Product::all()->random(4);
         $orders = $this->order->find($id);
-        //dd($orders->order_status);
         $phone = $this->info->where('key','Phone')->first();
         $title = $this->info->where('key','Title')->first();
         $open = $this->info->where('key','Open')->first();
@@ -160,7 +138,6 @@ class Homecontroller extends Controller
         $email = $this->info->where('key','Email')->first();
         $address = $this->info->where('key','Address')->first();
         $DetailOrders = $this->DetailOrder->whereorder_id($id)->get();
-        //dd($DetailOrders);
         return view('front.customer.order_detail', compact( 'categoriesLimit','orders','DetailOrders','phone','title','open','fb','ytb','email','address'));
     }
     public function order_Cancel($id){

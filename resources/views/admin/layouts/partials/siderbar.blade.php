@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="info">
-            <a href="{{route('users.details',['id'=>Auth::user()->id])}}" class="d-block">{{Auth::user()->name}}</a>
+                <a href="{{route('users.details',['id'=>Auth::user()->id])}}" class="d-block">{{Auth::user()->name}}</a>
             </div>
         </div>
 
@@ -69,7 +69,7 @@
 
                 <li class="nav-item">
                     <a href="" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fa fa-shopping-cart"></i>
                         <p>
                             Order
                             <i class="right fas fa-angle-left"></i>
@@ -112,27 +112,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                    <a href="{{route('new.index')}}" class="nav-link">
+                        <i class="nav-icon far fa-newspaper"></i>
                         <p>
                             News
-                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('new.index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Manage News</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('new.comment_index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Comment News</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('ReComment')}}" class="nav-link">

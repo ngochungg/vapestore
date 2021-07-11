@@ -7,7 +7,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
 @yield('title')
 
     <!-- Google Font: Source Sans Pro -->
@@ -17,9 +16,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/adminlte.min.css')}}">
     <link href="{{asset('vendors/selete2/select2.min.css')}}" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    
-   
 @yield('a_css')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -39,8 +35,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('AdminLTE/dist/js/adminlte.min.js')}}"></script>
-
-
 @yield('js')
 </body>
 </html>

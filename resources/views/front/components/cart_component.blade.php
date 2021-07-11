@@ -9,6 +9,11 @@
             </div>
             <div class="table-responsive cart_info">
                 <table class="table table-condensed update_cart_url" data-url="{{ route('updateCart') }}">
+                    @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }} : {{ $product->name }} have only:  {{ $product->quantity }} item.
+                        </div>
+                    @endif
                     <thead>
                     <tr class="cart_menu">
                         <td class="image">Item</td>
@@ -45,7 +50,7 @@
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="quantity">
-                                        <p><input type="number" value="{{ $cartItem['quantity'] }}" min="1"  class="quantity"></p>
+                                        <p><input type="number" value="{{ $cartItem['quantity'] }}" min="1" class="quantity"></p>
                                     </div>
                                     <div class="cart_delete">
                                         <!--update cart-->
@@ -56,7 +61,7 @@
                                 </td>
                                 <td class="cart_total">
                                     <p class="cart_total_price">
-                                    <p>$ {{ $cartItem['price'] * $cartItem['quantity'] }}</p>
+                                        $ {{ $cartItem['price'] * $cartItem['quantity'] }}
                                     </p>
                                 </td>
                                 <td class="cart_delete">

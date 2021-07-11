@@ -56,6 +56,7 @@
 
 
             </div>
+        </div>
         @endforeach
 {{--    <div class="col-md-5">--}}
 {{--        <img src="{{$newBlog->image_path}}" alt="" class="img-thumbnail" width="250px">--}}

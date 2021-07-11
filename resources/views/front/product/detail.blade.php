@@ -10,7 +10,6 @@
     @yield('title')
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open%20Sans:300,400,400italic,600,600italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="{{asset('/front/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('/front/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('/front/css/prettyPhoto.css')}}" rel="stylesheet">
@@ -51,7 +50,6 @@
 <script src="https://cdn.jsdelir.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 <script>
 
     // setup csrf-token cho post method
@@ -117,26 +115,10 @@
     }
     $(function() {
 
-        $('.add_to_cart').on('click', addToCart);
-        console.log("Calling stars()");
-        $('.results-content span.stars').stars();
-
-    });
-    $.fn.stars = function() { 
-  return this.each(function() {
-    // Get the value
-    var val = parseFloat($(this).html()); 
-    // Make sure that the value is in 0 - 5 range, multiply to get width
-    var size = Math.max(0, (Math.min(5, val))) * 36.5; 
-    // Create stars holder
-    var $span = $('<span> </span>').width(size); 
-    // Replace the numerical value with stars
-    $(this).empty().append($span);
-  });
-}
         $(document).on('click', '.cart_update', cartUpdate);
         $('.add-to-cart').on('click', addToCart);
 
+    })
 </script>
 
 

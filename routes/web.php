@@ -166,10 +166,6 @@ Route::prefix('admin')->group(function () {
             'as' => 'new.index',
             'uses' => 'NewsController@index'
         ]);
-        Route::get('/comment', [
-            'as' => 'new.comment_index',
-            'uses' => 'NewsController@comment_index'
-        ]);
         Route::get('/create', [
             'as' => 'new.create',
             'uses' => 'NewsController@create'
@@ -189,10 +185,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', [
             'as' => 'new.delete',
             'uses' => 'NewsController@delete'
-        ]);
-        Route::get('/comment/delete/{id}', [
-            'as' => 'new.comment_delete',
-            'uses' => 'NewsController@comment_delete'
         ]);
         Route::get('/details/{id}', [
             'as' => 'new.details',
@@ -382,27 +374,6 @@ Route::get('/search-price/', 'SearchController@search_price')->name('searchPrice
 Route::get('/new', 'NewsController@frontNew')->name('frontNew');
 Route::get('/new/{id}', 'NewsController@front2New')->name('front2New');
 
-
-//comment_news
-route::post('comment_news/{id}',[
-    'as'=>'comment',
-    'uses'=>'CommentNewsController@comment_news1'
-]);
-
-//rating
-route::post('rating/{id}',[
-    'as'=>'rating',
-    'uses'=>'RatingController@rating'
-]);
-//show rated
-route::get('show/{id}',[
-    'as'=>'show',
-    'uses'=>'RatingController@show'
-]);
-route::get('hidden/{id}',[
-    'as'=>'hidden',
-    'uses'=>'RatingController@hidden'
-]);
 //coupon
 Route::post('/check-coupon','CheckoutController@check_coupon');
 Route::post('/insert-coupon-code','CouponController@insert_coupon_code');
