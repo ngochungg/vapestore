@@ -25,7 +25,6 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">ID</th>
                                 <th scope="col">Name Product</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Quantity</th>
@@ -39,7 +38,6 @@
                             @foreach($products as $productItem)
 
                                 <tr>
-                                    <th scope="row">{{$productItem->id}}</th>
                                     <td style="max-width: 200px;word-wrap: break-word">{{$productItem->name}}</td>
                                     <td>{{number_format($productItem->price)}}</td>
                                     <td>{{($productItem->quantity)}}</td>

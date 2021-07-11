@@ -11,4 +11,5 @@ class Coupon extends Model
     protected $fillable =['coupon_name', 'coupon_code','coupon_time','coupon_number','coupon_condition'];
     protected $primaryKey = 'coupon_id';
     protected $table = 'coupon';
+
 }

@@ -2496,3 +2496,41 @@ textarea {
     text-align: center;
 
 }
+.news-title{
+    height: 350px;
+    word-wrap: break-word;
+}
+.news-title :hover{
+    color: deepskyblue;
+    transition-delay: 0s;
+}
+.news-title h3 a{
+    color: black;
+    font-weight: 400;
+}
+.news-title div i{
+    line-height: 0px;
+}
+.news-content{
+    white-space: unset;
+    width: 460px;
+    height: 78px;
+    border: 1px solid white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+}
+.news-image{
+    width: 300px;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+}
+.read-more{
+    margin-top: 0px;
+}
+.read-more:hover{
+    zoom: 110%;
+    color: red;
+    transition-delay: 0s;
+}
+

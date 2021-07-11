@@ -170,7 +170,7 @@
 
                                     <div id="review_form_wrapper">
                                         <div id="review_form">
-                                            <div id="respond" class="comment-respond">
+                                            <div id="respond" class="comment-respond ">
                                                 <form action="{{route('Comment',['id'=> $products->id])}}" method="post" id="commentform" class="comment-form" novalidate="">
                                                     @csrf
                                                     <p class="comment-notes">
@@ -363,9 +363,9 @@
                                     <a href="{{route('seeDetails',['id'=> $product_new->id])}}" title="Click to go to {!! $product_new->name !!}" >
                                         <div style="max-width: 200px;word-wrap: break-word"><img src="{{$product_new->feature_image_path}}" style="height: 200px;max-width: 200px;margin-left: 0px" alt=""></div>
                                     </a>
-                                    <div class="group-flash">
-                                        <span class="flash-item new-label">new</span>
-                                    </div>
+{{--                                    <div class="group-flash">--}}
+{{--                                        <span class="flash-item new-label">new</span>--}}
+{{--                                    </div>--}}
 {{--                                    <div class="wrap-btn">--}}
 {{--                                        <a href="#" class="function-link">quick view</a>--}}
 {{--                                    </div>--}}

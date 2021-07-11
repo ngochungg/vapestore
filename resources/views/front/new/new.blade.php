@@ -29,25 +29,39 @@
 @include('front.components.header')
 @yield('content')
 
-<div>
+<div class="container">
 
     <div class="row" style="margin:auto">
         <div class="col-md-2"></div>
         <div class="col-md-6 single-blog-post">
             @foreach($news as $newBlog)
             <h3><a href="{{route('front2New',['id'=>$newBlog->id])}}" >{{$newBlog->news_title}}</a></h3>
+    <div class="row">
+        @foreach($news as $newBlog)
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="news-image col-md-3" >
+            <img src="{{$newBlog->image_path}}" alt="" width="300px">
+        </div>
+        <div class="col-md-5 news-title" style="margin-left: 30px">
+            <h3><a href="{{route('front2New',['id'=>$newBlog->id])}}" title="{{$newBlog->news_title}}">{{$newBlog->news_title}}</a></h3>
             <div class="post-meta">
-                <ul>
-                    <li><i class="fa fa-calendar"> {{$newBlog->created_at}}</i></li>
-                </ul>
+                <hr style="margin-bottom: 10px">
+
+                        <i class="fa fa-pencil" > Write by VapeStore</i>
+                        <i class="fa fa-calendar" style="margin-left: 40px"> {{date('d-m-Y', strtotime($newBlog->created_at))}}</i>
+                <hr style="margin-top: 10px">
             </div>
-                <img src="{{$newBlog->image_path}}" alt="" width="300px">
-                <br>
-            <a  class="btn btn-primary" href="{{route('front2New',['id'=>$newBlog->id])}}">Read More</a>
-                <hr>
-            @endforeach
+            <div class="news-content">{!! $newBlog->news_content !!}</div> <i class="pull-right" style="margin-top: -25px">...</i>
+
+            <a  class="btn btn-primary read-more" href="{{route('front2New',['id'=>$newBlog->id])}}" title="Click here to read more">Read More</a>
+
+
         </div>
         
+        @endforeach
 {{--    <div class="col-md-5">--}}
 {{--        <img src="{{$newBlog->image_path}}" alt="" class="img-thumbnail" width="250px">--}}
 {{--    </div>--}}
@@ -59,9 +73,9 @@
 {{--                </h5></div>--}}
 {{--    </div>--}}
 {{--        @endforeach--}}
-        <div class="col-md-2"></div>
-    </div>
 
+    </div>
+    <br>
 </div>
 <div style="margin-left: 250px">{{ $news->links('pagination::bootstrap-4') }}</div>
 @include('front.components.footer')

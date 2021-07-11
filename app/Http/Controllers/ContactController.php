@@ -73,4 +73,21 @@ class ContactController extends Controller
             ], 200);
 
     }
+    public function edit($id)
+    {
+        $this->authenLogin();
+        $cont = $this->contacts->find($id);
+        return view('admin.contact.reply', compact('cont'));
+    }
+    public function send($id,request $request){
+        DB::table('contacts')->where('id',$id)->update([
+            'reply' => $request->reply
+        ]);
+        $send = $request->reply;
+        Mail::send('email.reply',['send' => $send], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Wellcom to VapeStore');
+        });
+        return redirect()->route('contact.index');
+    }
 }
