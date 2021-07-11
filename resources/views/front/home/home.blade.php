@@ -26,13 +26,17 @@
                         @foreach($products as $product)
                             <div class="col-sm-4">
                                 <div class="product-image-wrapper" >
+
+
                                     <div class="single-products">
                                         <div class="productinfo text-center">
+                                            <div class="ribbon">NEW</div>
                                             <img src="{{ config('app.base_url') . $product->feature_image_path }}" alt="" style="height: 250px">.
                                             <p style="font-size: 18px; font-weight:300;line-height: 20px; margin-top: 10px;margin-bottom: 0px;height: 40px">{{ $product->name }}</p>
                                             <p style="color: orange; font-size: 16px">$ {{ $product->price }}</p>
                                             <a href="#" class="btn btn-default add-to-cart" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
+
                                         <div class="product-overlay">
                                             <div class="overlay-content">
                                                 <h2>$ {{ $product->price }}</h2>
@@ -72,6 +76,7 @@
                         <a  class="" href="{{route('front2New',['id'=>$newBlog->id])}}" title="Click here to read more">>> Read More</a>
 
                     </div>
+
                     <div class="col-sm-1"></div>
                 @endforeach
             </div>

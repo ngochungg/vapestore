@@ -848,6 +848,8 @@ h2.title {
     text-transform: uppercase;
     margin-bottom: 30px;
     position: relative;
+    z-index: 90;
+
 }
 
 .product-image-wrapper {
@@ -2600,5 +2602,22 @@ textarea {
     flex-wrap: wrap;
     word-wrap: break-word;
 }
+
+.ribbon {
+    font: bold 15px sans-serif;
+    color: #333;
+    text-align: center;
+    -webkit-transform: rotate(40deg);
+    position: relative;
+    padding: 7px 0;
+    top: 10px;
+    left: 28px;
+    width: 120px;
+    background-color:cornflowerblue;
+    color: #fff;
+    float: right;
+}
+
+
 
 
