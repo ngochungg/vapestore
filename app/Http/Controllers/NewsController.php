@@ -113,7 +113,7 @@ class NewsController extends Controller
         $email = Information::where('key','Email')->first();
         $address = Information::where('key','Address')->first();
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
-        $news = $this->newBlog->latest()->paginate(10);
+        $news = $this->newBlog->latest()->paginate(5);
         return view('front.new.new',compact('categoriesLimit','phone','title',
             'open','fb','ytb','email','address','news'));
     }
