@@ -37,7 +37,7 @@
                                         <input type="text" id="cart-quantity" name="product-quatity" value="1" data-max="{!! $products->quantity !!}">
                                     <a class="btn btn-increase" href="#"></a>
                                 </div>
-                                <div>The remaining amount {{$products->quantity }}</div>
+                                <h6>The remaining amount {{$products->quantity }}</h6>
                             </div>
                             <div class="wrap-butons">
                                 <a href="#" id="add-to-cart" data-pid="{{ $products->id }}" class="btn add-to-cart" style="background: orange ">

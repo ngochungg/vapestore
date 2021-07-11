@@ -51,7 +51,7 @@
                                 <li><a href="{{route('logout')}}"><i class="fa fa-lock h3"></i>LogOut</a></li>
 
                             @else
-                                <li><a href="{{url('/admin')}}"><i class="fa fa-lock"></i>Login</a></li>
+                                <li><a href="{{url('/admin')}}"><i class="fa fa-lock h3"></i>Login</a></li>
                             @endif
 
                         </ul>
