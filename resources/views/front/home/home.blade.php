@@ -28,7 +28,7 @@
                             <div class="product-image-wrapper" >
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="{{ config('app.base_url') . $product->feature_image_path }}" alt="" style="height: 250px">
+                                        <img src="{{ config('app.base_url') . $product->feature_image_path }}" alt="" style="height: 250px">.
                                             <p style="font-size: 18px; font-weight:300;line-height: 20px; margin-top: 10px;margin-bottom: 0px;height: 40px">{{ $product->name }}</p>
                                         <p style="color: orange; font-size: 16px">$ {{ $product->price }}</p>
                                         <a href="#" class="btn btn-default add-to-cart" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
