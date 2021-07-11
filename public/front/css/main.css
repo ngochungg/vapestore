@@ -2513,8 +2513,8 @@ textarea {
 }
 .news-content{
     white-space: unset;
-    width: 460px;
-    height: 78px;
+    width: 550px;
+    height: 77px;
     border: 1px solid white;
     overflow: hidden;
     text-overflow: ellipsis;
