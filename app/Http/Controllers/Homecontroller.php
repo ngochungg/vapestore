@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Slider;
 use App\Models\NewBlog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Information;
@@ -129,7 +130,7 @@ class Homecontroller extends Controller
     }
 
     public function profile($id){
-        if (auth()->check()){
+        if (Auth::user()->id == $id){
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
 //        $Popular_Products= Product::all()->random(4);
         $orders = $this->order->wherecustomer_id($id)->get();
@@ -143,9 +144,11 @@ class Homecontroller extends Controller
         return view('front.customer.profile', compact( 'categoriesLimit','orders','phone','title','open','fb','ytb','email','address'));
         }else{
                 return Redirect::to('admin')->send();
+
         }
     }
-    public function order_detail($id){
+    public function order_detail($id,$u_id){
+        if (Auth::user()->id == $u_id){
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
 //        $Popular_Products= Product::all()->random(4);
         $orders = $this->order->find($id);
@@ -160,12 +163,15 @@ class Homecontroller extends Controller
         $DetailOrders = $this->DetailOrder->whereorder_id($id)->get();
         //dd($DetailOrders);
         return view('front.customer.order_detail', compact( 'categoriesLimit','orders','DetailOrders','phone','title','open','fb','ytb','email','address'));
+        }else{
+            return Redirect::to('admin')->send();
+        }
     }
     public function order_Cancel($id){
         $this->order->find($id)->update([
             'order_status'=>'Cancel'
         ]);
-        return redirect()->route('order_detail',[$id]);
+        return redirect()->route('order_detail',[$id,Auth::user()->id]);
     }
 
     public function commentDelete($id)

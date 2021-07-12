@@ -17,6 +17,7 @@ session_start();
 class CheckoutController extends Controller
 {
 
+
     public function check_coupon(Request $request){
         $data = $request ->all();
         $coupon = Coupon::where('coupon_code',$data['coupon'])->first();
@@ -233,9 +234,21 @@ class CheckoutController extends Controller
     }
 
     //back-end
+    public function authenLogin1()
+    {
+        if (auth()->check() && auth()->user()->role == 1){
+            return Redirect::to('/')->send();
+        }
+        elseif (auth()->check() && auth()->user()->role == 2){
+            return Redirect::to('home');
+        }
+        else{
+            return Redirect::to('admin')->send();
+        }
+    }
     public function index()
     {
-        $this->authenLogin();
+        $this->authenLogin1();
         $all_order = DB::table('orders')
             ->join('users', 'orders.customer_id', '=', 'users.id')
             ->select('orders.*', 'users.name')
@@ -245,7 +258,7 @@ class CheckoutController extends Controller
 
     public function details($id)
     {
-        $this->authenLogin();
+        $this->authenLogin1();
         $order_by_id = DB::table('orders')
             ->join('users', 'orders.customer_id', '=', 'users.id')
             ->join('order_details', 'orders.order_id', '=', 'order_details.order_id')
@@ -265,7 +278,7 @@ class CheckoutController extends Controller
 
 
     public function processing($order_id, Request $req){
-        $this->authenLogin();
+        $this->authenLogin1();
 //        dd($order_id);
         Order::find($order_id)->update([
             'order_status' => $req->order_status,
@@ -274,7 +287,7 @@ class CheckoutController extends Controller
     }
 
     public function processing_order() {
-        $this->authenLogin();
+        $this->authenLogin1();
         $all_order = DB::table('orders')
             ->join('users', 'orders.customer_id', '=', 'users.id')
             ->select('orders.*', 'users.name')
@@ -283,7 +296,7 @@ class CheckoutController extends Controller
     }
 
     public function complete_order() {
-        $this->authenLogin();
+        $this->authenLogin1();
         $all_order = DB::table('orders')
             ->join('users', 'orders.customer_id', '=', 'users.id')
             ->select('orders.*', 'users.name')
@@ -292,7 +305,7 @@ class CheckoutController extends Controller
     }
 
     public function cancel_order() {
-        $this->authenLogin();
+        $this->authenLogin1();
         $all_order = DB::table('orders')
             ->join('users', 'orders.customer_id', '=', 'users.id')
             ->select('orders.*', 'users.name')

@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
 @section('title')
-    <title>Add Slider</title>
+    <title>Slider</title>
 @endsection
 @section('a_css')
     <link rel="stylesheet" href="{{asset('admins/product/index/index.css')}}"/>

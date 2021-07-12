@@ -166,7 +166,7 @@ Route::prefix('admin')->group(function () {
             'as' => 'new.index',
             'uses' => 'NewsController@index'
         ]);
-        
+
         Route::get('/comment', [
             'as' => 'new.comment_index',
             'uses' => 'NewsController@comment_index'
@@ -351,7 +351,7 @@ Route::post('/Registration', 'UsersController@Registration')->name('Registration
 
 //profile
 Route::get('/profile/{id}', 'Homecontroller@profile')->name('profile');
-Route::get('/profile/order_detail/{id}', 'Homecontroller@order_detail')->name('order_detail');
+Route::get('/profile/order_detail/{id}/{u_id}', 'Homecontroller@order_detail')->name('order_detail');
 Route::get('/profile/Cancel/{id}', 'Homecontroller@order_Cancel')->name('order_Cancel');
 
 //forgot_password

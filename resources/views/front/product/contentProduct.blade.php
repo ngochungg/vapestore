@@ -267,7 +267,7 @@
                             @if($i->rating!=0 AND $i->show_order==1)
                                 Writed by <b>{{$i->order->customer->name}}</b>
                                 <div style="background: #F0F0E9;">
-                                    <div class="rate" style="font-size: 5px;">
+                                    <div class="rate" style="font-size: 20px;">
                                     <br>
                                         @if($i->rating==1)
                                         <span class="fa fa-star checked"></span>
@@ -305,6 +305,8 @@
                                         <span class="fa fa-star checked"></span>
                                         @endif
                                     </div>
+                                    <br>
+                                    <br>
                                     <div style="width:95%;margin-left:5%;margin-top:3px;">
                                         <label for="fname">Comment:</label>
                                         <a id="fname">

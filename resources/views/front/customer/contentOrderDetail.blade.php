@@ -1,25 +1,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <style>
-    input[type=text], select, textarea {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        margin-top: 6px;
-        margin-bottom: 16px;
-        resize: vertical;
-        
-    }
-    a {
-        width: 100%;
-        padding: 12px;
-        border-radius: 4px;
-        box-sizing: border-box;
-        margin-top: 6px;
-        margin-bottom: 16px;
-        resize: vertical;
-    }
+    /*input[type=text], select, textarea {*/
+    /*    width: 100%;*/
+    /*    padding: 12px;*/
+    /*    border: 1px solid #ccc;*/
+    /*    border-radius: 4px;*/
+    /*    box-sizing: border-box;*/
+    /*    margin-top: 6px;*/
+    /*    margin-bottom: 16px;*/
+    /*    resize: vertical;*/
+    /*    */
+    /*}*/
+    /*a {*/
+    /*    width: 100%;*/
+    /*    padding: 12px;*/
+    /*    border-radius: 4px;*/
+    /*    box-sizing: border-box;*/
+    /*    margin-top: 6px;*/
+    /*    margin-bottom: 16px;*/
+    /*    resize: vertical;*/
+    /*}*/
     .checked {
         color: #ffc700;
     }
@@ -47,15 +47,15 @@
         content: '★ ';
     }
     .rate > input:checked ~ label {
-        color: #ffc700;    
+        color: #ffc700;
     }
-    .fa{
-        font-size:25px;
-        margin-left: 2px;
-    }
+    /*.fa{*/
+    /*    font-size:25px;*/
+    /*    margin-left: 2px;*/
+    /*}*/
     .rate:not(:checked) > label:hover,
     .rate:not(:checked) > label:hover ~ label {
-        color: #deb217;  
+        color: #deb217;
     }
     .rate > input:checked + label:hover,
     .rate > input:checked + label:hover ~ label,
@@ -201,7 +201,6 @@
                 </tr>
             @endif
         @endforeach
-
 
         <tr>
             <th colspan="3">Status:
