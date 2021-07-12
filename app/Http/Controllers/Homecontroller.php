@@ -171,7 +171,7 @@ class Homecontroller extends Controller
         $this->order->find($id)->update([
             'order_status'=>'Cancel'
         ]);
-        return redirect()->route('order_detail',[$id]);
+        return redirect()->route('order_detail',[$id,Auth::user()->id]);
     }
 
     public function commentDelete($id)
