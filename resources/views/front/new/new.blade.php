@@ -33,28 +33,29 @@
 
     <div class="row">
         @foreach($news as $newBlog)
-        <div class="col-md-2">
+            <div class="col-md-2">
 
-        </div>
-
-        <div class="news-image col-md-3" >
-            <img src="{{$newBlog->image_path}}" alt="" width="300px">
-        </div>
-        <div class="col-md-5 news-title" style="margin-left: 30px">
-            <h3><a href="{{route('front2New',['id'=>$newBlog->id])}}" title="{{$newBlog->news_title}}">{{$newBlog->news_title}}</a></h3>
-            <div class="post-meta">
-                <hr style="margin-bottom: 10px">
-
-                        <i class="fa fa-pencil" > Write by VapeStore</i>
-                        <i class="fa fa-calendar" style="margin-left: 40px"> {{date('d-m-Y', strtotime($newBlog->created_at))}}</i>
-                <hr style="margin-top: 10px">
             </div>
-            <div class="news-content">{!! $newBlog->news_content !!}</div> <i class="pull-right" style="margin-top: -25px">...</i>
 
-            <a  class="btn btn-primary read-more" href="{{route('front2New',['id'=>$newBlog->id])}}" title="Click here to read more">Read More</a>
+            <div class="news-image col-md-3" >
+                <img src="{{$newBlog->image_path}}" alt="" width="300px">
+            </div>
+            <div class="col-md-5 news-title" style="margin-left: 30px">
+                <h3><a href="{{route('front2New',['id'=>$newBlog->id])}}" title="{{$newBlog->news_title}}">{{$newBlog->news_title}}</a></h3>
+                <div class="post-meta">
+                    <hr style="margin-bottom: 10px">
+
+                    <i class="fa fa-pencil" > Write by VapeStore</i>
+                    <i class="fa fa-calendar" style="margin-left: 40px"> {{date('d-m-Y', strtotime($newBlog->created_at))}}</i>
+                    <hr style="margin-top: 10px">
+                </div>
+                <div class="news-content">{!! $newBlog->news_content !!} </div>
+                <div class=".." style="text-align: center"><i>.....</i></div>
+
+                <a  class="btn btn-primary read-more" href="{{route('front2New',['id'=>$newBlog->id])}}" title="Click here to read more">Read More</a>
 
 
-        </div>
+            </div>
         @endforeach
 {{--    <div class="col-md-5">--}}
 {{--        <img src="{{$newBlog->image_path}}" alt="" class="img-thumbnail" width="250px">--}}
@@ -70,6 +71,8 @@
 
     </div>
     <br>
+    </div>
+    </div>
 </div>
 <div style="margin-left: 250px">{{ $news->links('pagination::bootstrap-4') }}</div>
 @include('front.components.footer')

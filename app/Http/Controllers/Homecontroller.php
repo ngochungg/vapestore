@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\Slider;
+use App\Models\NewBlog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
@@ -46,6 +47,7 @@ class Homecontroller extends Controller
     public function index(){
         $sliders= Slider::latest()->get();
         $products = Product::latest()->take(6)->get();
+        $news= NewBlog::latest()->take(3)->get();
         $categories = Category::where('parent_id',0)->get();
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
         $phone = $this->info->where('key','Phone')->first();
@@ -55,13 +57,11 @@ class Homecontroller extends Controller
         $ytb = $this->info->where('key','YouTube Link')->first();
         $email = $this->info->where('key','Email')->first();
         $address = $this->info->where('key','Address')->first();
-        return view('front.home.home',compact('sliders','categories',
+        return view('front.home.home',compact('sliders','news','categories',
             'products', 'categoriesLimit',
             'phone','title','open','fb','ytb','email','address'));
     }
     public function showDetail($id){
-        $products = Product::latest()->take(6)->get();
-//        $categories = Category::where('parent_id',0)->get();
         $products = Product::find($id);
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
 //        $Popular_Products= Product::all()->random(4);

@@ -69,7 +69,7 @@
 
                 <li class="nav-item">
                     <a href="" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fa fa-shopping-cart"></i>
                         <p>
                             Order
                             <i class="right fas fa-angle-left"></i>
