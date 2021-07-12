@@ -202,7 +202,6 @@
             @endif
         @endforeach
 
-
         <tr>
             <th colspan="3">Status:
             @if($orders->order_status == 'New order')
