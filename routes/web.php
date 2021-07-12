@@ -166,7 +166,7 @@ Route::prefix('admin')->group(function () {
             'as' => 'new.index',
             'uses' => 'NewsController@index'
         ]);
-        
+
         Route::get('/comment', [
             'as' => 'new.comment_index',
             'uses' => 'NewsController@comment_index'
