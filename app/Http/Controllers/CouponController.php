@@ -11,10 +11,24 @@ session_start();
 class CouponController extends Controller
 {
     public function insert_coupon(){
+        $this->authenLogin();
         return view('admin.coupon.insert_coupon');
+    }
+    public function authenLogin()
+    {
+        if (auth()->check() && auth()->user()->role == 1){
+            return Redirect::to('/')->send();
+        }
+        elseif (auth()->check() && auth()->user()->role == 2){
+            return Redirect::to('home');
+        }
+        else{
+            return Redirect::to('admin')->send();
+        }
     }
 
     public function insert_coupon_code(Request $request){
+
         $data = $request ->all();
         $coupon = new Coupon;
 
@@ -29,6 +43,7 @@ class CouponController extends Controller
         return Redirect::to('list-coupon');
     }
     public function list_coupon(){
+        $this->authenLogin();
         $coupon= Coupon::orderby('coupon_id','DESC')->get();
 //        dd($coupon);
         return view('admin.coupon.list_coupon')->with(compact('coupon'));

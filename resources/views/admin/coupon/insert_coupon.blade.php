@@ -3,7 +3,7 @@
 @extends('admin.layouts.admin')
 
 @section('title')
-    <title>Home Admin</title>
+    <title>Coupon Add</title>
 @endsection
 
 @section('content')
