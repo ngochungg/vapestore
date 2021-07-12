@@ -40,7 +40,7 @@ class NewsController extends Controller
         return view('admin.newBlogs.index', compact('news'));
     }
     public function comment_index(){
-        //$this->authenLogin();
+        $this->authenLogin();
         $comment=CommentNews::orderByDesc('id')->paginate(5);
         return view('admin.newBlogs.comment', compact('comment'));
     }
