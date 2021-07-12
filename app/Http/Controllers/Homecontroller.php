@@ -147,7 +147,8 @@ class Homecontroller extends Controller
 
         }
     }
-    public function order_detail($id){
+    public function order_detail($id,$u_id){
+        if (Auth::user()->id == $u_id){
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
 //        $Popular_Products= Product::all()->random(4);
         $orders = $this->order->find($id);
@@ -162,6 +163,9 @@ class Homecontroller extends Controller
         $DetailOrders = $this->DetailOrder->whereorder_id($id)->get();
         //dd($DetailOrders);
         return view('front.customer.order_detail', compact( 'categoriesLimit','orders','DetailOrders','phone','title','open','fb','ytb','email','address'));
+        }else{
+            return Redirect::to('admin')->send();
+        }
     }
     public function order_Cancel($id){
         $this->order->find($id)->update([

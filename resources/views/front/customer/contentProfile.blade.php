@@ -237,7 +237,7 @@
                             <td>{{$order->created_at}}</td>
                             <td>${{$order->order_total}}</td>
                             <td>{{$order->order_status}}</td>
-                            <td><a href="{{route('order_detail',['id'=>$order->order_id])}}"
+                            <td><a href="{{route('order_detail',['id'=>$order->order_id,'u_id'=>2])}}"
                                 class="btn btn-default">Detail</i>
                                 </a></td>
                         </tr>
