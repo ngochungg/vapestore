@@ -76,8 +76,25 @@ class Homecontroller extends Controller
         $relatedProducts = Product::where('category_id',$cateID)->take(10)->get();
 //        dd($relatedProducts);
 //        $New_Products= Product::latest()->take(10)->get();
+        $count=OrderDetails::where('product_id',$id)->where('rating','>',0)->count();
+        //dd($count);
+        $rated=OrderDetails::where('product_id',$id)->get();
+        $total=0;
+        foreach($rated as $rated){
+            $total+=$rated->rating;
+        }
+        //dd($total);
+        if($count==0){
+            $avg=5;
+        }
+        else{
+            $avg=round($total/$count,2);
+        }
+        //dd($avg);
+        $id_order=OrderDetails::where('product_id',$id)->get();
+        //dd($id_order);
 
-        return view('front.product.detail',compact('products', 'categoriesLimit','relatedProducts', 'phone','title','open','fb','ytb','email','address'));
+        return view('front.product.detail',compact('products', 'categoriesLimit','relatedProducts', 'phone','title','open','fb','ytb','email','address','avg','id_order'));
     }
     public function comment(request $request,$id){
         $products = Product::find($id);
@@ -140,6 +157,8 @@ class Homecontroller extends Controller
         $email = $this->info->where('key','Email')->first();
         $address = $this->info->where('key','Address')->first();
         $DetailOrders = $this->DetailOrder->whereorder_id($id)->get();
+        $DetailOrders = $this->DetailOrder->whereorder_id($id)->get();
+        //dd($DetailOrders);
         return view('front.customer.order_detail', compact( 'categoriesLimit','orders','DetailOrders','phone','title','open','fb','ytb','email','address'));
     }
     public function order_Cancel($id){

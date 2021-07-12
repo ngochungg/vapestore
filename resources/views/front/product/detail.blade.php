@@ -10,6 +10,7 @@
     @yield('title')
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open%20Sans:300,400,400italic,600,600italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="{{asset('/front/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('/front/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('/front/css/prettyPhoto.css')}}" rel="stylesheet">
@@ -114,11 +115,25 @@
         });
     }
     $(function() {
-
+        console.log("Calling stars()");
+        $('.results-content span.stars').stars();
         $(document).on('click', '.cart_update', cartUpdate);
         $('.add-to-cart').on('click', addToCart);
+        
 
     })
+    $.fn.stars = function() { 
+        return this.each(function() {
+            // Get the value
+            var val = parseFloat($(this).html()); 
+            // Make sure that the value is in 0 - 5 range, multiply to get width
+            var size = Math.max(0, (Math.min(5, val))) * 36.5; 
+            // Create stars holder
+            var $span = $('<span> </span>').width(size); 
+            // Replace the numerical value with stars
+            $(this).empty().append($span);
+        });
+    }
 </script>
 
 
