@@ -61,7 +61,7 @@ class AdminController extends Controller
         return redirect('/');
     }
     public function showHome () {
-        $this->authenLogin();
+        //$this->authenLogin();
         $newOrders = Order::whereorder_status('New order')->get();
         $newOrder = $newOrders->count();
         $User = User::whererole('1')->get();

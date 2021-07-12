@@ -1,4 +1,88 @@
 <!--main area-->
+<style>
+    .results {
+  font-size: 0;
+  padding-bottom: 16px;
+}
+.results-content {
+  font-size: 13px;
+  display: inline-block;
+  margin-left: 20px;
+  vertical-align: top;
+  background: url('https://i.stack.imgur.com/rwkqF.png') 0 0 repeat-x;
+  width: 185px;
+  height: 35px;
+}
+.results .results-content span.stars span {
+  background: url('https://i.stack.imgur.com/rwkqF.png') 0 -36px repeat-x;
+  display: inline-block;
+  height: 35px;
+  
+}
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+        
+    }
+    a {
+        padding: 12px;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+    .checked {
+        color: #ffc700;
+    }
+    .misscheck{
+        color: #ccc;
+    }
+    /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+    .rate{
+        height: 30px;
+        padding: 0 10px;
+    }
+    .rate:not(:checked) > input {
+        visibility: hidden;
+    }
+    .rate:not(:checked) > label {
+        float:right;
+        width:1em;
+        overflow:hidden;
+        white-space:nowrap;
+        cursor:pointer;
+        font-size:30px;
+        color:#ccc;
+    }
+    .rate:not(:checked) > label:before {
+        content: '★ ';
+    }
+    .rate > input:checked ~ label {
+        color: #ffc700;    
+    }
+    .fa{
+        font-size:25px;
+        margin-left: 2px;
+    }
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
+        color: #deb217;  
+    }
+    .rate > input:checked + label:hover,
+    .rate > input:checked + label:hover ~ label,
+    .rate > input:checked ~ label:hover,
+    .rate > input:checked ~ label:hover ~ label,
+    .rate > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+    }
+</style>
 <main id="main" class="main-site">
 
     <div class="container">
@@ -25,7 +109,19 @@
                         <h2 class="product-name">{{$products->name}}</h2>
                         <div class="wrap-price" style="margin-top: 5px"><span class="product-price" style="color: #fa2210;"> ${{$products->price}}</span></div>
                         <hr style="max-width: 70%">
-
+                        <div class="results">
+                            <div class="results-content">
+                                <div class="row" style="    width: 400px;">
+                                    <div class="col-md-8">
+                                        <span class="stars">{{$avg}}</span>
+                                    </div>
+                                    <div class="col-md-4" style= "font-size: 25px;">
+                                    {{$avg}} Star
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>
                         <div class="pro-content">{!! $products->content !!}</div>
 
                         <hr style="max-width: 70%">
@@ -58,6 +154,7 @@
                             <a href="#benefit" class="tab-control-item">Benefit</a>
                             <a href="#Comment" class="tab-control-item">Question</a>
                             <a href="#Answer" class="tab-control-item">Answer</a>
+                            <a href="#Rating" class="tab-control-item">User Rating</a>
                         </div>
                         <div class="tab-contents ative">
 
@@ -167,6 +264,59 @@
                                         </div>
                                     <hr>
                                 @endforeach
+                            </div>
+                            <div class="tab-content-item" id="Rating" style="overflow: scroll; height: 200px;">
+                            @foreach($id_order as $i)
+                            @if($i->rating!=0 AND $i->show_order==1)
+                                Writed by <b>{{$i->order->customer->name}}</b>                                         
+                                <div style="background: #F0F0E9;">
+                                    <div class="rate" style="font-size: 5px;">
+                                    <br>
+                                        @if($i->rating==1)
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star misscheck" ></span>
+                                        <span class="fa fa-star misscheck" ></span>
+                                        <span class="fa fa-star misscheck" ></span>
+                                        <span class="fa fa-star misscheck" ></span>
+                                        @endif
+                                        @if($i->rating==2)
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star misscheck" ></span>
+                                        <span class="fa fa-star misscheck" ></span>
+                                        <span class="fa fa-star misscheck" ></span>
+                                        @endif
+                                        @if($i->rating==3)
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star misscheck" ></span>
+                                        <span class="fa fa-star misscheck" ></span>
+                                        @endif
+                                        @if($i->rating==4)
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star misscheck" ></span>
+                                        @endif
+                                        @if($i->rating==5)
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        @endif
+                                    </div>
+                                    <div style="width:95%;margin-left:5%;margin-top:3px;">
+                                        <label for="fname">Comment:</label>
+                                        <a id="fname">
+                                            {{$i->comment}}
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                            @endforeach
                             </div>
                         </div>
                     </div>
