@@ -16,6 +16,7 @@ class AddColumnRating extends Migration
         Schema::table('order_details', function (Blueprint $table) {
             $table->integer('rating')->default(0);
             $table->text('comment')->nullable();
+            $table->integer('show_order')->default(1);
         });
     }
 
