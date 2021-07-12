@@ -83,9 +83,12 @@
                                     <td>{{ $c->rating}}<span class="fa fa-star checked"></span></td>
                                     <td>{{ $c->comment}}</span></td>
                                     @if($c->show_order==0)
-                                    <button><td style="vertical-align: middle;"><a href="{{route('show',$c->order_details_id)}}"class="icon" style="cursor: pointer;"><i class="glyphicon glyphicon-ok" style="font-size: 30px;color: black;"></i></a></td></button>
+                                        <td><a href="{{route('show',$c->order_details_id)}}"
+                                               class="btn btn-success">Show</a></td>
                                     @else
-                                    <button><td style="vertical-align: middle;"><a href="{{route('hidden',$c->order_details_id)}}"class="icon" style="cursor: pointer;"><i class="glyphicon glyphicon-ok" style="font-size: 30px;color: #FE980F;"></i></a></td></button>
+                                        <td><a href="{{route('hidden',$c->order_details_id)}}"
+                                               class="btn btn-danger">Hidden</a></td>
+
                                     @endif
                                 </tr>
                             @endforeach
