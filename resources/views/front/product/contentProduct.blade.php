@@ -17,7 +17,7 @@
   background: url('https://i.stack.imgur.com/rwkqF.png') 0 -36px repeat-x;
   display: inline-block;
   height: 35px;
-  
+
 }
     input[type=text], select, textarea {
         width: 100%;
@@ -28,7 +28,7 @@
         margin-top: 6px;
         margin-bottom: 16px;
         resize: vertical;
-        
+
     }
     a {
         padding: 12px;
@@ -65,7 +65,7 @@
         content: '★ ';
     }
     .rate > input:checked ~ label {
-        color: #ffc700;    
+        color: #ffc700;
     }
     .fa{
         font-size:25px;
@@ -73,7 +73,7 @@
     }
     .rate:not(:checked) > label:hover,
     .rate:not(:checked) > label:hover ~ label {
-        color: #deb217;  
+        color: #deb217;
     }
     .rate > input:checked + label:hover,
     .rate > input:checked + label:hover ~ label,
@@ -119,7 +119,7 @@
                                     {{$avg}} Star
                                     </div>
                                 </div>
-                            
+
                             </div>
                         </div>
                         <div class="pro-content">{!! $products->content !!}</div>
@@ -265,7 +265,7 @@
                             <div class="tab-content-item" id="Rating" style="overflow: scroll; height: 200px;">
                             @foreach($id_order as $i)
                             @if($i->rating!=0 AND $i->show_order==1)
-                                Writed by <b>{{$i->order->customer->name}}</b>                                         
+                                Writed by <b>{{$i->order->customer->name}}</b>
                                 <div style="background: #F0F0E9;">
                                     <div class="rate" style="font-size: 5px;">
                                     <br>

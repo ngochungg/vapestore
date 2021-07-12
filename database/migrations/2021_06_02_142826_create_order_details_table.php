@@ -20,8 +20,8 @@ class CreateOrderDetailsTable extends Migration
             $table->string('product_name');
             $table->string('product_price');
             $table->string('product_sales_quantity');
-            $table->integer('rating');
-            $table->text('comment');
+            $table->integer('rating')->default(0);
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
