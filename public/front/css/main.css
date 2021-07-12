@@ -2617,6 +2617,21 @@ textarea {
     color: #fff;
     float: right;
 }
+.cou_boder{
+    margin-right: 50px;
+    width: 250px;
+    height: auto;
+    border: solid 1px lightgrey;
+    box-shadow: 5px 8px 12px lightblue;
+    position: relative;
+}
+.cou_boder .name{
+    font-size: 20px;
+    font-weight: 500;
+}
+.cou_info{
+    font-size: 16px;
+}
 
 
 

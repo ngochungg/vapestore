@@ -32,31 +32,54 @@
 <div class="container">
 
     <div class="row">
-        @foreach($news as $newBlog)
-            <div class="col-md-2">
-
-            </div>
-
-            <div class="news-image col-md-3" >
-                <img src="{{$newBlog->image_path}}" alt="" width="300px">
-            </div>
-            <div class="col-md-5 news-title" style="margin-left: 30px">
-                <h3><a href="{{route('front2New',['id'=>$newBlog->id])}}" title="{{$newBlog->news_title}}">{{$newBlog->news_title}}</a></h3>
-                <div class="post-meta">
-                    <hr style="margin-bottom: 10px">
-
-                    <i class="fa fa-pencil" > Write by VapeStore</i>
-                    <i class="fa fa-calendar" style="margin-left: 40px"> {{date('d-m-Y', strtotime($newBlog->created_at))}}</i>
-                    <hr style="margin-top: 10px">
+        <div class="col-md-3 cou_boder">
+            <h2 style="text-align: center;color: orange">Voucher</h2>
+            <div class="col-sm-7 name">Code</div>
+            <div class="col-sm-4 name">Reduced</div>
+            <br><br>
+            @foreach($coupon as $cou)
+                <div class="cou_info">
+                    <div class="col-sm-8 cou_name pull-left" title="{{$cou->coupon_code}}">{{$cou->coupon_code}}</div>
+                    <div class="col-sm-4  pull-right">
+                        <?php
+                            if ($cou->coupon_condition==1){
+                            ?>
+                                - {{$cou->coupon_number}}%
+                            <?php
+                            }else{
+                                ?>
+                                - ${{$cou->coupon_number}}
+                                <?php
+                            }
+                        ?>
+                    </div>
                 </div>
-                <div class="news-content">{!! $newBlog->news_content !!} </div>
-                <div class=".." style="text-align: center"><i>.....</i></div>
+                <hr style="width: 50%; text-align: center">
+            @endforeach
+        </div>
+        <div class="col-sm-8">
+            @foreach($news as $newBlog)
+                <div class="news-image col-md-3" >
+                    <img src="{{$newBlog->image_path}}" alt="" width="300px">
+                </div>
+                <div class="col-md-5 news-title" style="margin-left: 30px">
+                    <h3><a href="{{route('front2New',['id'=>$newBlog->id])}}" title="{{$newBlog->news_title}}">{{$newBlog->news_title}}</a></h3>
+                    <div class="post-meta">
+                        <hr style="margin-bottom: 10px">
 
-                <a  class="btn btn-primary read-more" href="{{route('front2New',['id'=>$newBlog->id])}}" title="Click here to read more">Read More</a>
+                        <i class="fa fa-pencil" > Write by VapeStore</i>
+                        <i class="fa fa-calendar" style="margin-left: 40px"> {{date('d-m-Y', strtotime($newBlog->created_at))}}</i>
+                        <hr style="margin-top: 10px">
+                    </div>
+                    <div class="news-content">{!! $newBlog->news_content !!} </div>
+                    <div class=".." style="text-align: center"><i>.....</i></div>
+
+                    <a  class="btn btn-primary read-more" href="{{route('front2New',['id'=>$newBlog->id])}}" title="Click here to read more">Read More</a>
 
 
-            </div>
-        @endforeach
+                </div>
+            @endforeach
+        </div>
 {{--    <div class="col-md-5">--}}
 {{--        <img src="{{$newBlog->image_path}}" alt="" class="img-thumbnail" width="250px">--}}
 {{--    </div>--}}

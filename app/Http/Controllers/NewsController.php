@@ -7,6 +7,7 @@ use App\Models\CommentNews;
 use App\Models\Category;
 use App\Models\Information;
 use App\Models\NewBlog;
+use App\Models\Coupon;
 use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -137,8 +138,9 @@ class NewsController extends Controller
         $address = Information::where('key','Address')->first();
         $categoriesLimit = Category::where('parent_id',0)->take(5)->get();
         $news = $this->newBlog->latest()->paginate(5);
+        $coupon= Coupon::orderby('coupon_id','DESC')->get();
         return view('front.new.new',compact('categoriesLimit','phone','title',
-            'open','fb','ytb','email','address','news'));
+            'open','fb','ytb','email','address','news','coupon'));
     }
     public function front2New($id){
         $phone = Information::where('key','Phone')->first();
