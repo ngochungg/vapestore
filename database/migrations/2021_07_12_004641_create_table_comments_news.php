@@ -13,7 +13,7 @@ class CreateTableCommentsNews extends Migration
      */
     public function up()
     {
-        Schema::create('table_comments_news', function (Blueprint $table) {
+        Schema::create('comments_news', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_news')->nullable();
             $table->string('email')->nullable();
