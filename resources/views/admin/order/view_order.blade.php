@@ -5,7 +5,7 @@
 @endsection
 @section('a_css')
     <link rel="stylesheet" href="{{asset('admins/product/index/index.css')}}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--}}
 @endsection
 @section('js')
     <script src="{{asset('vendors\sweetAlert2\sweetalert2@11.js')}}"></script>
@@ -28,7 +28,7 @@
                                 <th>Customer Name</th>
                                 <th>Phone number</th>
                                 <th>Delivery address</th>
-                                <th>Payment method</th>
+                                <th>Payment method</th><td></td>
                             </tr>
                             </thead>
                             <tbody>
@@ -40,6 +40,7 @@
                                         <td>{{ $customer->phone }}</td>
                                         <td>{{ $customer->delivery_address }}</td>
                                         <td>{{ $customer->payment_method }}</td>
+                                        <td></td>
                                     </tr>
                                     @endif
                             @endforeach
@@ -106,6 +107,9 @@
                                             @endforeach
                                         </form>
                                     </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
