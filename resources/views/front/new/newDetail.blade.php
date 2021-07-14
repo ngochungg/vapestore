@@ -91,7 +91,7 @@
         </div>
 
     <div class="container container2">
-        <h2>Đã bình luận:</h2>
+        <h2>Commented:</h2>
         <br>
         <p>
             @foreach($comment1 as $i)
